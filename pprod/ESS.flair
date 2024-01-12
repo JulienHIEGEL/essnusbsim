@@ -1,0 +1,223 @@
+# flair project file
+Version: 300
+Mode: fluka
+Title: Simul for Ilias
+md5: 12e350557709a2d0eb42338e6c0f10ca
+Input:
+TITLE
+	Simul for Ilias
+GLOBAL ,,,, 1.0 1.0
+DEFAULTS NEW-DEFA
+*2 GeV/c
+BEAM PROTON 2.0,,, 0 0
+BEAMPOS , 0.0 0.0 -55.
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+!PHYSICS EVAPORAT 3.
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+!PHYSICS COALESCE 1.
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+!PHYSICS EM-DISSO 2.
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+!PHYSICS IONBRPAI 1.
+!IONTRANS , HEAVYION
+EMF EMF-OFF
+!EMFCUT , 1E-2 1E-2,,, @LASTREG
+!EMFCUT PROD-CUT 1E-5 1E-5,, BERYLLIU BERYLLIU 1.
+!BIASING PRINT 1.,, 1.0 T2HEAD
+!BIASING PRINT 0.0,, 5.0 T2INSHLD
+!BIASING PRINT 1.,, 10.0 T2COLL
+!BIASING PRINT 1.,, 10.0 AIRBEFB3
+!BIASING PRINT 1.,, 100.0 B3TVac
+!BIASING PRINT 1.,, 100.0 AIRBEFB2
+!BIASING PRINT 1.,, 100.0 B2B3Spec
+!BIASING PRINT 1.,, 100.0 AIRBEFD
+!BIASING PRINT 1.,, 100.0 DEGR
+!BIASING PRINT 1.,, 100.0 AIRAFTER
+!BIASING PRINT 1.,, 100.0 NA61exp
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+GEOBEGIN COMBNAME
+* Black body
+!SPH world 0.0 0.0 0.0 1200.0
+* Void sphere
+!SPH around 0.0 0.0 0.0 1000.0
+RPP world -300. 300. -300. 300. -500. 3500.
+RPP around -80 80. -150. 150 -300. 2300
+* T2 target head :160mm wide, 2mm height, [40, 100,180,300,500] mm long
+!RPP T2 -8. 8. -0.1 0.1 -15. 15.
+RPP tcoll -15. 15. -7.5 7.5 64.9 105.1
+RCC T2 0.0 0.0 -50,,, 70. 1.0
+	@select=1
+RPP t2insh -42. 42. -40. 40. -65. 65.
+RPP t2outsh -60. 60. -120. 120. -105. 105.
+* Dummy air - over estimated by 0.5 m
+RPP AIRFIRST -60. 60. -120. 120. 105.1 165.0
+* Magnets Kit : y=690 mm, x=1200 mm
+RPP MTNHo1 -60.0 60.0 -34.5 34.5 165. 525.
+RPP MTNHv1 -20.0 20. -3. 3. 165. 525.
+RPP MTNHo2 -60. 60. -34.5 34.5 585. 945.
+RPP MTNHv2 -20. 20. -3. 3. 585. 945.
+* Air Before B2B3 region
+RPP airbefb2 -20. 20. -3. 3. 945.1 950.0
+* First beam spectrometer
+RPP B2B3 -20. 20. -34.5 34.5 950.1 951.0
+* Air Before Degrader
+RPP airbefd -20. 20. -34.5 34.5 951.0 951.1
+* Degrader : Polyethylene, Thickness 40 mm
+RPP Degr -20. 20. -34.5 34.5 951.1 955.1
+* Air After Degrader
+RPP airafter -20. 20. -34.5 34.5 955.1 955.2
+* Second beam spectrometer & Experiment
+RPP NA61 -20. 20. -34.5 34.5 955.2 957.
+RPP VXSS -20.0 20.0 -3. 3. 958. 2200
+* BEFTAX
+RPP BEFTAX -20. 20. -34.5 34.5 2198 2199
+END
+* Black hole
+REGION BLKBODY 5
+	+world -around
+* Void around
+REGION VOID 5
+	+around -airafter -airbefd -airbefb2  -t2outsh -AIRFIRST -tcoll -MTNHo1 -MTNHo2  -B2B3 -Degr -NA61
+	-VXSS-BEFTAX
+REGION T2SHILD 5
+	+t2outsh -t2insh -tcoll
+REGION T2INSHLD 5
+	+t2insh-tcoll -T2
+REGION T2HEAD 5
+	+T2
+REGION T2COLL 5
+	+tcoll
+REGION B3TFe 5
+	+MTNHo1-MTNHv1 | +MTNHo2 -MTNHv2
+REGION B3TVac 5
+	+MTNHv1 | +MTNHv2
+REGION B2B3Spec 5
+	+B2B3
+REGION DEGR 5
+	+Degr
+REGION NA61exp 5
+	+NA61
+REGION VXSS 5
+	VXSS-BEFTAX
+REGION BEFTAX 5
+	+BEFTAX
+REGION AIRBEFB2 5
+	+airbefb2
+REGION AIRBEFD 5
+	+airbefd
+REGION AIRAFTER 5
+	+airafter
+REGION AIRBEFB3 5
+	+AIRFIRST
+END
+GEOEND
+LOW-MAT CARBON GRAPHITE 6. -3. 296.
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+MATERIAL AIR,,, 0.001225
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+MATERIAL AIR2,,, 0.001225
+MAT-PROP USERDIRE 1.,,, AIR2
+COMPOUND AIR -0.78 NITROGEN -0.21 OXYGEN -0.01 ARGON
+COMPOUND AIR2 -0.78 NITROGEN -0.21 OXYGEN -0.01 ARGON
+MATERIAL GRAPHITE 6.,, 1.78
+MAT-PROP ,,, 78.0 GRAPHITE
+STERNHEI GRAPHITE 3.155 0.048 2.5387 0.20762 2.9532 0.14
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+ASSIGNMA , BLCKHOLE BLKBODY
+ASSIGNMA , BLCKHOLE VOID
+ASSIGNMA , TITANIUM T2HEAD
+ASSIGNMA , BLCKHOLE T2SHILD
+ASSIGNMA , AIR2 T2INSHLD
+ASSIGNMA , BLCKHOLE T2COLL
+ASSIGNMA , BLCKHOLE B3TFe
+ASSIGNMA , BLCKHOLE B3TVac
+ASSIGNMA , VACUUM B2B3Spec
+ASSIGNMA , VACUUM DEGR
+ASSIGNMA , AIR2 NA61exp
+ASSIGNMA , AIR2 AIRBEFB2
+ASSIGNMA , VACUUM AIRBEFD
+ASSIGNMA , AIR AIRAFTER
+ASSIGNMA , BLCKHOLE AIRBEFB3
+ASSIGNMA , BLCKHOLE VXSS
+ASSIGNMA , AIR2 BEFTAX
+USRBIN Beampart 10. BEAMPART -90. 100. 50. 100.0 -100. -50. -200. 200. 200. 100.
+USRBIN Pions 10. PIONS+- -91 100. 50. 100.0 -100. -50. -200. 200. 200. 100.
+!AUXSCORE , USRYIELD -20808200,, NA61Be NA61Be
+OPEN UNKNOWN 95.
+	t2_air.dat
+!OPEN UNKNOWN 96.
+	befdeg.dat
+!OPEN UNKNOWN 97.
+	na61exp_air.dat
+!OPEN UNKNOWN 98
+	BEFTAX_air.dat
+RANDOMIZ
+START , 1000000.,,,, 0.0
+STOP
+EndInput
+
+Submit: Local
+Page: Run
+Compile: ESS.exe
+	source: ['usrmed_fprod.f']
+End
+
+# Run information
+Run: <default>
+	Exe:      ESS.exe
+	Last:     1
+	Status:   3
+	StartRun: 1697482990.478549
+	queue:    Local
+	open:     1
+End
+Geometry: Geometry
+	Frame.tsplit: 0.5722339675828048
+	Frame.vsplit: 0.4700507614213198
+	Layer: Media
+		3D._visible: 1
+		Palette: 1
+		Palette._visible: 1
+		Usrbin: 1
+		Usrbin._visible: 1
+		Usrbin.file: ESS_91.bnn
+	End
+End
+
+# Plots information
+Plot: Red
+	Type: Geometry
+	basisu: 0 0 1
+	basisv: 1 0 0
+	coord: Z-X
+	extends: 99.99999999999991 53.69458128078813
+	group: Geometry
+	layer: Media
+	origin: 3.65754 0 24.313
+End
+Plot: Green
+	Type: Geometry
+	basisu: 0.836516 0.0173377 0.547668
+	basisv: 0.224144 0.901221 -0.370891
+	extends: 143.99999999999997 103.43327841845138
+	group: Geometry
+	layer: 3D
+	origin: 15.7821 26.3234 -4.67643
+End
+Plot: Blue
+	Type: Geometry
+	basisu: 0 0 1
+	coord: Z-Y
+	extends: 172.79999999999984 120.4732394366196
+	group: Geometry
+	layer: Media
+	origin: 0 12.145 -116.809
+End
+Plot: Magenta
+	Type: Geometry
+	coord: X-Y
+	extends: 83.33333333333333 58.1805359661495
+	group: Geometry
+	layer: Media
+	origin: 21.0528 -4.09748 -45
+End
