@@ -1,0 +1,396 @@
+# flair project file
+Version: 300
+Mode: fluka
+md5: b71069e0a876209a8571a4ab0ca9432f
+Input:
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7...
+*
+TITLE
+	ESSnuSB Beam to leNuSTORM
+*
+#define SampleDose
+#define x1 0
+#define y1 0
+#define z00 6.1
+#define L10 64.98
+#define z0 7.1
+#define L11 63.98
+#define z1 71.08
+#define L2 46.8
+#define z2 117.88
+#define L3 60.3
+#define z3 178.18
+#define L4 47.5
+#define z4 225.68
+#define L5 1.08
+#define z5 226.76
+#define dz 5.44
+#define z6 232.2
+#define z7 237.64
+#define z8 243.08
+#define z9 248.52
+#define dzx 5.74
+#define R0x 58.7
+#define R00 58
+#define R01 57.46
+#define R02 55.76
+#define R03 52.63
+#define R04 47.32
+#define R05 30.5
+#define h00 3
+#define h01 22.1
+#define R11 3.54
+#define R12 5.24
+#define R13 8.37
+#define R14 13.68
+#define R15 30.5
+#define R2x 57.7
+#define R20 57.7
+#define R21 57.15
+#define R22 55.43
+#define R23 52.26
+#define R24 46.82
+#define R25 30.5
+#define h10 3.3
+#define h11 22.4
+#define R31 3.85
+#define R32 5.57
+#define R33 8.74
+#define R34 14.18
+#define R35 30.5
+#define Ltot 254.26
+#define Lbox 305.112
+#define Rbox 70.44
+#define zb -25.426
+#define hdtm -200
+#define hezm -200
+#define hezp 300
+#define hdtzm 300
+#define hdtzp 2800
+#define dx -200
+#define dy -200
+#define tdec_rad 60
+#define nustrm_inj 4000
+#define thbox_rad 120
+#define thbox_len 250
+#define tdec_len 1000
+#define hbox_zmin 6.1
+#define tgt_len 78
+#define tgt_rad 1.5
+*# ---> Beam definition
+#define BW =0.2645*tgt_rad
+MULSOPT
+DEFAULTS NEW-DEFA
+*
+* Beam definition
+* ---------------
+*  Gaussian beam, (sigma_x, sigma_y) = (0.05cm, 0.1cm)
+BEAM PROTON -2.5 0.0 0.0 =-2.3548*BW =-2.3548*BW 1.
+BEAMPOS , 0 0 -1.0 0.0 0.0
+*
+* Geometry
+* --------
+GEOBEGIN COMBNAME
+* Black body - size 10m
+RPP world -1000 1000 -1000 1000 -1000 10000
+*Simulation inside this volume - size 1km
+RPP around -500 500 -500 500 -150 6000
+*Target cavern
+RCC tcc 0 0 -10 0 0 =thbox_len+tdec_len+10 250
+!XYP PyZtendP =thbox_len+tdec_len
+*Beam to leNUSTORM
+RCC ttnstorm 0 0 =thbox_len+tdec_len 0 0 =nustrm_inj-(thbox_len+tdec_len) 350
+*NuSTORM injection point to observe fluxes
+XYP PyZinjP =nustrm_inj-0.001
+RCC NSTRMcyl 0 0 =nustrm_inj 0 0 500 250
+*Target station (target, horn and decay tube)
+RCC thbox 0 0 -0.001 0 0 =thbox_len+0.001 =thbox_rad
+RCC dectube 0 0 =thbox_len 0 0 =tdec_len =tdec_rad
+!ZCC TGDtube 0 0 =tdec_rad
+!XYP TGDend =tcav_zmax+tdec_len
+!RCC box1 $x1 $y1 $zb 0.0 0.0 $Lbox $Rbox
+!RCC tdecay 0 0 =tcav_zmax-0.1 0 0 =tdec_len =tdec_rad
+RCC target 0 0 0.0 0.0 0.0 =tgt_len =tgt_rad
+!TRC h00 $x1 0.0 $z00 0.0 0.0 $L10 $R0x $R0x
+!TRC h01 $x1 0.0 $z1 0.0 0.0 $L2 $R0x $R0x
+!TRC h02 $x1 0.0 $z2 0.0 0.0 $L3 $R0x $R0x
+!TRC h03 $x1 0.0 $z3 0.0 0.0 $L4 $R0x $R0x
+!TRC h04 $x1 0.0 $z4 0.0 0.0 $L5 $R0x $R00
+!TRC h05 $x1 0.0 $z5 0.0 0.0 $dz $R00 $R01
+!TRC h06 $x1 0.0 $z6 0.0 0.0 $dz $R01 $R02
+!TRC h07 $x1 0.0 $z7 0.0 0.0 $dz $R02 $R03
+!TRC h08 $x1 0.0 $z8 0.0 0.0 $dz $R03 $R04
+!TRC h09 $x1 0.0 $z9 0.0 0.0 $dzx $R04 $R05
+!TRC h10 $x1 0.0 $z00 0.0 0.0 $L10 $h00 $h00
+!TRC h11 $x1 0.0 $z1 0.0 0.0 $L2 $h00 $h01
+!TRC h12 $x1 0.0 $z2 0.0 0.0 $L3 $h01 $h01
+!TRC h13 $x1 0.0 $z3 0.0 0.0 $L4 $h01 $h00
+!TRC h14 $x1 0.0 $z4 0.0 0.0 $L5 $h00 $h00
+!TRC h15 $x1 0.0 $z5 0.0 0.0 $dz $h00 $R11
+!TRC h16 $x1 0.0 $z6 0.0 0.0 $dz $R11 $R12
+!TRC h17 $x1 0.0 $z7 0.0 0.0 $dz $R12 $R13
+!TRC h18 $x1 0.0 $z8 0.0 0.0 $dz $R13 $R14
+!TRC h19 $x1 $y1 $z9 0.0 0.0 $dzx $R14 $R15
+!TRC h20 $x1 $y1 $z0 0.0 0.0 $L11 $R20 $R20
+!TRC h21 $x1 $y1 $z1 0.0 0.0 $L2 $R20 $R20
+!TRC h22 $x1 $y1 $z2 0.0 0.0 $L3 $R20 $R20
+!TRC h23 $x1 $y1 $z3 0.0 0.0 $L4 $R20 $R20
+!TRC h24 $x1 $y1 $z4 0.0 0.0 $L5 $R20 $R20
+!TRC h25 $x1 $y1 $z5 0.0 0.0 $dz $R20 $R21
+!TRC h26 $x1 $y1 $z6 0.0 0.0 $dz $R21 $R22
+!TRC h27 $x1 $y1 $z7 0.0 0.0 $dz $R22 $R23
+!TRC h28 $x1 $y1 $z8 0.0 0.0 $dz $R23 $R24
+!TRC h29 $x1 $y1 $z9 0.0 0.0 $dz $R24 $R25
+!TRC h30 $x1 $y1 $z0 0.0 0.0 $L11 $h10 $h10
+!TRC h31 $x1 $y1 $z1 0.0 0.0 $L2 $h10 $h11
+!TRC h32 $x1 $y1 $z2 0.0 0.0 $L3 $h11 $h11
+!TRC h33 $x1 $y1 $z3 0.0 0.0 $L4 $h11 $h10
+!TRC h34 $x1 $y1 $z4 0.0 0.0 $L5 $h10 $h10
+!TRC h35 $x1 $y1 $z5 0.0 0.0 $dz $h10 $R31
+!TRC h36 $x1 $y1 $z6 0.0 0.0 $dz $R31 $R32
+!TRC h37 $x1 $y1 $z7 0.0 0.0 $dz $R32 $R33
+!TRC h38 $x1 $y1 $z8 0.0 0.0 $dz $R33 $R34
+!TRC h39 $x1 $y1 $z9 0.0 0.0 $dz $R34 $R35
+!RPP dt $hdtm $hdtp $hdtm $hdtp $hdtzm $hdtzp
+END
+* Black hole
+REGION BLKBODY
+	+world -around
+REGION VOID
+	+around -tcc -ttnstorm 
+!REGION TCC 5
+	+tcc
+REGION TTNSTRM 5
+	+ttnstorm-tcc
+REGION TSHILD 5
+	+tcc-thbox -dectube 
+REGION THBOX 5
+	+thbox -dectube -target 
+	@select=1
+REGION DECTUBE 5
+	+dectube -ttnstorm 
+!REGION BOX1 5
+	+box1
+	-h00 -h01 -h02 -h03 -h04 -h05 -h06 -h07 -h08 -h09-target
+!REGION RHALUP 5
+	+h00-h20 -h30 -h10-target |+h30 -h10-target
+	|+h01-h21 -h31 -h11-target |+h31 -h11-target
+	|+h02-h22 -h32 -h12-target |+h32 -h12-target
+	|+h03-h23 -h33 -h13-target |+h33 -h13-target
+	|+h04-h24 -h34 -h14-target |+h34 -h14-target
+	|+h05-h25 -h35 -h15-target |+h35 -h15-target
+	|+h06-h26 -h36 -h16-target |+h36 -h16-target
+	|+h07-h27 -h37 -h17-target |+h37 -h17-target
+	|+h08-h28 -h38 -h18-target |+h38 -h18-target
+	|+h09-h29 -h39 -h19-target |+h39 -h19-target
+!REGION RHBF 5
+	+h20-h30-target
+	|+h21-h31-target
+	|+h22-h32-target
+	|+h23-h33-target
+	|+h24-h34-target
+	|+h25-h35-target
+	|+h26-h36-target
+	|+h27-h37-target
+	|+h28-h38-target
+	|+h29-h39-target
+!REGION RHALDOWN 5
+	+h30 -h20-target
+	|+h31 -h21-target
+	|+h32 -h22-target
+	|+h33 -h23-target
+	|+h34 -h24-target
+	|+h35 -h25-target
+	|+h36 -h26-target
+	|+h37 -h27-target
+	|+h38 -h28-target
+	|+h39 -h29-target
+!REGION RHIN 5
+	+h10-target   |+h11-target   |+h12-target   |+h13-target  |+h14-target
+	|+h15-target  |+h16 -target |+h17 -target |+h18 -target  |+h19-target
+REGION TARGET 5
+	+target
+!REGION DT 5
+	+dt
+END
+GEOEND
+*
+* Material definitions
+* --------------------
+MATERIAL POTASSIU 19. 39.0983 0.862
+MATERIAL CHROMIUM 24. 51.9961 7.18
+MATERIAL MANGANES 25. 54.938049 7.21
+MATERIAL PHOSPHO 15. 30.973761 1.82
+MATERIAL SULFUR 16. 32.066 2.07
+* Steel316LN
+* Stainless steel AISI316LN
+MATERIAL SS316LN,,, 7.8
+COMPOUND SS316LN -0.67145 IRON -0.185 CHROMIUM -0.1125 NICKEL -0.02 MANGANES -0.01 \
+	 SILICON -0.00045 PHOSPHO -0.0003 SULFUR -0.0003 CARBON
+*
+* Concrete portland
+* -----------------
+MATERIAL PORTLAND,,, 2.3
+COMPOUND PORTLAND -0.01 HYDROGEN -0.001 CARBON -0.529107 OXYGEN -0.016 SODIUM -0.002 \
+	 MAGNESIU -0.033872 ALUMINUM -0.337021 SILICON -0.013 POTASSIU \
+	 -0.044 CALCIUM -0.014 IRON
+ASSIGNMA , BLCKHOLE BLKBODY,, 1.0 0
+ASSIGNMA , VACUUM VOID,, 1 0
+ASSIGNMA , HELIUM TTNSTRM
+ASSIGNMA , BLCKHOLE TSHILD
+ASSIGNMA , HELIUM THBOX
+ASSIGNMA , HELIUM DECTUBE
+!ASSIGNMA , TITANIUM TARGET,,,, VACUUM
+!ASSIGNMA , AIR INAIR,,,, VACUUM
+!ASSIGNMA , BLCKHOLE BLKBODY
+!ASSIGNMA , VACUUM VOID
+!ASSIGNMA , VACUUM TCC
+!ASSIGNMA , VACUUM BOX1
+!ASSIGNMA , ALUMINUM RHALUP
+!ASSIGNMA , VACUUM RHBF,,, 1.
+!ASSIGNMA , ALUMINUM RHALDOWN
+!ASSIGNMA , VACUUM RHIN
+!ASSIGNMA , TITANIUM TARGET
+!ASSIGNMA , VACUUM DT
+!#else
+!ASSIGNMA , BLCKHOLE BLKBODY
+!ASSIGNMA , PORTLAND WALL
+!ASSIGNMA , TITANIUM TARGET
+!ASSIGNMA , AIR INAIR
+!ASSIGNMA , BLCKHOLE BLKBODY
+!ASSIGNMA , VACUUM VOID
+!ASSIGNMA , VACUUM TCC
+!ASSIGNMA , VACUUM BOX1
+!ASSIGNMA , ALUMINUM RHALUP
+!ASSIGNMA , VACUUM RHBF,,, 1.
+!ASSIGNMA , ALUMINUM RHALDOWN
+!ASSIGNMA , VACUUM RHIN
+!ASSIGNMA , TITANIUM TARGET
+!ASSIGNMA , VACUUM DT
+!MAT-PROP USERDIRE 1,,, VACUUM @LASTMAT
+* * Activation calculations
+* -----------------------
+PHYSICS EVAPORAT 3.
+PHYSICS COALESCE 1.
+*
+* Electromagnetic thresholds
+* --------------------------
+*         prompt     decay
+*  e+/-   10 MeV    100keV
+*  gamma   5 MeV     50keV
+EMFCUT PROD-CUT -1E-05 5E-5 1. VACUUM @LASTMAT
+EMFCUT , -1E-05 5E-5,, BLKBODY @LASTREG
+*
+* Photonuclear interactions
+* -------------------------
+PHOTONUC , 1.,,, BLCKHOLE @LASTMAT
+*
+* Hadronic thresholds
+* -------------------
+PART-THR , -10.0E-6 PROTON APROTON
+PART-THR , -10.0E-6 ANEUTRON @LASTPAR
+*
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+RANDOMIZ , 1. 99999999
+START , 10000.,,,, 0.0
+STOP
+EndInput
+
+Page: Input
+F77bound: True
+F77dline: False
+Tabs: 0.1 0.32 0.56 0.81 1.0
+plotengine: Gnuplot
+Compile: myfluka
+	link: ldpmqmd
+	source: ['usrfiles/usrmed.f', 'usrfiles/usrini.f', 'usrfiles/magfld.f', 'usrfiles/usrout.f']
+End
+
+# Run information
+Run: <default>
+	Exe:      myfluka
+	Last:     1
+	StartRun: 1699550000.0
+
+	# USRxxx data file: lenustorm_90.bnn
+	Data: \I_\U\e
+		Unit: 90
+		Type: usrbin
+	End
+End
+Material: SS316LN
+	color: #401010
+End
+Material: POTASSIU
+	color: #70B0B0
+End
+Material: MANGANES
+	color: #B050D0
+End
+Geometry: Geometry
+	Layer: Borders
+		Palette: 1
+		Palette._visible: 1
+		Palette.palette: FLUKA
+		Show.color: None
+		Usrbin: 1
+		Usrbin._visible: 1
+		Usrbin.file: activation_solution_80.bnn
+	End
+End
+
+# Plots information
+Plot: Red
+	Type: Geometry
+	cbcolors: 0
+	cbpalette: FLUKA
+	cbround: 0
+	coord: X-Y
+	cpd: 0
+	extends: 172.7999137898184 165.9336920498256
+	grid: 0
+	layer: Lattice
+	origin: -30.4837 3.11789 0
+	title: GeoViewer Red plot
+End
+Plot: Green
+	Type: Geometry
+	basisu: 0 0 1
+	basisv: 1 0 0
+	coord: Z-X
+	extends: 163.146191098709 156.92336788930552
+	layer: Lattice
+	origin: 33.4759 0 98.7272
+	title: GeoViewer Green plot
+End
+Plot: Blue
+	Type: Geometry
+	basisu: 0 0 1
+	coord: Z-Y
+	extends: 395.89075862068967 380.15999999999997
+	layer: Lattice
+	origin: 0 -1.38372 152.683
+	title: GeoViewer Blue plot
+End
+Plot: Magenta
+	Type: Geometry
+	coord: X-Y
+	extends: 429.98169599999983 413.5810674626864
+	grid: 0
+	layer: Lattice
+	origin: 27.0643 -124.015 0
+	title: GeoViewer Magenta plot
+End
+Plot: ESSnuSBPlus_OneHorn_Scoring_90_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ESSnuSBPlus_OneHorn_Scoring_90.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 2.6544893693938234E+017
+	max: 8.76947429E+13
+	min: 9659.67871
+	proj: Y
+	title: USRBIN ESSnuSBPlus OneHorn Scoring 90
+End
