@@ -64,17 +64,56 @@ ESSnuSB Beam to leNuSTORM
 #define hdtzp 2800
 #define dx -200
 #define dy -200
-#define tdec_rad 60
-#define nustrm_inj 4000
-#define thbox_rad 120
-#define thbox_len 250
+*-----
+*GEOMETRY parameters
+*-----
+*----> Facility
+#define tdec_rad 100
 #define tdec_len 1000
-#define hbox_zmin 6.1
-#define tgt_len 78
+#define nustrm_inj 4000
+*----> Target
 #define tgt_rad 1.5
-*# ---> Beam definition
+#define tgt_len 78
+#define shift_target 0
+*----> Horn
+!#define hon_off
+#define shift_horn 6.1
+#define horn_thick0 1
+#define horn_thick 0.3
+#define h_z1 64.98
+#define h_z2 46.8
+#define h_z3 60.3
+#define h_z4 47.5
+#define h_z5 1.08
+#define h_z6 5.44
+#define h_z7 5.44
+#define h_z8 5.44
+#define h_z9 5.44
+#define h_z10 5.74
+!@what.1=h_z1+h_z2+h_z3+h_z4+h_z5+h_z6+h_z7+h_z8+h_z9+h_z10 
+#define horn_len 248.16
+#define h_rin1 3
+#define h_rin2 22.1
+#define h_rin3 3.54
+#define h_rin4 5.24
+#define h_rin5 8.37
+#define h_rin6 13.86
+#define h_rin7 30.5
+#define h_rout1 57.7
+#define h_rout2 57.15
+#define h_rout3 55.43
+#define h_rout4 52.26
+#define h_rout5 46.82
+#define h_rout6 30.5
+!@what.1=57.7+horn_thick0
+#define h_romax 58.7
+!@what.1=h_rin1
+#define h_rimin 3
+*----> Beam definition
 !@what.1=0.2645*tgt_rad
 #define BW 0.39675
+!@what.1=shift_target
+#define z_beam_pos 0
 MULSOPT
 DEFAULTS                                                              NEW-DEFA
 *
@@ -84,7 +123,8 @@ DEFAULTS                                                              NEW-DEFA
 !@what.4=-2.3548*BW
 !@what.5=-2.3548*BW
 BEAM            -2.5       0.0       0.0-0.9342669-0.9342669        1.PROTON
-BEAMPOS            0         0      -1.0       0.0       0.0
+!@what.3=z_beam_pos
+BEAMPOS            0         0         0       0.0       0.0
 *
 * Geometry
 * --------
@@ -94,41 +134,31 @@ GEOBEGIN                                                              COMBNAME
 RPP world      -1000 1000 -1000 1000 -1000 10000
 *Simulation inside this volume - size 1km
 RPP around     -500 500 -500 500 -150 6000
-*Target cavern
-!@what.6=thbox_len+tdec_len+10
-RCC tcc        0 0 -10 0 0 1260 250
+*Faclity : tcc + beam to nustorm
+!@what.6=nustrm_inj-(shift_horn+horn_len+tdec_len)+10
+RCC tcc        0 0 -10 0 0 2755.74 300
+*Target-horn box
+!@what.6=shift_horn+horn_len+4.0
+!@what.7=h_romax+2.0
+RCC thbox      0 0 -1.0 0 0 258.26 60.7
+!@what.3=shift_horn+horn_len+2.0
+RCC tdec0      0 0 256.26 0 0 $tdec_len $tdec_rad
 #if 0
-!@what.1=thbox_len+tdec_len
-XYP PyZtendP   1250
-#endif
-*Beam to leNUSTORM
-!@what.3=thbox_len+tdec_len
-!@what.6=nustrm_inj-(thbox_len+tdec_len)
-RCC ttnstorm   0 0 1250 0 0 2750 350
-*NuSTORM injection point to observe fluxes
-!@what.1=nustrm_inj-0.001
-XYP PyZinjP    3999.999
-!@what.3=nustrm_inj
-RCC NSTRMcyl   0 0 4000 0 0 500 250
-*Target station (target, horn and decay tube)
-!@what.6=thbox_len+0.001
-RCC thbox      0 0 -0.001 0 0 250.001 $thbox_rad
-RCC dectube    0 0 $thbox_len 0 0 $tdec_len $tdec_rad
-#if 0
-ZCC TGDtube    0 0 $tdec_rad
+ZCC tdecay     0 0 $tdec_rad
 #endif
 #if 0
-!@what.1=tcav_zmax+tdec_len
-XYP TGDend     0.0
+!@what.1=shift_horn+horn_len+2.
+XYP PyZdtlP    256.26
 #endif
+#if 0
+!@what.1=shift_horn+horn_len+2+tdec_len
+XYP PyZdthP    1256.26
+#endif
+*Target geometry
+RCC tgtcyl     0 0 0 0 0 $tgt_len $tgt_rad
 #if 0
 RCC box1       $x1 $y1 $zb 0.0 0.0 $Lbox $Rbox
 #endif
-#if 0
-!@what.3=tcav_zmax-0.1
-RCC tdecay     0 0 0.0 0 0 $tdec_len $tdec_rad
-#endif
-RCC target     0 0 0.0 0.0 0.0 $tgt_len $tgt_rad
 #if 0
 TRC h00        $x1 0.0 $z00 0.0 0.0 $L10 $R0x $R0x
 #endif
@@ -255,14 +285,14 @@ RPP dt         $hdtm $hdtp $hdtm $hdtp $hdtzm $hdtzp
 END
 * Black hole
 BLKBODY      5 +world -around
-VOID         5 +around -tcc -ttnstorm
+VOID         5 +around -tcc
 #if 0
 TCC          5 +tcc
 #endif
-TTNSTRM      5 +ttnstorm-tcc
-TSHILD       5 +tcc-thbox -dectube
-THBOX        5 +thbox -dectube -target
-DECTUBE      5 +dectube -ttnstorm
+TSHILD       5 +tcc  -thbox -tdec0
+THBOX        5 +thbox -tdec0 -tgtcyl
+DECTUBE      5 +tdec0
+TARGET       5 +tgtcyl
 #if 0
 BOX1         5 +box1
                -h00 -h01 -h02 -h03 -h04 -h05 -h06 -h07 -h08 -h09-target
@@ -307,7 +337,6 @@ RHALDOWN     5 +h30 -h20-target
 RHIN         5 +h10-target   |+h11-target   |+h12-target   |+h13-target  |+h14-target
                |+h15-target  |+h16 -target |+h17 -target |+h18 -target  |+h19-target
 #endif
-TARGET       5 +target
 #if 0
 DT           5 +dt
 #endif
@@ -337,10 +366,10 @@ COMPOUND   -0.337021   SILICON    -0.013  POTASSIU    -0.044   CALCIUMPORTLAND
 COMPOUND      -0.014      IRON                                        PORTLAND
 ASSIGNMA    BLCKHOLE   BLKBODY                 1.0         0
 ASSIGNMA      VACUUM      VOID                   1         0
-ASSIGNMA      HELIUM   TTNSTRM
 ASSIGNMA    BLCKHOLE    TSHILD
 ASSIGNMA      HELIUM     THBOX
 ASSIGNMA      HELIUM   DECTUBE
+ASSIGNMA    BLCKHOLE    TARGET
 *ASSIGNMA    TITANIUM    TARGET                                  VACUUM
 *ASSIGNMA         AIR     INAIR                                  VACUUM
 *ASSIGNMA    BLCKHOLE   BLKBODY
