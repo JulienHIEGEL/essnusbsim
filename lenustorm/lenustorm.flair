@@ -1,7 +1,7 @@
 # flair project file
 Version: 300
 Mode: fluka
-md5: 1ce3967ec284875ab0d3d7a4d0b6ec73
+md5: d2897842115c06cb6c16a23c43f7be28
 Input:
 * ..+....1....+....2....+....3....+....4....+....5....+....6....+....7...
 *
@@ -79,12 +79,14 @@ TITLE
 *----> Target
 #define tgt_rad 1.5
 #define tgt_len 78
-#define shift_target 0
+#define tgt_x 0
+#define tgt_y 0
+#define tgt_z 0
 *----> Horn
 !#define hon_off
 #define shift_horn 6.1
-#define horn_thick0 1.0
-#define horn_thick 0.3
+#define h_thick0 1.0
+#define h_thick 0.3
 #define h_z1 64.98
 #define h_z2 46.8
 #define h_z3 60.3
@@ -95,7 +97,7 @@ TITLE
 #define h_z8 5.44
 #define h_z9 5.44
 #define h_z10 5.74
-#define horn_len '=h_z1+h_z2+h_z3+h_z4+h_z5+h_z6+h_z7+h_z8+h_z9+h_z10 '
+#define h_ltot '=h_z1+h_z2+h_z3+h_z4+h_z5+h_z6+h_z7+h_z8+h_z9+h_z10 '
 #define h_rin1 3.0
 #define h_rin2 22.1
 #define h_rin3 3.54
@@ -109,7 +111,7 @@ TITLE
 #define h_rout4 52.26
 #define h_rout5 46.82
 #define h_rout6 30.5
-#define h_romax =57.7+horn_thick0
+#define h_romax =57.7+h_thick0
 #define h_rimin =h_rin1
 *----> Beam definition
 #define BW =0.2645*tgt_rad
@@ -126,21 +128,27 @@ BEAMPOS , 0 0 =z_beam_pos 0.0 0.0
 * Geometry
 * --------
 GEOBEGIN COMBNAME
-* Black body - size 10m
-RPP world -1000 1000 -1000 1000 -1000 10000
-*Simulation inside this volume - size 1km
-RPP around -500 500 -500 500 -150 6000
+* Black body - size 100m
+SPH blkbody 0 0 0 10000
+*Simulation inside this volume 10m wide, 50m long
+RPP void -1000 1000 -1000 1000 -1000 5000
 *Faclity : tcc + beam to nustorm
-RCC tcc 0 0 -10 0 0 =nustrm_inj-(shift_horn+horn_len+tdec_len)+10 300
+RCC tcc 0 0 -100 0 0 1100.1 300
+RCC tdec 0 0 1000 0 0 3500 =tdec_rad
+*Tranlate target-horn assembly to correct position
+$start_translat =tgt_x =tgt_y =tgt_z
 *Target-horn box
-RCC thbox 0 0 -1.0 0 0 =shift_horn+horn_len+4.0 =h_romax+2.0
-RCC tdec0 0 0 =shift_horn+horn_len+2.0 0 0 =tdec_len =tdec_rad
-!ZCC tdecay 0 0 =tdec_rad
-!XYP PyZdtlP =shift_horn+horn_len+2.
-!XYP PyZdthP =shift_horn+horn_len+2+tdec_len
-*Target geometry
-RCC tgtcyl 0 0 0 0 0 =tgt_len =tgt_rad
-!RCC box1 $x1 $y1 $zb 0.0 0.0 $Lbox $Rbox
+RCC thbox 0 0 -1.0 0 0 =1+shift_horn+h_ltot+4.0 =h_romax+2.0
+RCC target 0 0 0 0 0 =tgt_len =tgt_rad
+ZCC horn_O0 0 0 =h_rout1+h_thick0
+ZCC horn_O1 0 0 =h_rout1
+XYP PyZhuP1 =shift_horn
+XYP PyZhuP2 =shift_horn+h_thick0
+XYP PyZhoP =shift_horn+h_thick0+h_z1+h_z2+h_z3+h_z4+h_z5
+ZCC horn_I0 0 0 =h_rin1+h_thick
+ZCC horn_I1 0 0 =h_rin1
+XYP PyZhiP1 =shift_horn+h_thick+h_z1
+$end_translat
 !TRC h00 $x1 0.0 $z00 0.0 0.0 $L10 $R0x $R0x
 !TRC h01 $x1 0.0 $z1 0.0 0.0 $L2 $R0x $R0x
 !TRC h02 $x1 0.0 $z2 0.0 0.0 $L3 $R0x $R0x
@@ -185,20 +193,27 @@ RCC tgtcyl 0 0 0 0 0 =tgt_len =tgt_rad
 END
 * Black hole
 REGION BLKBODY
-	+world -around
-REGION VOID
-	+around -tcc
+	+blkbody -void
+REGION TSHILD
+	+void -tcc -tdec 
+REGION TCC 5
+	+tcc -thbox |+tdec
+!REGION TSHILD 5
+	+tcc  -thbox -tdec 
+REGION HBOX 5
+	+thbox -target 
+	-(+horn_O1 -horn_I0 -PyZhuP1 +PyZhuP2 )
+	-(+horn_O0 -horn_O1 +PyZhoP -PyZhuP1  )
+	-(+horn_I0 -horn_I1 -PyZhuP1  +PyZhiP1 )
 	@select=1
-!REGION TCC 5
-	+tcc
-REGION TSHILD 5
-	+tcc  -thbox -tdec0 
-REGION THBOX 5
-	+thbox -tdec0 -tgtcyl 
-REGION DECTUBE 5
-	+tdec0 
 REGION TARGET 5
-	+tgtcyl
+	+target
+REGION HORNCo 5
+	+horn_O1 -horn_I0 -PyZhuP1 +PyZhuP2 
+	| +horn_O0 -horn_O1 +PyZhoP -PyZhuP1 
+	| +horn_I0 -horn_I1 -PyZhuP1  +PyZhiP1 
+!REGION DECTUBE 5
+	+tdec 
 !REGION BOX1 5
 	+box1
 	-h00 -h01 -h02 -h03 -h04 -h05 -h06 -h07 -h08 -h09-target
@@ -263,15 +278,14 @@ COMPOUND PORTLAND -0.01 HYDROGEN -0.001 CARBON -0.529107 OXYGEN -0.016 SODIUM -0
 	 MAGNESIU -0.033872 ALUMINUM -0.337021 SILICON -0.013 POTASSIU \
 	 -0.044 CALCIUM -0.014 IRON
 ASSIGNMA , BLCKHOLE BLKBODY,, 1.0 0
-ASSIGNMA , VACUUM VOID,, 1 0
-ASSIGNMA , BLCKHOLE TSHILD
-ASSIGNMA , HELIUM THBOX
-ASSIGNMA , HELIUM DECTUBE
-ASSIGNMA , BLCKHOLE TARGET
-!ASSIGNMA , TITANIUM TARGET,,,, VACUUM
+ASSIGNMA , IRON TSHILD,, 1 0
+ASSIGNMA , VACUUM TCC
+ASSIGNMA , HELIUM HBOX
+ASSIGNMA , TITANIUM TARGET
+ASSIGNMA , ALUMINUM HORNCo
 !ASSIGNMA , AIR INAIR,,,, VACUUM
 !ASSIGNMA , BLCKHOLE BLKBODY
-!ASSIGNMA , VACUUM VOID
+!ASSIGNMA , VACUUM TSHILD
 !ASSIGNMA , VACUUM TCC
 !ASSIGNMA , VACUUM BOX1
 !ASSIGNMA , ALUMINUM RHALUP
@@ -286,7 +300,7 @@ ASSIGNMA , BLCKHOLE TARGET
 !ASSIGNMA , TITANIUM TARGET
 !ASSIGNMA , AIR INAIR
 !ASSIGNMA , BLCKHOLE BLKBODY
-!ASSIGNMA , VACUUM VOID
+!ASSIGNMA , VACUUM TSHILD
 !ASSIGNMA , VACUUM TCC
 !ASSIGNMA , VACUUM BOX1
 !ASSIGNMA , ALUMINUM RHALUP
@@ -375,10 +389,10 @@ Plot: Red
 	cbround: 0
 	coord: X-Y
 	cpd: 0
-	extends: 119.99994013181836 72.05772578312559
+	extends: 5662.906474218251 3226.977746949203
 	grid: 0
 	layer: Lattice
-	origin: -19.7381 -1.37597 0
+	origin: 666.494 993.392 0
 	title: GeoViewer Red plot
 End
 Plot: Green
@@ -386,27 +400,27 @@ Plot: Green
 	basisu: 0 0 1
 	basisv: 1 0 0
 	coord: Z-X
-	extends: 192.1224336673346 115.50493301204816
+	extends: 196.6997473816033 112.21273047074817
 	layer: Lattice
-	origin: 26.154 0 82.6328
+	origin: 7.93255 0 150.078
 	title: GeoViewer Green plot
 End
 Plot: Blue
 	Type: Geometry
 	basisu: 0 0 1
 	coord: Z-Y
-	extends: 329.9089655172412 197.7071778911987
+	extends: 26226.722622752834 14916.085039326168
 	layer: Lattice
-	origin: 0 39.0959 285.612
+	origin: 0 -6546.46 2645.75
 	title: GeoViewer Blue plot
 End
 Plot: Magenta
 	Type: Geometry
 	coord: X-Y
-	extends: 143.99999999999991 86.39999999999995
+	extends: 4600.511990936964 2619.3814110440208
 	grid: 0
 	layer: Media
-	origin: 43.5062 -19.1274 8
+	origin: 2765.68 -1096.88 8
 	title: GeoViewer Magenta plot
 End
 Plot: ESSnuSBPlus_OneHorn_Scoring_90_plot
