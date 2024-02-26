@@ -1,0 +1,13 @@
+#
+
+*.exe
+*.o
+*.log
+*.out
+*.err
+
+ESS*fort*.*
+ran*
+flair*.pickle
+
+ESS*.dat
