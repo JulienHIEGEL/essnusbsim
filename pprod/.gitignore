@@ -5,6 +5,8 @@
 *.log
 *.out
 *.err
+*.bnn
+*.json
 
 ESS*fort*.*
 ran*

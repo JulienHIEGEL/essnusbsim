@@ -2,7 +2,7 @@
 Version: 300
 Mode: fluka
 Title: Simul for Ilias
-md5: bb732fc669c9e80b7a8a0111ace96f7c
+md5: 78e9190bc5e6a891658e4e477537ffea
 Input:
 TITLE
 	Simul for Ilias
@@ -46,9 +46,7 @@ GEOBEGIN COMBNAME
 !SPH around 0.0 0.0 0.0 1000.0
 RPP world -300. 300. -300 300. -500. 40000.
 RPP around -150 150. -150. 150 -300. 10000
-	@select=1
 RCC target 0.0 0.0 0,,, =trg_len =trg_rad
-	@select=1
 END
 * Black hole
 REGION BLKBODY 5
@@ -56,7 +54,6 @@ REGION BLKBODY 5
 * Void around
 REGION VOID 5
 	+around -target
-	@select=1
 REGION TARGET 5
 	+target
 END
@@ -92,12 +89,12 @@ OPEN UNKNOWN 95.
 !OPEN UNKNOWN 98
 	BEFTAX_air.dat
 RANDOMIZ
-START , 100000.,,,, 0.0
+START , 1000000.,,,, 0.0
 STOP
 EndInput
 
 Submit: Local
-Page: Input
+Page: Flair
 plotengine: Gnuplot
 Compile: ESS.exe
 	source: ['usrmed_fprod.f', 'usrini.f']
@@ -106,10 +103,10 @@ End
 # Run information
 Run: <default>
 	Exe:      ESS.exe
-	Prev:     1
-	Last:     11
-	Status:   6
-	StartRun: 1708964544.260989
+	Prev:     20
+	Last:     30
+	Status:   4
+	StartRun: 1709019289.770912
 	queue:    Local
 	open:     1
 End
@@ -130,7 +127,7 @@ Plot: Red
 	basisu: 0 0 1
 	basisv: 1 0 0
 	coord: Z-X
-	extends: 143.99999999999974 88.50731707317057
+	extends: 143.99999999999974 107.9999999999998
 	group: Geometry
 	layer: Media
 	origin: -11.4344 0 55.8923
@@ -139,27 +136,75 @@ Plot: Green
 	Type: Geometry
 	basisu: 0 0 1
 	coord: Z-Y
-	extends: 298.5983999999995 183.75286153846125
+	extends: 891.6100448255982 668.7075336191986
 	group: Geometry
 	layer: Lattice
-	origin: 0 19.4627 238.32
+	origin: 0 408.684 409.063
 End
 Plot: Blue
 	Type: Geometry
 	basisu: 0 0 1
 	coord: Z-Y
-	extends: 69.4444444444444 42.68292682926827
+	extends: 207.35999999999981 155.51999999999987
 	group: Geometry
 	layer: Media
-	origin: 0 10.492 7.55925
+	origin: 0 -22.8127 -18.0597
 End
 Plot: Magenta
 	Type: Geometry
 	coord: X-Y
-	extends: 429.9816959999997 264.60412061538443
+	extends: 429.9816959999998 322.4862719999998
 	group: Geometry
 	layer: Media
 	origin: 212.437 12.5093 -45
+End
+Plot: ESS_21_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ESS_21.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 153.33209672902245
+	max: 9.30078141E-03
+	min: 1.41854306E-09
+	open: 1
+	title: USRBIN ESS 21
+End
+Plot: ESS_80_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ESS_80.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 2.6326669876420876
+	max: 6.83885589E-02
+	min: 7.75147612E-07
+	open: 1
+	title: USRBIN ESS 80
+End
+Plot: ESS_81_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ESS_81.bnn
+	open: 1
+	title: USRBIN ESS 81
+End
+Plot: ESS_82_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ESS_82.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 0.43789947866720208
+	max: 2.51195626E-04
+	min: 5.55555687E-07
+	open: 1
+	proj: Y
+	title: USRBIN ESS 82
 End
 Plot: ESS_90_plot
 	Type: USRBIN
@@ -167,44 +212,26 @@ Plot: ESS_90_plot
 	cbtics: 1
 	datafile: ESS_90.bnn
 	grid: 0
-	hist: 1D Projection
-	int: 154.73072301989586
-	max: 4.13344133E-05
-	min: 4.94098515E-07
-	proj: Y
+	hist: 2D Projection
+	int: 0.13757223740508145
+	max: 2.45568750E-04
+	min: 1.32334232E-09
+	open: 1
 	title: USRBIN ESS 90
 End
 Plot: ESS_91_plot
 	Type: USRBIN
-	bxmax: 100.
-	bxmin: -100.
-	bymax: 50.
-	bymin: -50.
 	cblog: 1
 	cbtics: 1
 	datafile: ESS_91.bnn
-	grid: 0
-	hist: 2D Projection
-	index: 1
-	int: 25.910171033260422
-	lw.0: 4
-	max: 1.75503505E-04
-	min: 8.62307187E-12
-	proj: Y
-	pt.0: 6
+	open: 1
 	title: USRBIN ESS 91
-	with.0: histogram
 End
 Plot: ESS_92_plot
 	Type: USRBIN
 	cblog: 1
 	cbtics: 1
 	datafile: ESS_92.bnn
-	grid: 0
-	hist: 1D Projection
-	index: 2
-	int: 1.6045355822797867
-	max: 3.66716250E-07
-	min: 8.88965879E-09
+	open: 1
 	title: USRBIN ESS 92
 End

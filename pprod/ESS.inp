@@ -98,5 +98,5 @@ OPEN              98                                                  UNKNOWN
 BEFTAX_air.dat
 #endif
 RANDOMIZ
-START        100000.                                     0.0
+START       1000000.                                     0.0
 STOP

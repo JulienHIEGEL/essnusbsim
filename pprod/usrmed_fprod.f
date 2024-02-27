@@ -60,17 +60,14 @@
       END IF
 
       IF ( (MREG.EQ.NTARGET) .AND. (NEWREG.EQ.NVOID) ) THEN
-
-*     --- score the mesons leaving the target 
-
-         IF ( (IJ.EQ.13).OR.(IJ.EQ.14).OR.(IJ.EQ.15).OR.(IJ.EQ.16) ) THEN    
-             WRITE(95,1000) IJ, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
-             IF ( IFOCUSING.EQ.1 ) THEN
-                TXX = ZERZER
-                TYY = ZERZER
-                TZZ = ONEONE-1.0e-9
-             END IF
-         END IF       
+            IF ( (IJ.EQ.13).OR.(IJ.EQ.14).OR.(IJ.EQ.15).OR.(IJ.EQ.16) ) THEN    
+                  WRITE(95,1000) IJ, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
+                  IF ( IFOCUSING.EQ.1 ) THEN
+                        TXX = ZERZER
+                        TYY = ZERZER
+                        TZZ = ONEONE
+                  END IF
+            END IF       
       END IF
       RETURN
  1000 FORMAT(1(1X,I4),8(1X,G14.7))
