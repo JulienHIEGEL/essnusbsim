@@ -6,7 +6,8 @@
 *.out
 *.err
 *.bnn
-*.json
+
+**/.vscode/
 
 ESS*fort*.*
 ran*
