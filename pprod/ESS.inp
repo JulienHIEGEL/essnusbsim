@@ -3,6 +3,8 @@ Simul for Ilias
 GLOBAL                                         1.0       1.0
 #define trg_len 78
 #define trg_rad 1.5
+#define horn_len 100
+#define horn_rad 100
 DEFAULTS                                                              NEW-DEFA
 *2 GeV/c
 BEAM             2.0                             0         0          PROTON
@@ -46,12 +48,30 @@ SPH around     0.0 0.0 0.0 1000.0
 RPP world      -300. 300. -300 300. -500. 40000.
 RPP around     -150 150. -150. 150 -300. 10000
 RCC target     0.0 0.0 0 0.0 0.0 $trg_len $trg_rad
+!@what.3=trg_rad+2
+ZCC trg_cyl    0.0 0.0 3.5
+ZCC horn_cyl   0.0 0.0 $horn_rad
+XYP pl_up      -2
+!@what.1=trg_len+2
+XYP pl_dow0    80
+XYP pl_dow1    $horn_len
+!@what.3=horn_len+1
+RCC det0       0 0 101 0 0 10 15.0
+RCC det10      0 0 1000 0 0 10 15.0
+RCC det20      0 0 2000 0 0 10 15.0
+RCC det30      0 0 3000 0 0 10 15.0
 END
 * Black hole
 BLKBODY      5 +world -around
 * Void around
-VOID         5 +around -target
+VOID         5 +around -(+horn_cyl -pl_up +pl_dow1) -det0 -det10 -det20 -det30
 TARGET       5 +target
+HORN         5 +horn_cyl -pl_up +pl_dow1 -(+trg_cyl -pl_up +pl_dow0)
+TBOX         5 +trg_cyl -target -pl_up +pl_dow0
+DET0         5 +det0
+DET10        5 +det10
+DET20        5 +det20
+DET30        5 +det30
 END
 GEOEND
 *LOW-MAT     GRAPHITE        6.       -3.      296.                    CARBON
@@ -68,6 +88,12 @@ MAT-PROP          1.                      BLCKHOLE  @LASTMAT          USERDIRE
 ASSIGNMA    BLCKHOLE   BLKBODY
 ASSIGNMA      VACUUM      VOID
 ASSIGNMA    TITANIUM    TARGET
+ASSIGNMA      VACUUM      TBOX
+ASSIGNMA      HELIUM      HORN
+ASSIGNMA      VACUUM      DET0
+ASSIGNMA      VACUUM     DET10
+ASSIGNMA      VACUUM     DET20
+ASSIGNMA      VACUUM     DET30
 USRBIN           10.  BEAMPART       -21      100.       50.    1000.0Beampart
 USRBIN         -100.      -50.      -10.      200.      200.      100. &
 USRBIN           10.     PION+       -80       30.       30.     100.0Pions0
@@ -82,6 +108,23 @@ USRBIN           10.     MUON+       -91       30.       30.    1020.0Muons10
 USRBIN          -30.      -30.     1000.      200.      200.       20. &
 USRBIN           10.     MUON+       -92       30.       30.    3020.0Muons30
 USRBIN          -30.      -30.     3000.      200.      200.       20. &
+USRYIELD         202      -113       -22        -1        -2          Yield
+USRTRACK                 PION+       -23      DET0                 100PiDET0
+USRTRACK           2     0.001                                         &
+USRTRACK                 PION+       -24     DET10                 100PiDET10
+USRTRACK           2     0.001                                         &
+USRTRACK                 PION+       -23     DET20                 100PiDET20
+USRTRACK           2     0.001                                         &
+USRTRACK                 PION+       -25     DET30                 100PiDET30
+USRTRACK           2     0.001                                         &
+USRTRACK                 MUON+       -23      DET0                 100muDET0
+USRTRACK           2     0.001                                         &
+USRTRACK                 MUON+       -23     DET10                 100muDET10
+USRTRACK           2     0.001                                         &
+USRTRACK                 MUON+       -23     DET20                 100muDET20
+USRTRACK           2     0.001                                         &
+USRTRACK                 MUON+       -23     DET30                 100muDET30
+USRTRACK           2     0.001                                         &
 *AUXSCORE    USRYIELD -20808200              NA61Be    NA61Be
 OPEN             95.                                                  UNKNOWN
 target_pprod.dat

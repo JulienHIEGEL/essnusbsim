@@ -44,31 +44,56 @@
       
       LOGICAL LFIRST
       DATA  LFIRST /.TRUE./
-
       
-      SAVE LFIRST,NTARGET,NVOID
+      SAVE LFIRST,NTARGET,NVOID,NTBOX,NHORN,NDET0,NDET10,NDET20,NDET30
       
       IF (LFIRST) THEN
          LFIRST = .FALSE.
          CALL GEON2R("TARGET  ", NTARGET,IERR)
          CALL GEON2R("VOID    ", NVOID, IERR)
+         CALL GEON2R("TBOX    ", NTBOX, IERR)
+         CALL GEON2R("HORN    ", NHORN, IERR)
+         CALL GEON2R("DET0    ", NDET0, IERR)
+         CALL GEON2R("DET10   ", NDET10, IERR)
+         CALL GEON2R("DET20   ", NDET20, IERR)
+         CALL GEON2R("DET30   ", NDET30, IERR)
         
          PRINT *,"Entering USRMED routine",MREG,NEWREG
-         PRINT *,"Named regions : ",NVOID,NTARGET
+         PRINT *,"Named regions : ",NVOID,NTARGET,NTBOX,NHORN,NDET0,NDET10,
+     +                              NDET20,NDET30
          PRINT *,"Configuration : IFOCUSING=",IFOCUSING
          WRITE(95,*) "* 1=IJ 2=PLA 3-5={Xx,Yy,Zz},6-8={TXX,TYY,TZZ}, 9=WEE"
       END IF
 
-      IF ( (MREG.EQ.NTARGET) .AND. (NEWREG.EQ.NVOID) ) THEN
-            IF ( (IJ.EQ.13).OR.(IJ.EQ.14).OR.(IJ.EQ.15).OR.(IJ.EQ.16) ) THEN    
-                  WRITE(95,1000) IJ, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
-                  IF ( IFOCUSING.EQ.1 ) THEN
-                        TXX = ZERZER
-                        TYY = ZERZER
-                        TZZ = ONEONE
-                  END IF
-            END IF       
+      IWRITE = 0
+      IF ( (MREG.EQ.NTARGET).AND.(NEWREG.EQ.TBOX) ) THEN
+            IWRITE = 95
+      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET0) ) THEN
+            IWRITE = 96
+      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET10) ) THEN
+            IWRITE = 97
+      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET20) ) THEN
+            IWRITE = 98
+      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET30) ) THEN
+            IWRITE = 99
+      ELSE
+            IWRITE = 0
       END IF
+      IF ( (IWRITE.GT.0).AND.
+     +     ((IJ.EQ.1).OR.(IJ.EQ.2).OR.(IJ.EQ.10).OR.(IJ.EQ.11).OR.
+     +       (IJ.EQ.13).OR.(IJ.EQ.14)) ) THEN    
+            WRITE(IWRITE,1000) IJ, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
+      END IF
+
+      IF ( (MREG.EQ.TBOX).AND.(NEWREG.EQ.HORN).AND.
+     +     (IFOCUSING.EQ.1).AND.(Tzz.GT.ZERZER).AND.
+     +     ((IJ.EQ.1).OR.(IJ.EQ.2).OR.(IJ.EQ.10).OR.(IJ.EQ.11).OR.
+     +           (IJ.EQ.13).OR.(IJ.EQ.14)) ) THEN
+            Txx = ZERZER
+            Tyy = ZERZER
+            Tzz = ONEONE
+      END IF     
+
       RETURN
  1000 FORMAT(1(1X,I4),8(1X,G14.7))
 *=== End of subroutine Usrmed =========================================*

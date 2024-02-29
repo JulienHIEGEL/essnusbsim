@@ -2,13 +2,15 @@
 Version: 300
 Mode: fluka
 Title: Simul for Ilias
-md5: 78e9190bc5e6a891658e4e477537ffea
+md5: 55112615c187321e5d85a5a9035e3a75
 Input:
 TITLE
 	Simul for Ilias
 GLOBAL ,,,, 1.0 1.0
 #define trg_len 78
 #define trg_rad 1.5
+#define horn_len 100.0
+#define horn_rad 100.0
 DEFAULTS NEW-DEFA
 *2 GeV/c
 BEAM PROTON 2.0,,, 0 0
@@ -47,15 +49,38 @@ GEOBEGIN COMBNAME
 RPP world -300. 300. -300 300. -500. 40000.
 RPP around -150 150. -150. 150 -300. 10000
 RCC target 0.0 0.0 0,,, =trg_len =trg_rad
+ZCC trg_cyl 0.0 0.0 =trg_rad+2
+ZCC horn_cyl 0.0 0.0 =horn_rad
+XYP pl_up -2
+XYP pl_dow0 =trg_len+2
+XYP pl_dow1 =horn_len
+RCC det0 0 0 =horn_len+1 0 0 10 15.0
+RCC det10 0 0 1000 0 0 10 15.0
+RCC det20 0 0 2000 0 0 10 15.0
+RCC det30 0 0 3000 0 0 10 15.0
 END
 * Black hole
 REGION BLKBODY 5
 	+world -around
 * Void around
 REGION VOID 5
-	+around -target
+	+around -(+horn_cyl -pl_up +pl_dow1) -det0 -det10 -det20 -det30  
+	alpha=0
 REGION TARGET 5
 	+target
+REGION HORN 5
+	+horn_cyl -pl_up +pl_dow1 -(+trg_cyl -pl_up +pl_dow0) 
+REGION TBOX 5
+	+trg_cyl -target -pl_up +pl_dow0 
+REGION DET0 5
+	+det0 
+REGION DET10 5
+	+det10
+REGION DET20 5
+	+det20
+REGION DET30 5
+	+det30
+	@select=1
 END
 GEOEND
 !LOW-MAT CARBON GRAPHITE 6. -3. 296.
@@ -72,6 +97,12 @@ MAT-PROP USERDIRE 1.,,, BLCKHOLE @LASTMAT
 ASSIGNMA , BLCKHOLE BLKBODY
 ASSIGNMA , VACUUM VOID
 ASSIGNMA , TITANIUM TARGET
+ASSIGNMA , VACUUM TBOX
+ASSIGNMA , HELIUM HORN
+ASSIGNMA , VACUUM DET0
+ASSIGNMA , VACUUM DET10
+ASSIGNMA , VACUUM DET20
+ASSIGNMA , VACUUM DET30
 USRBIN Beampart 10. BEAMPART -21 100. 50. 1000.0 -100. -50. -10. 200. 200. 100.
 USRBIN Pions0 10. PION+ -80 30. 30. 100.0 -30. -30. 80. 200. 200. 20.
 USRBIN Pions10 10. PION+ -81 30. 30. 1020.0 -30. -30. 1000. 200. 200. 20.
@@ -79,6 +110,15 @@ USRBIN Pions30 10. PION+ -82 30. 30. 3020.0 -30. -30. 3000. 200. 200. 20.
 USRBIN Muons0 10. MUON+ -90 30. 30. 100.0 -30. -30. 80. 200. 200. 20.
 USRBIN Muons10 10. MUON+ -91 30. 30. 1020.0 -30. -30. 1000. 200. 200. 20.
 USRBIN Muons30 10. MUON+ -92 30. 30. 3020.0 -30. -30. 3000. 200. 200. 20.
+USRYIELD Yield 202 -113 -22 -1 -2
+USRTRACK PiDET0,, PION+ -23 DET0,, 100 2 0.001
+USRTRACK PiDET10,, PION+ -24 DET10,, 100 2 0.001
+USRTRACK PiDET20,, PION+ -23 DET20,, 100 2 0.001
+USRTRACK PiDET30,, PION+ -25 DET30,, 100 2 0.001
+USRTRACK muDET0,, MUON+ -23 DET0,, 100 2 0.001
+USRTRACK muDET10,, MUON+ -23 DET10,, 100 2 0.001
+USRTRACK muDET20,, MUON+ -23 DET20,, 100 2 0.001
+USRTRACK muDET30,, MUON+ -23 DET30,, 100 2 0.001
 !AUXSCORE , USRYIELD -20808200,, NA61Be NA61Be
 OPEN UNKNOWN 95.
 	target_pprod.dat
@@ -94,7 +134,7 @@ STOP
 EndInput
 
 Submit: Local
-Page: Flair
+Page: Input
 plotengine: Gnuplot
 Compile: ESS.exe
 	source: ['usrmed_fprod.f', 'usrini.f']
@@ -127,33 +167,33 @@ Plot: Red
 	basisu: 0 0 1
 	basisv: 1 0 0
 	coord: Z-X
-	extends: 143.99999999999974 107.9999999999998
+	extends: 143.99999999999972 100.97832817337442
 	group: Geometry
 	layer: Media
-	origin: -11.4344 0 55.8923
+	origin: -139.864 0 141.871
 End
 Plot: Green
 	Type: Geometry
 	basisu: 0 0 1
 	coord: Z-Y
-	extends: 891.6100448255982 668.7075336191986
+	extends: 143.99999999999983 100.9783281733745
 	group: Geometry
 	layer: Lattice
-	origin: 0 408.684 409.063
+	origin: 0 18.09 58.411
 End
 Plot: Blue
 	Type: Geometry
 	basisu: 0 0 1
 	coord: Z-Y
-	extends: 207.35999999999981 155.51999999999987
+	extends: 743.0083706879991 521.0259936867858
 	group: Geometry
 	layer: Media
-	origin: 0 -22.8127 -18.0597
+	origin: 0 -57.6381 184.259
 End
 Plot: Magenta
 	Type: Geometry
 	coord: X-Y
-	extends: 429.9816959999998 322.4862719999998
+	extends: 429.9816959999998 301.51967227244563
 	group: Geometry
 	layer: Media
 	origin: 212.437 12.5093 -45
