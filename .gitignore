@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 #
 *.*~
 
 **/.vscode/
+=======
+
+*.exe
+*.out
+*_fort*.*
+*.dat
+*.log
+*.o
+*.err
+>>>>>>> 1d4c892 (add gitignore)
