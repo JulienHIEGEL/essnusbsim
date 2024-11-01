@@ -2,7 +2,7 @@
 Version: 300
 Mode: fluka
 Title: Simul for Ilias
-md5: 78e9190bc5e6a891658e4e477537ffea
+md5: 9c5f30b6f8833aa70a76d024220610df
 Input:
 TITLE
 	Simul for Ilias
@@ -89,7 +89,7 @@ OPEN UNKNOWN 95.
 !OPEN UNKNOWN 98
 	BEFTAX_air.dat
 RANDOMIZ
-START , 1000000.,,,, 0.0
+START , 1000.,,,, 0.0
 STOP
 EndInput
 
