@@ -6,6 +6,8 @@
 *.out
 *.err
 *.bnn
+*.lis
+*.bnx
 
 **/.vscode/
 
