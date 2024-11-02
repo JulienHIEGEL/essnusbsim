@@ -36,6 +36,11 @@
 *     The user is supposed to change only WEE if MREG = NEWREG and     *
 *     WEE, NEWREG, TXX, TYY, TZZ if MREG .NE. NEWREG                   *
 *                                                                      *
+*     score:                                                           *
+*     IJ=1,2 (protons, anti-protons),                                  *
+*     IJ=10,11 (mu+-),                                                 *
+*     IJ=13,14 (pi+-)                                                  *
+*                                                                      *
 *----------------------------------------------------------------------*
 *
       INCLUDE 'paprop.inc'
@@ -52,40 +57,33 @@
          CALL GEON2R("TARGET  ", NTARGET,IERR)
          CALL GEON2R("VOID    ", NVOID, IERR)
          CALL GEON2R("TBOX    ", NTBOX, IERR)
-         CALL GEON2R("HORN    ", NHORN, IERR)
-         CALL GEON2R("DET0    ", NDET0, IERR)
-         CALL GEON2R("DET10   ", NDET10, IERR)
-         CALL GEON2R("DET20   ", NDET20, IERR)
-         CALL GEON2R("DET30   ", NDET30, IERR)
-        
+         CALL GEON2R("TRGEND  ", NTRGEND, IERR)
+         CALL GEON2R("HORNEND ", NHORNEND, IERR)
+         CALL GEON2R("TLINEEND", NTLINEEND, IERR)
+         CALL GEON2R("PRODS   ", NPRODS, IERR)
+         CALL GEON2R("NEARDET ", NNEARDET, IERR)
+
+               
          PRINT *,"Entering USRMED routine",MREG,NEWREG
-         PRINT *,"Named regions : ",NVOID,NTARGET,NTBOX,NHORN,NDET0,NDET10,
-     +                              NDET20,NDET30
+         PRINT *,"Named regions : ",NVOID,NTARGET,NTBOX,NTRGEND,NHORNEND,
+     +                              NTLINEEND, NPRODS, NNEARDET
          PRINT *,"Configuration : IFOCUSING=",IFOCUSING
-         WRITE(95,*) "* 1=IJ 2=PLA 3-5={Xx,Yy,Zz},6-8={TXX,TYY,TZZ}, 9=WEE"
+         WRITE(95,*) "* 1=IJ 2=NEWREG, 3=PLA 4-6={Xx,Yy,Zz}, 7-9={TXX,TYY,TZZ}, 10=WEE"
       END IF
 
       IWRITE = 0
-      IF ( (MREG.EQ.NTARGET).AND.(NEWREG.EQ.TBOX) ) THEN
+      IF ( (MREG.EQ.NVOID) .AND. 
+     +   ((NEWREG.EQ.NTBOX).OR.(NEWREG.EQ.NTRGEND).OR.(NEWREG.EQ.NHORNEND).OR.
+     +    (NEWREG.EQ.NPRODS).OR.(NEWREG.EQ.NTLINEEND))) THEN
             IWRITE = 95
-      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET0) ) THEN
-            IWRITE = 96
-      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET10) ) THEN
-            IWRITE = 97
-      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET20) ) THEN
-            IWRITE = 98
-      ELSE IF ( (MREG.EQ.VOID).AND.(NEWREG.EQ.DET30) ) THEN
-            IWRITE = 99
-      ELSE
-            IWRITE = 0
       END IF
       IF ( (IWRITE.GT.0).AND.
      +     ((IJ.EQ.1).OR.(IJ.EQ.2).OR.(IJ.EQ.10).OR.(IJ.EQ.11).OR.
      +       (IJ.EQ.13).OR.(IJ.EQ.14)) ) THEN    
-            WRITE(IWRITE,1000) IJ, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
+            WRITE(IWRITE,1000) IJ, NEWREG, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
       END IF
 
-      IF ( (MREG.EQ.TBOX).AND.(NEWREG.EQ.HORN).AND.
+      IF ( (MREG.EQ.NVOID).AND.(NEWREG.EQ.NTBOX).AND.
      +     (IFOCUSING.EQ.1).AND.(Tzz.GT.ZERZER).AND.
      +     ((IJ.EQ.1).OR.(IJ.EQ.2).OR.(IJ.EQ.10).OR.(IJ.EQ.11).OR.
      +           (IJ.EQ.13).OR.(IJ.EQ.14)) ) THEN
@@ -95,7 +93,7 @@
       END IF     
 
       RETURN
- 1000 FORMAT(1(1X,I4),8(1X,G14.7))
+ 1000 FORMAT(2(1X,I4),8(1X,G14.7))
 *=== End of subroutine Usrmed =========================================*
       END
 
