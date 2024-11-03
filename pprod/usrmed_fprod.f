@@ -36,6 +36,11 @@
 *     The user is supposed to change only WEE if MREG = NEWREG and     *
 *     WEE, NEWREG, TXX, TYY, TZZ if MREG .NE. NEWREG                   *
 *                                                                      *
+*     score:                                                           *
+*     IJ=1,2 (protons, anti-protons),                                  *
+*     IJ=10,11 (mu+-),                                                 *
+*     IJ=13,14 (pi+-)                                                  *
+*                                                                      *
 *----------------------------------------------------------------------*
 *
       INCLUDE 'paprop.inc'
@@ -44,33 +49,51 @@
       
       LOGICAL LFIRST
       DATA  LFIRST /.TRUE./
-
       
-      SAVE LFIRST,NTARGET,NVOID
+      SAVE LFIRST,NTARGET,NVOID,NTBOX,NHORN,NDET0,NDET10,NDET20,NDET30
       
       IF (LFIRST) THEN
          LFIRST = .FALSE.
          CALL GEON2R("TARGET  ", NTARGET,IERR)
          CALL GEON2R("VOID    ", NVOID, IERR)
-        
+         CALL GEON2R("TBOX    ", NTBOX, IERR)
+         CALL GEON2R("TRGEND  ", NTRGEND, IERR)
+         CALL GEON2R("HORNEND ", NHORNEND, IERR)
+         CALL GEON2R("TLINEEND", NTLINEEND, IERR)
+         CALL GEON2R("PRODS   ", NPRODS, IERR)
+         CALL GEON2R("NEARDET ", NNEARDET, IERR)
+
+               
          PRINT *,"Entering USRMED routine",MREG,NEWREG
-         PRINT *,"Named regions : ",NVOID,NTARGET
+         PRINT *,"Named regions : ",NVOID,NTARGET,NTBOX,NTRGEND,NHORNEND,
+     +                              NTLINEEND, NPRODS, NNEARDET
          PRINT *,"Configuration : IFOCUSING=",IFOCUSING
-         WRITE(95,*) "* 1=IJ 2=PLA 3-5={Xx,Yy,Zz},6-8={TXX,TYY,TZZ}, 9=WEE"
+         WRITE(95,*) "* 1=IJ 2=NEWREG, 3=PLA 4-6={Xx,Yy,Zz}, 7-9={TXX,TYY,TZZ}, 10=WEE"
       END IF
 
-      IF ( (MREG.EQ.NTARGET) .AND. (NEWREG.EQ.NVOID) ) THEN
-            IF ( (IJ.EQ.13).OR.(IJ.EQ.14).OR.(IJ.EQ.15).OR.(IJ.EQ.16) ) THEN    
-                  WRITE(95,1000) IJ, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
-                  IF ( IFOCUSING.EQ.1 ) THEN
-                        TXX = ZERZER
-                        TYY = ZERZER
-                        TZZ = ONEONE
-                  END IF
-            END IF       
+      IWRITE = 0
+      IF ( (MREG.EQ.NVOID) .AND. 
+     +   ((NEWREG.EQ.NTBOX).OR.(NEWREG.EQ.NTRGEND).OR.(NEWREG.EQ.NHORNEND).OR.
+     +    (NEWREG.EQ.NPRODS).OR.(NEWREG.EQ.NTLINEEND))) THEN
+            IWRITE = 95
       END IF
+      IF ( (IWRITE.GT.0).AND.
+     +     ((IJ.EQ.1).OR.(IJ.EQ.2).OR.(IJ.EQ.10).OR.(IJ.EQ.11).OR.
+     +       (IJ.EQ.13).OR.(IJ.EQ.14)) ) THEN    
+            WRITE(IWRITE,1000) IJ, NEWREG, PLA, Xx,Yy,Zz,TXX,TYY,TZZ,WEE
+      END IF
+
+      IF ( (MREG.EQ.NVOID).AND.(NEWREG.EQ.NTBOX).AND.
+     +     (IFOCUSING.EQ.1).AND.(Tzz.GT.ZERZER).AND.
+     +     ((IJ.EQ.1).OR.(IJ.EQ.2).OR.(IJ.EQ.10).OR.(IJ.EQ.11).OR.
+     +           (IJ.EQ.13).OR.(IJ.EQ.14)) ) THEN
+            Txx = ZERZER
+            Tyy = ZERZER
+            Tzz = ONEONE
+      END IF     
+
       RETURN
- 1000 FORMAT(1(1X,I4),8(1X,G14.7))
+ 1000 FORMAT(2(1X,I4),8(1X,G14.7))
 *=== End of subroutine Usrmed =========================================*
       END
 
