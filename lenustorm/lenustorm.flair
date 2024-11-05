@@ -1,7 +1,7 @@
 # flair project file
 Version: 300
 Mode: fluka
-md5: 489332f2c541dc409c66d3e2ec5f9de6
+md5: c5678fe13deb8e8f6c7103be7810f723
 Input:
 * ..+....1....+....2....+....3....+....4....+....5....+....6....+....7...
 *
@@ -49,6 +49,7 @@ TITLE
 #define d1_k0 0.428
 #define d1_arad =d1_k0*d1_len/100
 #define d1_adeg =d1_arad*180/pi
+#define d1_b0 =d1_arad*0.7/299.79/d1_len*1.0e5
 #define d1_apx =0.5*sin(d1_arad)*d1_len
 #define d1_apy =40
 #define d1_xsiz =d1_apx*1.20
@@ -67,6 +68,14 @@ TITLE
 #define drift7 35.3
 #define drift8 20
 #define drift9 20
+#define s_q1 =drift2
+#define s_q2 =s_q1+q1_len+drift3
+#define s_q3 =s_q2+q1_len+drift4
+#define s_q4 =s_q3+q1_len+drift5
+#define s_q5 =s_q4+q1_len+drift6
+#define s_q6 =s_q5+q1_len+drift7
+#define s_q7 =s_q6+q1_len+drift8
+#define s_d2 =s_q7+q1_len+drift9
 *
 * LEnuSTORM
 *	nstorm_ss_len	= 75m
@@ -119,7 +128,7 @@ DEFAULTS NEW-DEFA
 *Beam definition
 * ---------------
 *  Gaussian beam, 2.5GeV, (sigma_x, sigma_y) = (0.05cm, 0.1cm)
-BEAM PROTON -2.5 0.0 0.0 -0.05 -0.1 1.0
+BEAM PROTON -0.7 0.0 0.0 0 0 1.0
 BEAMPOS , 0 0 0 0.0 0.0
 *
 * Geometry
@@ -129,6 +138,8 @@ GEOBEGIN COMBNAME
 SPH blkbody 0 0 0 100000
 SPH void 0 0 0 90000
 RPP tcc_o -$tcc_o $tcc_o -$tcc_o $tcc_o -100 $tcc_len
+RPP modo 800 3000 -200 200 -200 1000
+RPP modi 850 2950 -150 150 -150 950
 RPP tcc -$tcc_width $tcc_width -$tcc_width $tcc_width -50 =tcc_len+1
 RPP tdec_o -$tdec_wid $tdec_wid -$tdec_wid $tdec_wid =tcc_len-1 =tdec_len+1
 RCC tdec 0 0 =tcc_len-2 0 0 =tdec_len-bdump_len+2 $tdec_rad
@@ -150,7 +161,7 @@ RCC Q1Vac 0 0 -0.05 0 0 =q1_len+0.1 =q1_ap
 $end_translat
 *
 * ------------- Beam line magnets ----------------------------
-*first dipole
+* D1 dipole
 $start_transform -ttd1
 $start_translat 1000
 *-- empty MBHA container for the lattice (replica)
@@ -164,44 +175,75 @@ ZCC ttex 0 0 =q1_rad*1.5
 $end_transform
 YZP ttexi =-tdec_rad
 YZP ttexo =-tdec_rad-tdec_shield
-*second segment downstream D1
+* Q1 quad
 $start_transform -q1segb
 $start_translat 1200
-RCC MQA1 0 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
+RCC MQA1,, 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
 $end_translat
 $end_transform
+* Q2 quad
 $start_transform -q2segb
 $start_translat 1200
-RCC MQA2 0 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
+RCC MQA2,, 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
 $end_translat
 $end_transform
+* Q3 quad
+$start_transform -q3segb
+$start_translat 1200
+RCC MQA3,, 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
+$end_translat
+$end_transform
+* Q4 quad
+$start_transform -q4segb
+$start_translat 1200
+RCC MQA4,, 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
+$end_translat
+$end_transform
+* Q5 quad
+$start_transform -q5segb
+$start_translat 1200
+RCC MQA5,, 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
+$end_translat
+$end_transform
+* Q6 quad
+$start_transform -q6segb
+$start_translat 1200
+RCC MQA6,, 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
+$end_translat
+$end_transform
+* Q7 quad
+$start_transform -q7segb
+$start_translat 1200
+RCC MQA7,, 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
+$end_translat
+$end_transform
+$start_transform -ttd2
+$start_translat 1000
+RPP MBHB =-d1_xsiz/2 =d1_xsiz/2+0.1 =-d1_ysiz/2-0.1 =d1_ysiz/2+0.1 =-0.1 =d1_len+0.1
+$end_translat
+$end_transform
+*
 !RCC MQA2 0 0 0 0 0 =mqa_len+0.2 =mqa_rad+0.1
 END
 * Black hole
 REGION BLKBODY
 	+blkbody -void
 REGION VOID
-	+void -tcc_o -tdec_o -D1Vol -Q1Vol  
+	+void -modo -tcc_o -tdec_o -MQA5 -MQA6 -MQA7 -MBHB    
+	@select=1
+REGION MOBLK
+	+modo -modi 
+REGION MODELS
+	+modi -D1Vol -Q1Vol  
 REGION SHIELD
 	+tcc_o -tcc
 	| +tdec_o -tcc_o -tcc -tdec -(+ttex +ttexi)  
 REGION TCC_CAV 5
 	+tcc -thbox -MBHA 
 	| +tdec -MBHA -MQA1
-	| +ttex +ttexi -ttexo -MQA1 -MQA2  
+	| +ttex +ttexi -ttexo -MQA1 -MQA2 -MQA3 -MQA4 -MQA5 
 !REGION TDEC 5
 	+tdec -tcc -MBHA 
-REGION THBOX 5
-	+thbox -target
-REGION TARGET 5
-	+target 
-REGION MBHA 5
-	+MBHA  
-REGION MQA1 5
-	+MQA1  
-REGION MQA2 5
-	+MQA2  
-	@select=1
 REGION MBHEnv
 	+D1Vol -D1Fe -D1Vac 
 REGION MBHFe
@@ -214,52 +256,97 @@ REGION MQAFe
 	+Q1Fe -Q1Vac 
 REGION MQAVac
 	+Q1Vac  
-LATTICE ttmbha MBHA,,, MBHA
+*
+REGION THBOX 5
+	+thbox -target
+REGION TARGET 5
+	+target 
+REGION MBHA 5
+	+MBHA  
+REGION MQA1 5
+	+MQA1  
+REGION MQA2 5
+	+MQA2  
+REGION MQA3 5
+	+MQA3  
+REGION MQA4 5
+	+MQA4  
+REGION MQA5 5
+	+MQA5 
+REGION MQA6 5
+	+MQA6  
+REGION MQA7 5
+	+MQA7
+REGION MBHB 5
+	+MBHB
+LATTICE ttd1 MBHA,,, MBHA
 LATTICE q1segb MQA1,,, MQA1
+LATTICE q2segb MQA2,,, MQA2
+LATTICE q3segb MQA3,,, MQA3
+LATTICE q4segb MQA4,,, MQA4
+LATTICE q5segb MQA5,,, MQA5
+LATTICE q6segb MQA6,,, MQA6
+LATTICE q7segb MQA7,,, MQA7
+LATTICE ttd2 MBHB,,, MBHB
+*
 GEOEND
 *
-* Material definitions
-* --------------------
-MATERIAL POTASSIU 19. 39.0983 0.862
-MATERIAL CHROMIUM 24. 51.9961 7.18
-MATERIAL MANGANES 25. 54.938049 7.21
-MATERIAL PHOSPHO 15. 30.973761 1.82
-MATERIAL SULFUR 16. 32.066 2.07
-* Steel316LN
-* Stainless steel AISI316LN
-MATERIAL SS316LN,,, 7.8
-COMPOUND SS316LN -0.67145 IRON -0.185 CHROMIUM -0.1125 NICKEL -0.02 MANGANES -0.01 \
-	 SILICON -0.00045 PHOSPHO -0.0003 SULFUR -0.0003 CARBON
-*
-* Concrete portland
-* -----------------
-MATERIAL PORTLAND,,, 2.3
-COMPOUND PORTLAND -0.01 HYDROGEN -0.001 CARBON -0.529107 OXYGEN -0.016 SODIUM -0.002 \
-	 MAGNESIU -0.033872 ALUMINUM -0.337021 SILICON -0.013 POTASSIU \
-	 -0.044 CALCIUM -0.014 IRON
 ASSIGNMA , BLCKHOLE BLKBODY,, 1.0 0
 ASSIGNMA , VACUUM VOID,, 1 0
+ASSIGNMA , BLCKHOLE MOBLK,, 1 0
+ASSIGNMA , VACUUM MODELS,, 1 0
 ASSIGNMA , IRON SHIELD
 ASSIGNMA , HELIUM TCC_CAV
-!ASSIGNMA , HELIUM TDEC
+ASSIGNMA , TITANIUM TARGET
+ASSIGNMA , HYDROGEN THBOX
 ASSIGNMA , HELIUM MBHEnv
 ASSIGNMA , IRON MBHFe
-ASSIGNMA , VACUUM MBHVac
+ASSIGNMA , VACUUM MBHVac,,, 1
+MGNCREAT MFIELD 2
+MGNFIELD MFIELD =d1_b0,, 0 MBHVac MBHVac
+ASSIGNMA , VACUUM MQAEnv
+ASSIGNMA , IRON MQAFe
+ASSIGNMA , VACUUM MQAVac
 !ASSIGNMA , IRON TDEC_SLD
-!ASSIGNMA , TITANIUM TARGET
-*
-* ROT-DEFI for beam line build
-ROT-DEFI ttd1 300 0 0 1000 0 =-drift1
-*segment B elements (after MBHA rotation)
+** ---- ROT-DEFI
+ROT-DEFI ttd1,,,, =d1_arc/2*sin(d1_arad/2),, =d1_arc/2*cos(d1_arad/2)
+!ROT-DEFI ttd1 200 0 =-d1_adeg/2 0 0
+ROT-DEFI ttd1,,,, =1000,, =-drift1
+ROT-DEFI ttd2,,,, =(d1_arc+s_d2)*sin(d1_arad),, =-d1_arc-(d1_arc+s_d2)*cos(d1_arad)
+!ROT-DEFI ttd2 200 0 =-d1_adeg/2 0 0
+ROT-DEFI ttd2,,,, =1000,, =-drift1
 ROT-DEFI ttsegb 200,, =d1_adeg
 ROT-DEFI ttsegb,,,,,, =drift1+d1_arc
-!ROT-DEFI segb_angl 200,, =mbha_adeg
-ROT-DEFI q1segb 300,,, =(d1_arc+drift2)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+drift2)*cos(d1_arad)
+*
+ROT-DEFI q1segb 300,,, =(d1_arc+s_q1)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+s_q1)*cos(d1_arad)
 ROT-DEFI q1segb 200,, =-d1_adeg,, 0
 ROT-DEFI q1segb 300,,, 1200,, 0
-ROT-DEFI q2segb 0,,, =(d1_arc+drift2+q1_len+drift3)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+drift2+q1_len+drift3)*cos(d1_arad)
+*
+ROT-DEFI q2segb 0,,, =(d1_arc+s_q2)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+s_q2)*cos(d1_arad)
 ROT-DEFI q2segb 200,, =-d1_adeg,, 0 0
 ROT-DEFI q2segb 300,,, 1200,, 0
+*
+ROT-DEFI q3segb 0,,, =(d1_arc+s_q3)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+s_q3)*cos(d1_arad)
+ROT-DEFI q3segb 200,, =-d1_adeg,, 0 0
+ROT-DEFI q3segb 300,,, 1200,, 0
+*
+ROT-DEFI q4segb 0,,, =(d1_arc+s_q4)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+s_q4)*cos(d1_arad)
+ROT-DEFI q4segb 200,, =-d1_adeg,, 0 0
+ROT-DEFI q4segb 300,,, 1200,, 0
+*
+ROT-DEFI q5segb 0,,, =(d1_arc+s_q5)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+s_q5)*cos(d1_arad)
+ROT-DEFI q5segb 200,, =-d1_adeg,, 0 0
+ROT-DEFI q5segb 300,,, 1200,, 0
+*
+ROT-DEFI q6segb 0,,, =(d1_arc+s_q6)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+s_q6)*cos(d1_arad)
+ROT-DEFI q6segb 200,, =-d1_adeg,, 0 0
+ROT-DEFI q6segb 300,,, 1200,, 0
+*
+ROT-DEFI q7segb 0,,, =(d1_arc+s_q7)*sin(d1_arad) 0 =-drift1-d1_arc-(d1_arc+s_q7)*cos(d1_arad)
+ROT-DEFI q7segb 200,, =-d1_adeg,, 0 0
+ROT-DEFI q7segb 300,,, 1200,, 0
+*
+*
 !MAT-PROP USERDIRE 1,,, VACUUM @LASTMAT
 * * Activation calculations
 * -----------------------
@@ -400,7 +487,6 @@ START , 10000.,,,, 0.0
 !TRC h38 $x1 $y1 $z8 0.0 0.0 $dz $R33 $R34
 !TRC h39 $x1 $y1 $z9 0.0 0.0 $dz $R34 $R35
 !RPP dt $hdtm $hdtp $hdtm $hdtp $hdtzm $hdtzp
-	
 !REGION HBOX 5
 	+thbox -target 
 	-(+horn_O1 -horn_I0 -PyZhuP1 +PyZhuP2 )
@@ -485,7 +571,7 @@ START , 10000.,,,, 0.0
 STOP
 EndInput
 
-Page: Flair
+Page: Input
 F77bound: True
 F77dline: False
 Tabs: 0.1 0.32 0.56 0.81 1.0
@@ -538,20 +624,26 @@ Plot: Red
 	cbround: 0
 	coord: X-Y
 	cpd: 0
-	extends: 2246.3999999999987 1531.75894357743
+	extends: 2246.4 1705.43
 	grid: 0
 	layer: Lattice
 	origin: -6.88288 -13.9683 0
 	title: GeoViewer Red plot
+End
+Plot: lenustorm_plot
+	Type: Geometry
+	grid: 0
+	kind: Field Vector
+	title: Plot Geometry
 End
 Plot: Green
 	Type: Geometry
 	basisu: 0 0 1
 	basisv: 1 0 0
 	coord: Z-X
-	extends: 1183.9512377346175 808.2744026842101
+	extends: 1183.9512377346146 900.0610226919822
 	layer: Media
-	origin: -389.406 0 1018.15
+	origin: -734.251 0 1151.29
 	title: GeoViewer Green plot
 End
 Plot: Blue
@@ -559,7 +651,7 @@ Plot: Blue
 	basisu: 0 0 1
 	basisv: 1 0 0
 	coord: Z-X
-	extends: 154.70111482109886 99.22571504927947
+	extends: 154.70111482109888 110.47246276327189
 	layer: Media
 	origin: -33.9047 0 -961.431
 	title: GeoViewer Blue plot
@@ -567,10 +659,10 @@ End
 Plot: Magenta
 	Type: Geometry
 	coord: X-Y
-	extends: 3683.7373431124734 2674.36501094081
+	extends: 2558.150932716995 2068.0552532995157
 	grid: 0
 	layer: Media
-	origin: 1052.55 -42.9329 200
+	origin: 1219.78 435.285 200
 	title: GeoViewer Magenta plot
 End
 Plot: ESSnuSBPlus_OneHorn_Scoring_90_plot

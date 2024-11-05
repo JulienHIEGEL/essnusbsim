@@ -48,6 +48,8 @@ ESSnuSB Beam to LEnuSTORM
 #define d1_arad 0.94588
 !@what.1=d1_arad*180/pi
 #define d1_adeg 54.1949319258343
+!@what.1=d1_arad*0.7/299.79/d1_len*1.0e5
+#define d1_b0 0.999366223022783
 !@what.1=0.5*sin(d1_arad)*d1_len
 #define d1_apx 89.616834136162
 !@what.1=40
@@ -72,6 +74,22 @@ ESSnuSB Beam to LEnuSTORM
 #define drift7 35.3
 #define drift8 20
 #define drift9 20
+!@what.1=drift2
+#define s_q1 20
+!@what.1=s_q1+q1_len+drift3
+#define s_q2 120
+!@what.1=s_q2+q1_len+drift4
+#define s_q3 235.3
+!@what.1=s_q3+q1_len+drift5
+#define s_q4 350.6
+!@what.1=s_q4+q1_len+drift6
+#define s_q5 465.9
+!@what.1=s_q5+q1_len+drift7
+#define s_q6 581.2
+!@what.1=s_q6+q1_len+drift8
+#define s_q7 681.2
+!@what.1=s_q7+q1_len+drift9
+#define s_d2 781.2
 *
 * LEnuSTORM
 *	nstorm_ss_len	= 75m
@@ -127,7 +145,7 @@ DEFAULTS                                                              NEW-DEFA
 *Beam definition
 * ---------------
 *  Gaussian beam, 2.5GeV, (sigma_x, sigma_y) = (0.05cm, 0.1cm)
-BEAM            -2.5       0.0       0.0     -0.05      -0.1       1.0PROTON
+BEAM            -0.7       0.0       0.0         0         0       1.0PROTON
 BEAMPOS            0         0         0       0.0       0.0
 *
 * Geometry
@@ -138,6 +156,8 @@ GEOBEGIN                                                              COMBNAME
 SPH blkbody    0 0 0 100000
 SPH void       0 0 0 90000
 RPP tcc_o      -$tcc_o $tcc_o -$tcc_o $tcc_o -100 $tcc_len
+RPP modo       800 3000 -200 200 -200 1000
+RPP modi       850 2950 -150 150 -150 950
 !@what.6=tcc_len+1
 RPP tcc        -$tcc_width $tcc_width -$tcc_width $tcc_width -50 301
 !@what.5=tcc_len-1
@@ -180,7 +200,7 @@ RCC Q1Vac      0 0 -0.05 0 0 80.1 $q1_ap
 $end_translat
 *
 * ------------- Beam line magnets ----------------------------
-*first dipole
+* D1 dipole
 $start_transform -ttd1
 $start_translat 1000
 *-- empty MBHA container for the lattice (replica)
@@ -200,22 +220,74 @@ $end_transform
 YZP ttexi      -$tdec_rad
 !@what.1=-tdec_rad-tdec_shield
 YZP ttexo      -500
-*second segment downstream D1
+* Q1 quad
 $start_transform -q1segb
 $start_translat 1200
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
-RCC MQA1       0 0 -0.1 0 0 80.2 60.1
+RCC MQA1       0.0 0 -0.1 0 0 80.2 60.1
 $end_translat
 $end_transform
+* Q2 quad
 $start_transform -q2segb
 $start_translat 1200
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
-RCC MQA2       0 0 -0.1 0 0 80.2 60.1
+RCC MQA2       0.0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+* Q3 quad
+$start_transform -q3segb
+$start_translat 1200
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC MQA3       0.0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+* Q4 quad
+$start_transform -q4segb
+$start_translat 1200
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC MQA4       0.0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+* Q5 quad
+$start_transform -q5segb
+$start_translat 1200
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC MQA5       0.0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+* Q6 quad
+$start_transform -q6segb
+$start_translat 1200
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC MQA6       0.0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+* Q7 quad
+$start_transform -q7segb
+$start_translat 1200
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC MQA7       0.0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+$start_transform -ttd2
+$start_translat 1000
+!@what.1=-d1_xsiz/2
+!@what.2=d1_xsiz/2+0.1
+!@what.3=-d1_ysiz/2-0.1
+!@what.4=d1_ysiz/2+0.1
+!@what.6=d1_len+0.1
+RPP MBHB       -53.7701004816972 53.8701004816972 -24.1 24.1 -0.1 221.1
 $end_translat
 $end_transform
 #if 0
+*
 !@what.6=mqa_len+0.2
 !@what.7=mqa_rad+0.1
 RCC MQA2       0 0 0 0 0 0.0 0.0
@@ -377,26 +449,35 @@ RPP dt         $hdtm $hdtp $hdtm $hdtp $hdtzm $hdtzp
 END
 * Black hole
 BLKBODY      5 +blkbody -void
-VOID         5 +void -tcc_o -tdec_o -D1Vol -Q1Vol
+VOID         5 +void -modo -tcc_o -tdec_o -MQA5 -MQA6 -MQA7 -MBHB
+MOBLK        5 +modo -modi
+MODELS       5 +modi -D1Vol -Q1Vol
 SHIELD       5 +tcc_o -tcc
                | +tdec_o -tcc_o -tcc -tdec -(+ttex +ttexi)
 TCC_CAV      5 +tcc -thbox -MBHA
                | +tdec -MBHA -MQA1
-               | +ttex +ttexi -ttexo -MQA1 -MQA2
+               | +ttex +ttexi -ttexo -MQA1 -MQA2 -MQA3 -MQA4 -MQA5
 #if 0
 TDEC         5 +tdec -tcc -MBHA
 #endif
-THBOX        5 +thbox -target
-TARGET       5 +target
-MBHA         5 +MBHA
-MQA1         5 +MQA1
-MQA2         5 +MQA2
 MBHEnv       5 +D1Vol -D1Fe -D1Vac
 MBHFe        5 +D1Fe -D1Vac
 MBHVac       5 +D1Vac
 MQAEnv       5 +Q1Vol -Q1Fe -Q1Vac
 MQAFe        5 +Q1Fe -Q1Vac
 MQAVac       5 +Q1Vac
+*
+THBOX        5 +thbox -target
+TARGET       5 +target
+MBHA         5 +MBHA
+MQA1         5 +MQA1
+MQA2         5 +MQA2
+MQA3         5 +MQA3
+MQA4         5 +MQA4
+MQA5         5 +MQA5
+MQA6         5 +MQA6
+MQA7         5 +MQA7
+MBHB         5 +MBHB
 #if 0
 HBOX         5 +thbox -target
                -(+horn_O1 -horn_I0 -PyZhuP1 +PyZhuP2 )
@@ -462,60 +543,95 @@ RHIN         5 +h10-target   |+h11-target   |+h12-target   |+h13-target  |+h14-t
 DT           5 +dt
 #endif
 END
-LATTICE         MBHA                          MBHA                    ttmbha
+LATTICE         MBHA                          MBHA                    ttd1
 LATTICE         MQA1                          MQA1                    q1segb
+LATTICE         MQA2                          MQA2                    q2segb
+LATTICE         MQA3                          MQA3                    q3segb
+LATTICE         MQA4                          MQA4                    q4segb
+LATTICE         MQA5                          MQA5                    q5segb
+LATTICE         MQA6                          MQA6                    q6segb
+LATTICE         MQA7                          MQA7                    q7segb
+LATTICE         MBHB                          MBHB                    ttd2
+*
 GEOEND
 *
-* Material definitions
-* --------------------
-MATERIAL         19.   39.0983     0.862                              POTASSIU
-MATERIAL         24.   51.9961      7.18                              CHROMIUM
-MATERIAL         25. 54.938049      7.21                              MANGANES
-MATERIAL         15. 30.973761      1.82                              PHOSPHO
-MATERIAL         16.    32.066      2.07                              SULFUR
-* Steel316LN
-* Stainless steel AISI316LN
-MATERIAL                             7.8                              SS316LN
-COMPOUND    -0.67145      IRON    -0.185  CHROMIUM   -0.1125    NICKELSS316LN
-COMPOUND       -0.02  MANGANES     -0.01   SILICON  -0.00045   PHOSPHOSS316LN
-COMPOUND     -0.0003    SULFUR   -0.0003    CARBON                    SS316LN
-*
-* Concrete portland
-* -----------------
-MATERIAL                             2.3                              PORTLAND
-COMPOUND       -0.01  HYDROGEN    -0.001    CARBON -0.529107    OXYGENPORTLAND
-COMPOUND      -0.016    SODIUM    -0.002  MAGNESIU -0.033872  ALUMINUMPORTLAND
-COMPOUND   -0.337021   SILICON    -0.013  POTASSIU    -0.044   CALCIUMPORTLAND
-COMPOUND      -0.014      IRON                                        PORTLAND
 ASSIGNMA    BLCKHOLE   BLKBODY                 1.0         0
 ASSIGNMA      VACUUM      VOID                   1         0
+ASSIGNMA    BLCKHOLE     MOBLK                   1         0
+ASSIGNMA      VACUUM    MODELS                   1         0
 ASSIGNMA        IRON    SHIELD
 ASSIGNMA      HELIUM   TCC_CAV
-*ASSIGNMA      HELIUM      TDEC
+ASSIGNMA    TITANIUM    TARGET
+ASSIGNMA    HYDROGEN     THBOX
 ASSIGNMA      HELIUM    MBHEnv
 ASSIGNMA        IRON     MBHFe
-ASSIGNMA      VACUUM    MBHVac
+ASSIGNMA      VACUUM    MBHVac                             1
+MGNCREAT           2                                                  MFIELD
+MGNFIELD      $d1_b0                   0    MBHVac    MBHVac          MFIELD
+ASSIGNMA      VACUUM    MQAEnv
+ASSIGNMA        IRON     MQAFe
+ASSIGNMA      VACUUM    MQAVac
 *ASSIGNMA        IRON  TDEC_SLD
-*ASSIGNMA    TITANIUM    TARGET
-*
-* ROT-DEFI for beam line build
-ROT-DEFI         300         0         0      1000         0  -$drift1ttd1
-*segment B elements (after MBHA rotation)
+** ---- ROT-DEFI
+!@what.4=d1_arc/2*sin(d1_arad/2)
+!@what.6=d1_arc/2*cos(d1_arad/2)
+ROT-DEFI                                31.7554748          62.0624073ttd1
+!@what.3=-d1_adeg/2
+*ROT-DEFI         200         0-27.097466         0         0          ttd1
+ROT-DEFI                                      1000            -$drift1ttd1
+!@what.4=(d1_arc+s_d2)*sin(d1_arad)
+!@what.6=-d1_arc-(d1_arc+s_d2)*cos(d1_arad)
+ROT-DEFI                                746.641712          -678.02498ttd2
+!@what.3=-d1_adeg/2
+*ROT-DEFI         200         0-27.097466         0         0          ttd2
+ROT-DEFI                                      1000            -$drift1ttd2
 ROT-DEFI         200            $d1_adeg                              ttsegb
 !@what.6=drift1+d1_arc
 ROT-DEFI                                                    539.429589ttsegb
-!@what.3=mbha_adeg
-*ROT-DEFI         200           mbha_adeg                              segb_angl
-!@what.4=(d1_arc+drift2)*sin(d1_arad)
-!@what.6=-drift1-d1_arc-(d1_arc+drift2)*cos(d1_arad)
+*
+!@what.4=(d1_arc+s_q1)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+s_q1)*cos(d1_arad)
 ROT-DEFI         300                    129.299322         0-632.70059q1segb
 ROT-DEFI         200           -$d1_adeg                   0          q1segb
 ROT-DEFI         300                          1200                   0q1segb
-!@what.4=(d1_arc+drift2+q1_len+drift3)*sin(d1_arad)
-!@what.6=-drift1-d1_arc-(d1_arc+drift2+q1_len+drift3)*cos(d1_arad)
+*
+!@what.4=(d1_arc+s_q2)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+s_q2)*cos(d1_arad)
 ROT-DEFI           0                    210.400529         0-691.20353q2segb
 ROT-DEFI         200           -$d1_adeg                   0         0q2segb
 ROT-DEFI         300                          1200                   0q2segb
+*
+!@what.4=(d1_arc+s_q3)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+s_q3)*cos(d1_arad)
+ROT-DEFI           0                    303.910221         0-758.65742q3segb
+ROT-DEFI         200           -$d1_adeg                   0         0q3segb
+ROT-DEFI         300                          1200                   0q3segb
+*
+!@what.4=(d1_arc+s_q4)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+s_q4)*cos(d1_arad)
+ROT-DEFI           0                    397.419913         0-826.11131q4segb
+ROT-DEFI         200           -$d1_adeg                   0         0q4segb
+ROT-DEFI         300                          1200                   0q4segb
+*
+!@what.4=(d1_arc+s_q5)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+s_q5)*cos(d1_arad)
+ROT-DEFI           0                    490.929605         0 -893.5652q5segb
+ROT-DEFI         200           -$d1_adeg                   0         0q5segb
+ROT-DEFI         300                          1200                   0q5segb
+*
+!@what.4=(d1_arc+s_q6)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+s_q6)*cos(d1_arad)
+ROT-DEFI           0                    584.439297         0 -961.0191q6segb
+ROT-DEFI         200           -$d1_adeg                   0         0q6segb
+ROT-DEFI         300                          1200                   0q6segb
+*
+!@what.4=(d1_arc+s_q7)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+s_q7)*cos(d1_arad)
+ROT-DEFI           0                    665.540505         0 -1019.522q7segb
+ROT-DEFI         200           -$d1_adeg                   0         0q7segb
+ROT-DEFI         300                          1200                   0q7segb
+*
+*
 *MAT-PROP           1                        VACUUM  @LASTMAT          USERDIRE
 * * Activation calculations
 * -----------------------
