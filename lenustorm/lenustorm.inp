@@ -1,85 +1,95 @@
 * ..+....1....+....2....+....3....+....4....+....5....+....6....+....7...
 *
 TITLE
-ESSnuSB Beam to leNuSTORM
-*
-#define SampleDose
-#define x1 0
-#define y1 0
-#define z00 6.1
-#define L10 64.98
-#define z0 7.1
-#define L11 63.98
-#define z1 71.08
-#define L2 46.8
-#define z2 117.88
-#define L3 60.3
-#define z3 178.18
-#define L4 47.5
-#define z4 225.68
-#define L5 1.08
-#define z5 226.76
-#define dz 5.44
-#define z6 232.2
-#define z7 237.64
-#define z8 243.08
-#define z9 248.52
-#define dzx 5.74
-#define R0x 58.7
-#define R00 58
-#define R01 57.46
-#define R02 55.76
-#define R03 52.63
-#define R04 47.32
-#define R05 30.5
-#define h00 3
-#define h01 22.1
-#define R11 3.54
-#define R12 5.24
-#define R13 8.37
-#define R14 13.68
-#define R15 30.5
-#define R2x 57.7
-#define R20 57.7
-#define R21 57.15
-#define R22 55.43
-#define R23 52.26
-#define R24 46.82
-#define R25 30.5
-#define h10 3.3
-#define h11 22.4
-#define R31 3.85
-#define R32 5.57
-#define R33 8.74
-#define R34 14.18
-#define R35 30.5
-#define Ltot 254.26
-#define Lbox 305.112
-#define Rbox 70.44
-#define zb -25.426
-#define hdtm -200
-#define hezm -200
-#define hezp 300
-#define hdtzm 300
-#define hdtzp 2800
-#define dx -200
-#define dy -200
+ESSnuSB Beam to LEnuSTORM
 *-----
 *GEOMETRY parameters
 *-----
-*----> Facility
+* Facility
+* --------
+* Target chamber
+* 	length = -1m to +3m = 4ms
+* 	width  = 2.5m
+* 	shielding width = 4m
+#define tcc_len 300
+#define tcc_width 250
+#define tcc_shield 400
+!@what.1=tcc_width+tcc_shield
+#define tcc_o 650
+*
+* Decay pipe
+*	length = 80m
+*	radius = 1m
+*	shielding = 4m
+#define tdec_len 8000
 #define tdec_rad 100
-#define tdec_len 1000
-#define nustrm_inj 4000
-*----> Target
+#define tdec_shield 400
+!@what.1=tdec_rad+tdec_shield
+#define tdec_wid 500
+*
+* Beam dump
+*	length 	= 5m
+*	width 	= 3m
+#define bdump_len 500
+#define bdump_wid 300
+*
+* ESSnuSB near detector
+*	distance (from target) = 250m
+#define ndet_dis 25000
+#define ndet_wid 500
+*
+* TTline to leNuSTORM
+* -------------------
+*
+* Magnet prototypes
+#define d1_len 221
+#define d1_k0 0.428
+!@what.1=d1_k0*d1_len/100
+#define d1_arad 0.94588
+!@what.1=d1_arad*180/pi
+#define d1_adeg 54.1949319258343
+!@what.1=0.5*sin(d1_arad)*d1_len
+#define d1_apx 89.616834136162
+!@what.1=40
+#define d1_apy 40
+!@what.1=d1_apx*1.20
+#define d1_xsiz 107.5402009633944
+!@what.1=d1_apy*1.20
+#define d1_ysiz 48
+!@what.1=d1_len/2/cos(d1_arad/2)**2
+#define d1_arc 139.429589070911
+#define q1_len 80
+#define q1_ap 40
+#define q1_fe 20
+!@what.1=q1_ap+q1_fe
+#define q1_rad 60
+#define drift1 400
+#define drift2 20
+#define drift3 20
+#define drift4 35.3
+#define drift5 35.3
+#define drift6 35.3
+#define drift7 35.3
+#define drift8 20
+#define drift9 20
+*
+* LEnuSTORM
+*	nstorm_ss_len	= 75m
+*	nstorm_tun_wid = 4m
+#define nstorm_ss_len 7500
+#define nstorm_tun_wid 400
+*
+* Target & Horn
+#define thbox_rad 100
+#define thbox_zmax 100
+#define thbox_zmin -10
+*
+* Target
 #define tgt_rad 1.5
 #define tgt_len 78
-#define tgt_x 0
-#define tgt_y 0
-#define tgt_z 0
-*----> Horn
-!#define hon_off
-#define shift_horn 6.1
+*
+* Horn
+#define hon_zmin 6.1
 #define h_thick0 1
 #define h_thick 0.3
 #define h_z1 64.98
@@ -111,56 +121,136 @@ ESSnuSB Beam to leNuSTORM
 #define h_romax 58.7
 !@what.1=h_rin1
 #define h_rimin 3
-*----> Beam definition
-!@what.1=0.2645*tgt_rad
-#define BW 0.39675
-!@what.1=shift_target
-#define z_beam_pos shift_target
+* ---------
 MULSOPT
 DEFAULTS                                                              NEW-DEFA
-*
-* Beam definition
+*Beam definition
 * ---------------
-*  Gaussian beam, (sigma_x, sigma_y) = (0.05cm, 0.1cm)
-!@what.4=-2.3548*BW
-!@what.5=-2.3548*BW
-BEAM            -2.5       0.0       0.0-0.9342669-0.9342669        1.PROTON
-!@what.3=z_beam_pos
-BEAMPOS            0         0shift_targ       0.0       0.0
+*  Gaussian beam, 2.5GeV, (sigma_x, sigma_y) = (0.05cm, 0.1cm)
+BEAM            -2.5       0.0       0.0     -0.05      -0.1       1.0PROTON
+BEAMPOS            0         0         0       0.0       0.0
 *
 * Geometry
 * --------
 GEOBEGIN                                                              COMBNAME
     0    0          
 * Black body - size 100m
-SPH blkbody    0 0 0 10000
-*Simulation inside this volume 10m wide, 50m long
-RPP void       -1000 1000 -1000 1000 -1000 5000
-*Faclity : tcc + beam to nustorm
-RCC tcc        0 0 -100 0 0 1100.1 300
-RCC tdec       0 0 1000 0 0 3500 $tdec_rad
-*Tranlate target-horn assembly to correct position
-$start_translat $tgt_x $tgt_y $tgt_z
-*Target-horn box
-!@what.6=1+shift_horn+h_ltot+4.0
-!@what.7=h_romax+2.0
-RCC thbox      0 0 -1.0 0 0 259.26 60.7
+SPH blkbody    0 0 0 100000
+SPH void       0 0 0 90000
+RPP tcc_o      -$tcc_o $tcc_o -$tcc_o $tcc_o -100 $tcc_len
+!@what.6=tcc_len+1
+RPP tcc        -$tcc_width $tcc_width -$tcc_width $tcc_width -50 301
+!@what.5=tcc_len-1
+!@what.6=tdec_len+1
+RPP tdec_o     -$tdec_wid $tdec_wid -$tdec_wid $tdec_wid 299 8001
+!@what.3=tcc_len-2
+!@what.6=tdec_len-bdump_len+2
+RCC tdec       0 0 298 0 0 7502 $tdec_rad
+*Target & Horn box
+RCC thbox      0 0 $thbox_zmin 0 0 $thbox_zmax $thbox_rad
 RCC target     0 0 0 0 0 $tgt_len $tgt_rad
+*---- Magnet Models -----
+$start_translat 1000 0 0
+*MBAH Magnet envelop (+1mm bigger) - includes coils
+!@what.1=-d1_xsiz/2-0.1
+!@what.2=d1_xsiz/2+0.1
+!@what.3=-d1_ysiz/2-0.1
+!@what.4=d1_ysiz/2+0.1
+!@what.6=d1_len+0.1
+RPP D1Vol      -53.8701004816972 53.8701004816972 -24.1 24.1 -0.1 221.1
+!@what.1=-d1_xsiz/2
+!@what.2=d1_xsiz/2
+!@what.3=-d1_ysiz/2
+!@what.4=d1_ysiz/2
+RPP D1Fe       -53.7701004816972 53.7701004816972 -24 24 0 $d1_len
+!@what.1=-d1_apx/2
+!@what.2=d1_apx/2
+!@what.3=-d1_apy/2
+!@what.4=d1_apy/2
+!@what.6=d1_len+0.05
+RPP D1Vac      -44.808417068081 44.808417068081 -20 20 -0.05 221.05
+$end_translat
+$start_translat 1200 0 0
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC Q1Vol      0 0 -0.1 0 0 80.2 60.1
+RCC Q1Fe       0 0 0 0 0 $q1_len $q1_rad
+!@what.6=q1_len+0.1
+RCC Q1Vac      0 0 -0.05 0 0 80.1 $q1_ap
+$end_translat
+*
+* ------------- Beam line magnets ----------------------------
+*first dipole
+$start_transform -ttd1
+$start_translat 1000
+*-- empty MBHA container for the lattice (replica)
+!@what.1=-d1_xsiz/2-0.1
+!@what.2=d1_xsiz/2+0.1
+!@what.3=-d1_ysiz/2-0.1
+!@what.4=d1_ysiz/2+0.1
+!@what.6=d1_len+0.1
+RPP MBHA       -53.8701004816972 53.8701004816972 -24.1 24.1 -0.1 221.1
+$end_translat
+$end_transform
+*decay pipe shielding penetration
+$start_transform ttsegb
+!@what.3=q1_rad*1.5
+ZCC ttex       0 0 90
+$end_transform
+YZP ttexi      -$tdec_rad
+!@what.1=-tdec_rad-tdec_shield
+YZP ttexo      -500
+*second segment downstream D1
+$start_transform -q1segb
+$start_translat 1200
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC MQA1       0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+$start_transform -q2segb
+$start_translat 1200
+!@what.6=q1_len+0.2
+!@what.7=q1_rad+0.1
+RCC MQA2       0 0 -0.1 0 0 80.2 60.1
+$end_translat
+$end_transform
+#if 0
+!@what.6=mqa_len+0.2
+!@what.7=mqa_rad+0.1
+RCC MQA2       0 0 0 0 0 0.0 0.0
+#endif
+#if 0
 !@what.3=h_rout1+h_thick0
 ZCC horn_O0    0 0 58.7
+#endif
+#if 0
 ZCC horn_O1    0 0 $h_rout1
+#endif
+#if 0
 !@what.1=shift_horn
-XYP PyZhuP1    6.1
+XYP PyZhuP1    0.0
+#endif
+#if 0
 !@what.1=shift_horn+h_thick0
-XYP PyZhuP2    7.1
+XYP PyZhuP2    0.0
+#endif
+#if 0
 !@what.1=shift_horn+h_thick0+h_z1+h_z2+h_z3+h_z4+h_z5
-XYP PyZhoP     227.76000000000002
+XYP PyZhoP     0.0
+#endif
+#if 0
 !@what.3=h_rin1+h_thick
 ZCC horn_I0    0 0 3.3
+#endif
+#if 0
 ZCC horn_I1    0 0 $h_rin1
+#endif
+#if 0
 !@what.1=shift_horn+h_thick+h_z1
-XYP PyZhiP1    71.38000000000001
-$end_translat
+XYP PyZhiP1    0.0
+#endif
+*$end_translat
 #if 0
 TRC h00        $x1 0.0 $z00 0.0 0.0 $L10 $R0x $R0x
 #endif
@@ -287,19 +377,40 @@ RPP dt         $hdtm $hdtp $hdtm $hdtp $hdtzm $hdtzp
 END
 * Black hole
 BLKBODY      5 +blkbody -void
-TSHILD       5 +void -tcc -tdec
-TCC          5 +tcc -thbox |+tdec
+VOID         5 +void -tcc_o -tdec_o -D1Vol -Q1Vol
+SHIELD       5 +tcc_o -tcc
+               | +tdec_o -tcc_o -tcc -tdec -(+ttex +ttexi)
+TCC_CAV      5 +tcc -thbox -MBHA
+               | +tdec -MBHA -MQA1
+               | +ttex +ttexi -ttexo -MQA1 -MQA2
 #if 0
-TSHILD       5 +tcc  -thbox -tdec
+TDEC         5 +tdec -tcc -MBHA
 #endif
+THBOX        5 +thbox -target
+TARGET       5 +target
+MBHA         5 +MBHA
+MQA1         5 +MQA1
+MQA2         5 +MQA2
+MBHEnv       5 +D1Vol -D1Fe -D1Vac
+MBHFe        5 +D1Fe -D1Vac
+MBHVac       5 +D1Vac
+MQAEnv       5 +Q1Vol -Q1Fe -Q1Vac
+MQAFe        5 +Q1Fe -Q1Vac
+MQAVac       5 +Q1Vac
+#if 0
 HBOX         5 +thbox -target
                -(+horn_O1 -horn_I0 -PyZhuP1 +PyZhuP2 )
                -(+horn_O0 -horn_O1 +PyZhoP -PyZhuP1  )
                -(+horn_I0 -horn_I1 -PyZhuP1  +PyZhiP1 )
+#endif
+#if 0
 TARGET       5 +target
+#endif
+#if 0
 HORNCo       5 +horn_O1 -horn_I0 -PyZhuP1 +PyZhuP2
                | +horn_O0 -horn_O1 +PyZhoP -PyZhuP1
                | +horn_I0 -horn_I1 -PyZhuP1  +PyZhiP1
+#endif
 #if 0
 DECTUBE      5 +tdec
 #endif
@@ -351,6 +462,8 @@ RHIN         5 +h10-target   |+h11-target   |+h12-target   |+h13-target  |+h14-t
 DT           5 +dt
 #endif
 END
+LATTICE         MBHA                          MBHA                    ttmbha
+LATTICE         MQA1                          MQA1                    q1segb
 GEOEND
 *
 * Material definitions
@@ -375,37 +488,34 @@ COMPOUND      -0.016    SODIUM    -0.002  MAGNESIU -0.033872  ALUMINUMPORTLAND
 COMPOUND   -0.337021   SILICON    -0.013  POTASSIU    -0.044   CALCIUMPORTLAND
 COMPOUND      -0.014      IRON                                        PORTLAND
 ASSIGNMA    BLCKHOLE   BLKBODY                 1.0         0
-ASSIGNMA        IRON    TSHILD                   1         0
-ASSIGNMA      VACUUM       TCC
-ASSIGNMA      HELIUM      HBOX
-ASSIGNMA    TITANIUM    TARGET
-ASSIGNMA    ALUMINUM    HORNCo
-*ASSIGNMA         AIR     INAIR                                  VACUUM
-*ASSIGNMA    BLCKHOLE   BLKBODY
-*ASSIGNMA      VACUUM    TSHILD
-*ASSIGNMA      VACUUM       TCC
-*ASSIGNMA      VACUUM      BOX1
-*ASSIGNMA    ALUMINUM    RHALUP
-*ASSIGNMA      VACUUM      RHBF                            1.
-*ASSIGNMA    ALUMINUM  RHALDOWN
-*ASSIGNMA      VACUUM      RHIN
+ASSIGNMA      VACUUM      VOID                   1         0
+ASSIGNMA        IRON    SHIELD
+ASSIGNMA      HELIUM   TCC_CAV
+*ASSIGNMA      HELIUM      TDEC
+ASSIGNMA      HELIUM    MBHEnv
+ASSIGNMA        IRON     MBHFe
+ASSIGNMA      VACUUM    MBHVac
+*ASSIGNMA        IRON  TDEC_SLD
 *ASSIGNMA    TITANIUM    TARGET
-*ASSIGNMA      VACUUM        DT
-!#else
-*ASSIGNMA    BLCKHOLE   BLKBODY
-*ASSIGNMA    PORTLAND      WALL
-*ASSIGNMA    TITANIUM    TARGET
-*ASSIGNMA         AIR     INAIR
-*ASSIGNMA    BLCKHOLE   BLKBODY
-*ASSIGNMA      VACUUM    TSHILD
-*ASSIGNMA      VACUUM       TCC
-*ASSIGNMA      VACUUM      BOX1
-*ASSIGNMA    ALUMINUM    RHALUP
-*ASSIGNMA      VACUUM      RHBF                            1.
-*ASSIGNMA    ALUMINUM  RHALDOWN
-*ASSIGNMA      VACUUM      RHIN
-*ASSIGNMA    TITANIUM    TARGET
-*ASSIGNMA      VACUUM        DT
+*
+* ROT-DEFI for beam line build
+ROT-DEFI         300         0         0      1000         0  -$drift1ttd1
+*segment B elements (after MBHA rotation)
+ROT-DEFI         200            $d1_adeg                              ttsegb
+!@what.6=drift1+d1_arc
+ROT-DEFI                                                    539.429589ttsegb
+!@what.3=mbha_adeg
+*ROT-DEFI         200           mbha_adeg                              segb_angl
+!@what.4=(d1_arc+drift2)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+drift2)*cos(d1_arad)
+ROT-DEFI         300                    129.299322         0-632.70059q1segb
+ROT-DEFI         200           -$d1_adeg                   0          q1segb
+ROT-DEFI         300                          1200                   0q1segb
+!@what.4=(d1_arc+drift2+q1_len+drift3)*sin(d1_arad)
+!@what.6=-drift1-d1_arc-(d1_arc+drift2+q1_len+drift3)*cos(d1_arad)
+ROT-DEFI           0                    210.400529         0-691.20353q2segb
+ROT-DEFI         200           -$d1_adeg                   0         0q2segb
+ROT-DEFI         300                          1200                   0q2segb
 *MAT-PROP           1                        VACUUM  @LASTMAT          USERDIRE
 * * Activation calculations
 * -----------------------
@@ -432,4 +542,95 @@ PART-THR    -10.0E-6  ANEUTRON  @LASTPAR
 * ..+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
 RANDOMIZ          1.  99999999
 START         10000.                                     0.0
+*
+* --- obsolete defines
+*
+!#define SampleDose
+!#define x1 0
+!#define y1 0
+!#define z00 6.1
+!#define L10 64.98
+!#define z0 7.1
+!#define L11 63.98
+!#define z1 71.08
+!#define L2 46.8
+!#define z2 117.88
+!#define L3 60.3
+!#define z3 178.18
+!#define L4 47.5
+!#define z4 225.68
+!#define L5 1.08
+!#define z5 226.76
+!#define dz 5.44
+!#define z6 232.2
+!#define z7 237.64
+!#define z8 243.08
+!#define z9 248.52
+!#define dzx 5.74
+!#define R0x 58.7
+!#define R00 58
+!#define R01 57.46
+!#define R02 55.76
+!#define R03 52.63
+!#define R04 47.32
+!#define R05 30.5
+!#define h00 3
+!#define h01 22.1
+!#define R11 3.54
+!#define R12 5.24
+!#define R13 8.37
+!#define R14 13.68
+!#define R15 30.5
+!#define R2x 57.7
+!#define R20 57.7
+!#define R21 57.15
+!#define R22 55.43
+!#define R23 52.26
+!#define R24 46.82
+!#define R25 30.5
+!#define h10 3.3
+!#define h11 22.4
+!#define R31 3.85
+!#define R32 5.57
+!#define R33 8.74
+!#define R34 14.18
+!#define R35 30.5
+!#define Ltot 254.26
+!#define Lbox 305.112
+!#define Rbox 70.44
+!#define zb -25.426
+!#define hdtm -200
+!#define hezm -200
+!#define hezp 300
+!#define hdtzm 300
+!#define hdtzp 2800
+!#define dx -200
+!#define dy -200
+*ASSIGNMA    ALUMINUM    HORNCo
+*ASSIGNMA         AIR     INAIR                                  VACUUM
+*ASSIGNMA    BLCKHOLE   BLKBODY
+*ASSIGNMA      VACUUM      VOID
+*ASSIGNMA      VACUUM    SHIELD
+*ASSIGNMA      VACUUM      BOX1
+*ASSIGNMA    ALUMINUM    RHALUP
+*ASSIGNMA      VACUUM      RHBF                            1.
+*ASSIGNMA    ALUMINUM  RHALDOWN
+*ASSIGNMA      VACUUM      RHIN
+*ASSIGNMA    TITANIUM    TARGET
+*ASSIGNMA      VACUUM        DT
+!#else
+*ASSIGNMA    BLCKHOLE   BLKBODY
+*ASSIGNMA    PORTLAND      WALL
+*ASSIGNMA    TITANIUM    TARGET
+*ASSIGNMA         AIR     INAIR
+*ASSIGNMA    BLCKHOLE   BLKBODY
+*ASSIGNMA      VACUUM      VOID
+*ASSIGNMA      VACUUM    SHIELD
+*ASSIGNMA      VACUUM      BOX1
+*ASSIGNMA    ALUMINUM    RHALUP
+*ASSIGNMA      VACUUM      RHBF                            1.
+*ASSIGNMA    ALUMINUM  RHALDOWN
+*ASSIGNMA      VACUUM      RHIN
+*ASSIGNMA    TITANIUM    TARGET
+*ASSIGNMA      VACUUM        DT
 STOP
