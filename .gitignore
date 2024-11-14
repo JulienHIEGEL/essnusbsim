@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-#
-*.*~
-
-myanal/
-run/
-
-**/.vscode/
-=======
 
 *.exe
 *.out
@@ -15,4 +6,14 @@ run/
 *.log
 *.o
 *.err
->>>>>>> 1d4c892 (add gitignore)
+
+*.*~
+*.pickle
+*.bnn
+*.jpg
+myfluka
+ran*
+
+**/.vscode/
+myanal/
+run/
