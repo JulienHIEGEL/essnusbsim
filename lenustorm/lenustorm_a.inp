@@ -1,7 +1,9 @@
+#if 0
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7...
+*
 TITLE
-
-*Set the defaults for precision simulations
-DEFAULTS                                                              PRECISIO
+ESSnuSB Beam to LEnuSTORM
+#endif
 *-----
 *GEOMETRY parameters
 *-----
@@ -140,46 +142,85 @@ DEFAULTS                                                              PRECISIO
 !@what.1=h_rin1
 #define h_rimin 3
 * ---------
+MULSOPT
+DEFAULTS                                                              NEW-DEFA
+*Beam definition
+* ---------------
+*  Gaussian beam, 2.5GeV, (sigma_x, sigma_y) = (0.05cm, 0.1cm)
+BEAM            -0.7       0.0       0.0         0         0       1.0PROTON
+BEAMPOS            0         0         0       0.0       0.0
 *
-*Define the beam characteristics
-BEAM             0.7         0         0       2.5       2.5          PROTON
-*Define the beam position
-BEAMPOS            0         0         0
+* Geometry
+* --------
 GEOBEGIN                                                              COMBNAME
     0    0          
-*Black body
-SPH blkbody    0.0 0.0 0.0 100000.0
-*Void sphere
-SPH void       0.0 0.0 0.0 99000.0
-*Cylindrical target
-RCC target     0.0 0.0 0.0 0.0 0.0 10.0 15.0
-$start_transform -tr
-RCC target2    0.0 0.0 0.0 0.0 0.0 10.0 5.0
-$end_transform
+* Black body - size 100m
+SPH blkbody    0 0 0 100000
+SPH void       0 0 0 90000
+RPP tcc_o      -$tcc_o $tcc_o -$tcc_o $tcc_o -100 $tcc_len
+!@what.6=tcc_len+1
+RPP tcc        -$tcc_width $tcc_width -$tcc_width $tcc_width -50 301
+!@what.5=tcc_len-1
+!@what.6=tdec_len+1
+RPP tdec_o     -$tdec_wid $tdec_wid -$tdec_wid $tdec_wid 299 8001
+!@what.3=tcc_len-2
+!@what.6=tdec_len-bdump_len+2
+RCC tdec       0 0 298 0 0 7502 $tdec_rad
+*Target & Horn box
+RCC thbox      0 0 $thbox_zmin 0 0 $thbox_zmax $thbox_rad
+RCC target     0 0 0 0 0 $tgt_len $tgt_rad
 END
-*Black hole
+* Black hole
 BLKBODY      5 +blkbody -void
-*Void around
-VOID         5 +void -target -target2
-*Target
+VOID         5 +void -tcc_o -tdec_o
+SHIELD       5 +tcc_o -tcc
+               | +tdec_o -tcc_o -tcc -tdec
+TCC_CAV      5 +tcc -thbox
+               | +tdec
+#if 0
+TDEC         5 +tdec -tcc -MBHA
+#endif
+THBOX        5 +thbox -target
 TARGET       5 +target
-TARGRP       5 +target2
 END
-*define region TARGRP as a replica, with name Target2, associated
-*to roto-traslation number 1
-LATTICE       TARGRP                       Target2                    tr
+*
 GEOEND
-*..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
-ASSIGNMA    BLCKHOLE   BLKBODY
-ASSIGNMA      VACUUM      VOID
-ASSIGNMA      CARBON    TARGET
-*define the transformation for lattice cell Target2
-*           rot.numb.    theta    phi       dx        dy        dz
-ROT-DEFI         1.0       0.0       0.0       0.0       0.0     -20.0tr
-USRBIN            10                 -21        10        10     10000Beam
-USRBIN           -10       -10      -100        10        10       100 &
-*Set the random number seed
-RANDOMIZ         1.0
-*Set the number of primary histories to be simulated in the run
-START           5000
+*
+ASSIGNMA    BLCKHOLE   BLKBODY                 1.0         0
+ASSIGNMA      VACUUM      VOID                   1         0
+ASSIGNMA        IRON    SHIELD
+ASSIGNMA      VACUUM   TCC_CAV
+ASSIGNMA    TITANIUM    TARGET
+ASSIGNMA      VACUUM     THBOX
+*
+USRBIN                BEAMPART       -21        50        50      2000Beampart
+USRBIN           -50       -50      -100        10        10       100 &
+*
+*
+*MAT-PROP           1                        VACUUM  @LASTMAT          USERDIRE
+* * Activation calculations
+* -----------------------
+*PHYSICS           3.                                                  EVAPORAT
+*PHYSICS           1.                                                  COALESCE
+*
+* Electromagnetic thresholds
+* --------------------------
+*         prompt     decay
+*  e+/-   10 MeV    100keV
+*  gamma   5 MeV     50keV
+*EMFCUT        -1E-05      5E-5        1.    VACUUM  @LASTMAT          PROD-CUT
+*EMFCUT        -1E-05      5E-5             BLKBODY  @LASTREG
+*
+* Photonuclear interactions
+* -------------------------
+*PHOTONUC          1.                      BLCKHOLE  @LASTMAT
+*
+* Hadronic thresholds
+* -------------------
+*PART-THR    -10.0E-6    PROTON   APROTON
+*PART-THR    -10.0E-6  ANEUTRON  @LASTPAR
+*
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8
+RANDOMIZ          1.1.12233E13
+START          1000.                                     0.0
 STOP
