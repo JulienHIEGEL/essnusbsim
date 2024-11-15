@@ -68,7 +68,7 @@ ESS-LEnuStorm Simulation
 #define q1_fe 40
 !@what.1=q1_ap+q1_fe
 #define q1_rad 84
-#define drift0 400
+#define drift0 200
 #define drift1 50
 #define drift2 20
 #define drift3 35.3
@@ -78,7 +78,7 @@ ESS-LEnuStorm Simulation
 #define drift7 20
 #define drift8 50
 !@what.1=drift0
-#define s_d1 400
+#define s_d1 200
 !@what.1=d1_pivot+drift1
 #define s_q1 189.429589070911
 !@what.1=s_q1+q1_len+drift2
@@ -120,7 +120,7 @@ BEAM          $pbeam         0         0       2.5       2.5          MUON+
 BEAMPOS            0         0         0
 USRBIN            10  BEAMPART       -21       100       100       800Beampart
 USRBIN          -300      -100       300       400       400       500 &
-USRBIN            10  BEAMPART       -22       100        10      1500Beampar1
+USRBIN            10  BEAMPART       -22       100        10      1300Beampar1
 USRBIN         -1000       -10         0       400        20       500 &
 GEOBEGIN                                                              COMBNAME
     0    0          
@@ -250,7 +250,7 @@ END
 BLKBODY      5 +blkbody -void
 VOID         5 +void -tcc_o -tdec_o -mbhavol -mqavol -ttline -D2rp
 SHIELD       5 +tcc_o -tcc | +tdec_o -tcc_o -tcc -tdec -(+ttline +ttline_u)
-TCC_CAV      5 (+tcc -thbox
+TCC_CAV      5 (+tcc -thbox -D1rp
                | +tdec -D1rp
                | (+ttline +ttline_u)) -Q1rp -Q2rp -Q3rp -Q4rp -Q5rp -Q6rp -Q7rp -D2rp
 #if 0
@@ -308,54 +308,54 @@ ASSIGNMA      VACUUM    MQAVac
 *Define the transformations from the replicas to the models
 *           rot.numb.    theta    phi       dx        dy        dz
 !@what.6=-(s_d1+d1_pivot)
-ROT-DEFI         200       0.0 -$d1_adeg         0       0.0-539.42959trttl
+ROT-DEFI         200       0.0 -$d1_adeg         0       0.0-339.42959trttl
 *# ---- D1
 !@what.4=-1000+d1_defl/2
 ROT-DEFI                                -943.46046              -$s_d1trd1
 *# ---- D2
 !@what.4=-1000+d1_defl/2+s_d2*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_d2*cos(d1_arad)
-ROT-DEFI                                -148.15802          -1113.1267trd2
+ROT-DEFI                                -148.15802          -913.12674trd2
 *# ---- Q1
 !@what.4=s_q1*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q1*cos(d1_arad)
-ROT-DEFI         300                    153.629684          -650.25147trq1
+ROT-DEFI         300                    153.629684          -450.25147trq1
 ROT-DEFI         200           -$d1_adeg                              trq1
 ROT-DEFI         300                         -1500                    trq1
 *# ---- Q2
 !@what.4=s_q2*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q2*cos(d1_arad)
-ROT-DEFI           0                    234.730891          -708.75441trq2
+ROT-DEFI           0                    234.730891          -508.75441trq2
 ROT-DEFI         200           -$d1_adeg                              trq2
 ROT-DEFI         300                         -1500                    trq2
 *# ---- Q3
 !@what.4=s_q3*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q3*cos(d1_arad)
-ROT-DEFI           0                    328.240583           -776.2083trq3
+ROT-DEFI           0                    328.240583           -576.2083trq3
 ROT-DEFI         200           -$d1_adeg                              trq3
 ROT-DEFI         300                         -1500                    trq3
 *# ---- Q4
 !@what.4=s_q4*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q4*cos(d1_arad)
-ROT-DEFI           0                    421.750275           -843.6622trq4
+ROT-DEFI           0                    421.750275           -643.6622trq4
 ROT-DEFI         200           -$d1_adeg                              trq4
 ROT-DEFI         300                         -1500                    trq4
 *# ---- Q5
 !@what.4=s_q5*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q5*cos(d1_arad)
-ROT-DEFI           0                    515.259967          -911.11609trq5
+ROT-DEFI           0                    515.259967          -711.11609trq5
 ROT-DEFI         200           -$d1_adeg                              trq5
 ROT-DEFI         300                         -1500                    trq5
 *# ---- Q6
 !@what.4=s_q6*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q6*cos(d1_arad)
-ROT-DEFI           0                     608.76966          -978.56998trq6
+ROT-DEFI           0                     608.76966          -778.56998trq6
 ROT-DEFI         200           -$d1_adeg                              trq6
 ROT-DEFI         300                         -1500                    trq6
 *# ---- Q7
 !@what.4=s_q7*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q7*cos(d1_arad)
-ROT-DEFI           0                    689.870867          -1037.0729trq7
+ROT-DEFI           0                    689.870867          -837.07292trq7
 ROT-DEFI         200           -$d1_adeg                              trq7
 ROT-DEFI         300                         -1500                    trq7
 *Set the random number seed

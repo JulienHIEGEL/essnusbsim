@@ -1,7 +1,7 @@
 # flair project file
 Version: 300
 Mode: fluka
-md5: e290fbdbbdc6702e74d45b01af401f61
+md5: d99ccc67ee4198bfb6cb8f6aa89b9b55
 Input:
 TITLE
 	ESS-LEnuStorm Simulation
@@ -60,7 +60,7 @@ TITLE
 #define q1_ap 2*beam_rad*1.1
 #define q1_fe 40
 #define q1_rad =q1_ap+q1_fe
-#define drift0 400
+#define drift0 200
 #define drift1 50
 #define drift2 20
 #define drift3 35.3
@@ -184,7 +184,7 @@ REGION VOID 5
 REGION SHIELD 5
 	+tcc_o -tcc | +tdec_o -tcc_o -tcc -tdec -(+ttline +ttline_u)
 REGION TCC_CAV 5
-	(+tcc -thbox 
+	(+tcc -thbox -D1rp
 	| +tdec -D1rp
 	| (+ttline +ttline_u)) -Q1rp -Q2rp -Q3rp -Q4rp -Q5rp -Q6rp -Q7rp -D2rp  
 !REGION TCC_CAV1 5
@@ -251,6 +251,7 @@ ASSIGNMA , IRON MBHAFe
 ASSIGNMA , VACUUM MBHAVac,,, 1
 MGNCREAT D1 2
 MGNFIELD D1 =d1_b0,, 2 D1
+MGNFIELD D1 =-d1_b0,, 2 D2
 ASSIGNMA , VACUUM MQAEnv
 ASSIGNMA , IRON MQAFe
 ASSIGNMA , VACUUM MQAVac
@@ -296,25 +297,35 @@ START , 1000
 STOP
 EndInput
 
-Page: Input
+Page: Flair
 plotengine: Gnuplot
 
 # Run information
 Run: <default>
 	Last:     1
 	Status:   3
-	StartRun: 1731536484.023573
+	StartRun: 1731590687.039028
 	open:     1
 End
 Geometry: Geometry
-	Frame.bsplit: 0.5309597523219814
+	Frame.tsplit: 0.0
+	Frame.vsplit: 1.0
+	Layer: 3D
+		3D: 1
+		3D._visible: 1
+		3D.edgedetect: 1
+		Options.viewport: 0
+		Show: 0
+		Show.lattice: 1
+		Show.voxel: 1
+	End
 End
 
 # Plots information
 Plot: Red
 	Type: Geometry
 	coord: X-Y
-	extends: 2656.176089428029 1544.222287536852
+	extends: 2656.1760894280296 2921793.698370833
 	group: Geometry
 	layer: Media
 	origin: 314.394 192.633 0
@@ -324,24 +335,24 @@ Plot: Green
 	basisu: 0 0 1
 	basisv: 1 0 0
 	coord: Z-X
-	extends: 1877.43802099279 1092.6568546613985
+	extends: 1564.5316841606577 1151.9309588866959
 	group: Geometry
 	layer: Lattice
-	origin: -810.352 0 1276.19
+	origin: -260.173 0 904.417
 End
 Plot: Blue
 	Type: Geometry
 	basisu: 0 0 1
 	coord: Z-Y
-	extends: 3877.894537348471 2124.8201148135413
+	extends: 2244.1519313359204 3.004219452926266
 	group: Geometry
 	layer: Lattice
-	origin: 0 -629.967 2048.72
+	origin: 0 -778.094 1354.33
 End
 Plot: Magenta
 	Type: Geometry
 	coord: X-Y
-	extends: 7949.684720339072 4927.715528703328
+	extends: 7949.684720339072 10.642148219998758
 	group: Geometry
 	layer: Lattice
 	origin: 3486.98 1498.79 50
@@ -404,9 +415,9 @@ Plot: lenustorm_latt_22_plot
 	datafile: lenustorm_latt_22.bnn
 	grid: 0
 	hist: 2D Projection
-	int: 1742.4934568070221
-	max: 2.12083831E-02
-	min: 4.04550420E-08
+	int: 1718.3846117136295
+	max: 2.14052200E-02
+	min: 9.86370985E-09
 	open: 1
 	proj: Y
 	title: USRBIN lenustorm latt 22
