@@ -113,17 +113,18 @@ ESS-LEnuStorm Simulation
 *
 *Set the defaults for precision simulations
 DEFAULTS                                                              PRECISIO
+FREE
 *
 *Define the beam characteristics
-BEAM          $pbeam         0         0       2.5       2.5          MUON+
+BEAM      , $pbeam, 0, 0, 2.5, 2.5,  ,MUON+
 *Define the beam position
-BEAMPOS            0         0         0
-USRBIN            10  BEAMPART       -21       100       100       800Beampart
-USRBIN          -300      -100       300       400       400       500 &
-USRBIN            10  BEAMPART       -22       100        10      1300Beampar1
-USRBIN         -1000       -10         0       400        20       500 &
-GEOBEGIN                                                              COMBNAME
-    0    0          
+BEAMPOS   , 0, 0, 0
+USRBIN    , 10, BEAMPART, -21, 100, 100, 800, Beampart
+USRBIN    , -300, -100, 300, 400, 400, 500,  &
+USRBIN    , 10, BEAMPART, -22, 100, 10, 1300, Beampar1
+USRBIN    , -1000, -10, 0, 400, 20, 500,  &
+GEOBEGIN   ,  ,  ,  ,  ,  ,  , COMBNAME
+0,0,
 SPH blkbody    0 0 0 100000
 SPH void       0 0 0 90000
 RPP tcc_o      -$tcc_o $tcc_o -$tcc_o $tcc_o -100 $tcc_len
@@ -176,6 +177,51 @@ RCC mqafe      0 0 0 0 0 $q1_len $q1_rad
 !@what.6=q1_len+0.1
 RCC mqavac     0 0 -0.05 0 0 80.1 $q1_ap
 $end_translat
+*
+* --- insert lenustorm_models.bodies
+*
+$start_translat -1000 0 -400
+RPP qfavol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+RPP qfafe      -78.0 78.0 -78.0 78.0 0 25.0
+RCC qfavac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+$end_translat
+$start_translat -1000 0 -550
+RPP qdavol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+RPP qdafe      -78.0 78.0 -78.0 78.0 0 25.0
+RCC qdavac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+$end_translat
+$start_translat -1000 0 -700
+RPP qfsvol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+RPP qfsfe      -78.0 78.0 -78.0 78.0 0 25.0
+RCC qfsvac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+$end_translat
+$start_translat -1000 0 -850
+RPP qdsvol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+RPP qdsfe      -78.0 78.0 -78.0 78.0 0 25.0
+RCC qdsvac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+$end_translat
+$start_translat -1000 0 -1000
+RPP qdsa1vol   -78.1 78.1 -78.1 78.1 -0.1 25.1
+RPP qdsa1fe    -78.0 78.0 -78.0 78.0 0 25.0
+RCC qdsa1vac   0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+$end_translat
+$start_translat -1000 0 -1150
+RPP qdsa2vol   -78.1 78.1 -78.1 78.1 -0.1 25.1
+RPP qdsa2fe    -78.0 78.0 -78.0 78.0 0 25.0
+RCC qdsa2vac   0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+$end_translat
+$start_translat -1000 0 -1300
+RPP qfsa1vol   -78.1 78.1 -78.1 78.1 -0.1 25.1
+RPP qfsa1fe    -78.0 78.0 -78.0 78.0 0 25.0
+RCC qfsa1vac   0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+$end_translat
+$start_translat -1000 0 -1450
+RPP bvol       -45.1 45.1 -40.1 40.1 -0.1 60.1
+RPP bfe        -45.0 45.0 -40.0 40.0 0 60.0
+RPP bvac       -25.0 25.0 -20.0 20.0 -0.1 60.1
+$end_translat
+*
+* ---- Beam lines ----
 *Transfer line magnets
 $start_transform -trd1
 $start_translat -1000 0 0
@@ -246,9 +292,17 @@ $start_translat -1500
 RCC Q7rp       0 0 -0.1 0 0 80.2 84.1
 $end_translat
 $end_transform
+*
+$start_transform -frtr1
+$start_translat -1000 0 -1150
+RPP qds2a2.0   -78.1 78.1 -78.1 78.1 -0.1 25.1
+$end_translat
+$end_transform
+*
 END
 BLKBODY      5 +blkbody -void
-VOID         5 +void -tcc_o -tdec_o -mbhavol -mqavol -ttline -D2rp
+VOID         5 +void -tcc_o -tdec_o -mbhavol -mqavol -qdavol -qfavol -qdsvol -qfsvol -qdsa1vol -qdsa2vol
+               -qfsa1vol -bvol -ttline -D2rp -qds2a2.0
 SHIELD       5 +tcc_o -tcc | +tdec_o -tcc_o -tcc -tdec -(+ttline +ttline_u)
 TCC_CAV      5 (+tcc -thbox -D1rp
                | +tdec -D1rp
@@ -260,12 +314,39 @@ TCC_CAV1     5 +tcc -thbox
 #endif
 THBOX        5 +thbox -target
 TARGET       5 +target
+* --- Magent models
 MBHAEnv      5 +mbhavol -mbhafe -mbhavac
 MBHAFe       5 +mbhafe -mbhavac
 MBHAVac      5 +mbhavac
 MQAEnv       5 +mqavol -mqafe -mqavac
 MQAFe        5 +mqafe -mqavac
 MQAVac       5 +mqavac
+* --- include lenustorm_models.regions
+QFAEnv       5 +qfavol -qfafe -qfavac
+QFAFe        5 +qfafe -qfavac
+QFAVac       5 +qfavac
+QDAEnv       5 +qdavol -qdafe -qdavac
+QDAFe        5 +qdafe -qdavac
+QDAVac       5 +qdavac
+QFSEnv       5 +qfsvol -qfsfe -qfsvac
+QFSFe        5 +qfsfe -qfsvac
+QFSVac       5 +qfsvac
+QDSEnv       5 +qdsvol -qdsfe -qdsvac
+QDSFe        5 +qdsfe -qdsvac
+QDSVac       5 +qdsvac
+QDSA1Env     5 +qdsa1vol -qdsa1fe -qdsa1vac
+QDSA1Fe      5 +qdsa1fe -qdsa1vac
+QDSA1Vac     5 +qdsa1vac
+QDSA2Env     5 +qdsa2vol -qdsa2fe -qdsa2vac
+QDSA2Fe      5 +qdsa2fe -qdsa2vac
+QDSA2Vac     5 +qdsa2vac
+QFSA1Env     5 +qfsa1vol -qfsa1fe -qfsa1vac
+QFSA1Fe      5 +qfsa1fe -qfsa1vac
+QFSA1Vac     5 +qfsa1vac
+BEnv         5 +bvol -bfe -bvac
+BFe          5 +bfe -bvac
+BVac         5 +bvac
+*
 D1           5 +D1rp
 D2           5 +D2rp
 Q1           5 +Q1rp
@@ -275,91 +356,105 @@ Q4           5 +Q4rp
 Q5           5 +Q5rp
 Q6           5 +Q6rp
 Q7           5 +Q7rp
+*
+QDS2A2.0     5 +qds2a2.0
+*
 END
-LATTICE           D1                       MBHAEnv                    trd1
-LATTICE           D2                       MBHAEnv                    trd2
-LATTICE           Q1                        MQAEnv                    trq1
-LATTICE           Q2                        MQAEnv                    trq2
-LATTICE           Q3                        MQAEnv                    trq3
-LATTICE           Q4                        MQAEnv                    trq4
-LATTICE           Q5                        MQAEnv                    trq5
-LATTICE           Q6                        MQAEnv                    trq6
-LATTICE           Q7                        MQAEnv                    trq7
+LATTICE   , D1, , , MBHAEnv,  , ,trd1
+LATTICE   , D2, , , MBHAEnv,  , ,trd2
+LATTICE   , Q1, , , MQAEnv,  , ,trq1
+LATTICE   , Q2, , , MQAEnv,  , ,trq2
+LATTICE   , Q3, , , MQAEnv,  , ,trq3
+LATTICE   , Q4, , , MQAEnv,  , ,trq4
+LATTICE   , Q5, , , MQAEnv,  , ,trq5
+LATTICE   , Q6, , , MQAEnv,  , ,trq6
+LATTICE   , Q7, , , MQAEnv,  , ,trq7
+LATTICE   , QDS2A2.0, , , QDSA2Env,  , ,frtr1
 GEOEND
 #if 0
-Black              -      size                                        body
+Black     , -, size,  , , , ,body
 #endif
 *..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
-ASSIGNMA    BLCKHOLE   BLKBODY
-ASSIGNMA      VACUUM      VOID
-ASSIGNMA        IRON    SHIELD
-ASSIGNMA      HELIUM   TCC_CAV
-ASSIGNMA      VACUUM     THBOX
-ASSIGNMA      VACUUM    TARGET
-ASSIGNMA      HELIUM   MBHAEnv
-ASSIGNMA        IRON    MBHAFe
-ASSIGNMA      VACUUM   MBHAVac                             1
-MGNCREAT           2                                                  D1
-MGNFIELD      $d1_b0                   2        D1                    D1
-MGNFIELD     -$d1_b0                   2        D2                    D1
-ASSIGNMA      VACUUM    MQAEnv
-ASSIGNMA        IRON     MQAFe
-ASSIGNMA      VACUUM    MQAVac
+ASSIGNMA  , BLCKHOLE, BLKBODY
+ASSIGNMA  , VACUUM, VOID
+ASSIGNMA  , IRON, SHIELD
+ASSIGNMA  , HELIUM, TCC_CAV
+ASSIGNMA  , VACUUM, THBOX
+ASSIGNMA  , VACUUM, TARGET
+ASSIGNMA  , HELIUM, MBHAEnv, BEnv, 3
+ASSIGNMA  , IRON, MBHAFe, BFe, 3
+ASSIGNMA  , VACUUM, MBHAVac, BVac, 3, 1
+MGNCREAT  , 2,  , , , , ,D1
+MGNFIELD  , $d1_b0, , 2, D1,  , ,D1
+MGNFIELD  , -$d1_b0, , 2, D2,  , ,D1
+*ASSIGNMA  , VACUUM, MQAEnv
+*ASSIGNMA  , VACUUM, MQAEnv
+*ASSIGNMA  , IRON, MQAFe
+*ASSIGNMA  , VACUUM, MQAVac
+*ASSIGNMA  , VACUUM, QFAEnv, QFSA1Env, 3
+*ASSIGNMA  , NITROGEN, qenv, , 3
 *Define the transformations from the replicas to the models
 *           rot.numb.    theta    phi       dx        dy        dz
 !@what.6=-(s_d1+d1_pivot)
-ROT-DEFI         200       0.0 -$d1_adeg         0       0.0-339.42959trttl
+ROT-DEFI  , 200, 0.0, -$d1_adeg, 0, 0.0, -339.429589070911, trttl
 *# ---- D1
 !@what.4=-1000+d1_defl/2
-ROT-DEFI                                -943.46046              -$s_d1trd1
+ROT-DEFI  , 0, , , -943.4604599210812, , -$s_d1, trd1
 *# ---- D2
 !@what.4=-1000+d1_defl/2+s_d2*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_d2*cos(d1_arad)
-ROT-DEFI                                -148.15802          -913.12674trd2
+ROT-DEFI  , , , , -148.15802342532993, , -913.1267439055024, trd2
 *# ---- Q1
 !@what.4=s_q1*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q1*cos(d1_arad)
-ROT-DEFI         300                    153.629684          -450.25147trq1
-ROT-DEFI         200           -$d1_adeg                              trq1
-ROT-DEFI         300                         -1500                    trq1
+ROT-DEFI  , 0, , , 153.62968383935888, , -450.2514707504459, trq1
+ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq1
+ROT-DEFI  , 300, , , -1500,  , ,trq1
 *# ---- Q2
 !@what.4=s_q2*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q2*cos(d1_arad)
-ROT-DEFI           0                    234.730891          -508.75441trq2
-ROT-DEFI         200           -$d1_adeg                              trq2
-ROT-DEFI         300                         -1500                    trq2
+ROT-DEFI  , 0, , , 234.73089120240138, , -508.7544122513378, trq2
+ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq2
+ROT-DEFI  , 300, , , -1500,  , ,trq2
 *# ---- Q3
 !@what.4=s_q3*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q3*cos(d1_arad)
-ROT-DEFI           0                    328.240583           -576.2083trq3
-ROT-DEFI         200           -$d1_adeg                              trq3
-ROT-DEFI         300                         -1500                    trq3
+ROT-DEFI  , 0, , , 328.2405832919894, , -576.2083038018661, trq3
+ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq3
+ROT-DEFI  , 300, , , -1500,  , ,trq3
 *# ---- Q4
 !@what.4=s_q4*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q4*cos(d1_arad)
-ROT-DEFI           0                    421.750275           -643.6622trq4
-ROT-DEFI         200           -$d1_adeg                              trq4
-ROT-DEFI         300                         -1500                    trq4
+ROT-DEFI  , 0, , , 421.75027538157747, , -643.6621953523945, trq4
+ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq4
+ROT-DEFI  , 300, , , -1500,  , ,trq4
 *# ---- Q5
 !@what.4=s_q5*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q5*cos(d1_arad)
-ROT-DEFI           0                    515.259967          -711.11609trq5
-ROT-DEFI         200           -$d1_adeg                              trq5
-ROT-DEFI         300                         -1500                    trq5
+ROT-DEFI  , 0, , , 515.2599674711655, , -711.1160869029227, trq5
+ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq5
+ROT-DEFI  , 300, , , -1500,  , ,trq5
 *# ---- Q6
 !@what.4=s_q6*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q6*cos(d1_arad)
-ROT-DEFI           0                     608.76966          -778.56998trq6
-ROT-DEFI         200           -$d1_adeg                              trq6
-ROT-DEFI         300                         -1500                    trq6
+ROT-DEFI  , 0, , , 608.7696595607534, , -778.5699784534511, trq6
+ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq6
+ROT-DEFI  , 300, , , -1500,  , ,trq6
 *# ---- Q7
 !@what.4=s_q7*sin(d1_arad)
 !@what.6=-(s_d1+d1_pivot)-s_q7*cos(d1_arad)
-ROT-DEFI           0                    689.870867          -837.07292trq7
-ROT-DEFI         200           -$d1_adeg                              trq7
-ROT-DEFI         300                         -1500                    trq7
+ROT-DEFI  , 0, , , 689.870866923796, , -837.072919954343, trq7
+ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq7
+ROT-DEFI  , 300, , , -1500,  , ,trq7
+*
+*! - ROTDEFI for element QDS2A2.0 at s=0.9944096426539861
+ROT-DEFI  , 0, , , 995.7722955833584, , -1599.35105379108, frtr1
+ROT-DEFI  , 200, , 2.4366482,  , , ,frtr1
+ROT-DEFI  , 300, , 0, -1000, 0, -1150, frtr1
+*
+*
 *Set the random number seed
-RANDOMIZ         1.0
+RANDOMIZ  , 1.0
 *Set the number of primary histories to be simulated in the run
-START           1000
+START     , 1000
 STOP
