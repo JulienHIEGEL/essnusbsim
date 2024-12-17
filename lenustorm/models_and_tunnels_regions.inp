@@ -1,0 +1,35 @@
+*
+*---- Models and Tunnels regions ----
+*
+
+PARKBB       5 +parko -parki
+PARK         5 +parki -ttmbvol -ttmqvol -qfavol -qdavol -qfsvol -qdsvol -qdsa1vol -qdsa2vol -qfsa1vol -bvol
+TCC_CAV      5 (+tcc -thbox -tltun -bend0 )
+               | +tdec  -bend0 -mqf0t -mqct -mqd0t -mqf1t -mqd1t -mqc1t -mqd1t.hs1 -mqf1t.hs1 -mqd0t.hs1 -mqct.hs1 -mqf0t.hs1 -bend1
+               | +tltun   -bend0 -mqf0t -mqct -mqd0t -mqf1t -mqd1t -mqc1t -mqd1t.hs1 -mqf1t.hs1 -mqd0t.hs1 -mqct.hs1 -mqf0t.hs1 -bend1 -rgtnli
+               | +rgtnli  -qds2a2.0
+ -qfs2a1.0 -qds2a1.0 -qfs.0 -qds.0 -qfs.2 -qds.1 -qfs.4 -qds.2 -qfs.6 -qds.3
+ -qfs.8 -qds.4 -qfs.10 -qds.5 -qfs.12 -qds.6 -qfs.14 -qds.7 -qfs.16 -qds.8
+ -qfs.18 -qds.9 -qfs.20 -qds.10 -qfs.22 -qds.11 -qfs.24 -qds.12 -qfs.26 -qds.13
+ -qfs.28 -qds.14 -qfs.30 -qds.15 -qfs.32 -qds.16 -qfs.34 -qds.17 -qfs.36 -qds.18
+ -qfs.38 -qds.19 -qfs.40 -qds.20 -qfs.42 -qds.21 -qfs.44 -qds.22 -qfs.46 -qds.23
+ -qfs.48 -qds.24 -qfs.50 -qds.25 -qfs.52 -qds.26 -qfs.54 -qds.27 -qfs.56 -qds.28
+ -qfs.58 -qds.29 -qfs.60 -qds.30 -qfs.62 -qds.31 -qfs.64 -qds.32 -qfs.66 -qds.33
+ -qfs.68 -qds.34 -qfs.70 -qds.35 -qfs.72 -qds.36 -qfs.74 -qds.37 -qfs.76 -qds.38
+ -qfs.78 -qds.39 -qfs.80 -qds2a1.1 -qfs2a1.1 -qds2a2.1 -qfa.0 -bac1.0 -qdaac1.0 -bac1.1
+ -qfaac1.1 -bac2.0 -qdaac2.0 -bac2.1 -qfaac2.1 -bac3.0 -qdaac3.0 -bac3.1 -qfaac3.1 -bac4.0
+ -qdaac4.0 -bac4.1 -qfaac4.1 -bac5.0 -qdaac5.0 -bac5.1 -qfaac5.1 -bac6.0 -qdaac6.0 -bac6.1
+ -qfaac6.1 -qds2a2.2 -qfs2a1.2 -qds2a1.2 -qfs.82 -qds.40 -qfs.84 -qds.41 -qfs.86 -qds.42
+ -qfs.88 -qds.43 -qfs.90 -qds.44 -qfs.92 -qds.45 -qfs.94 -qds.46 -qfs.96 -qds.47
+ -qfs.98 -qds.48 -qfs.100 -qds.49 -qfs.102 -qds.50 -qfs.104 -qds.51 -qfs.106 -qds.52
+ -qfs.108 -qds.53 -qfs.110 -qds.54 -qfs.112 -qds.55 -qfs.114 -qds.56 -qfs.116 -qds.57
+ -qfs.118 -qds.58 -qfs.120 -qds.59 -qfs.122 -qds.60 -qfs.124 -qds.61 -qfs.126 -qds.62
+ -qfs.128 -qds.63 -qfs.130 -qds.64 -qfs.132 -qds.65 -qfs.134 -qds.66 -qfs.136 -qds.67
+ -qfs.138 -qds.68 -qfs.140 -qds.69 -qfs.142 -qds.70 -qfs.144 -qds.71 -qfs.146 -qds.72
+ -qfs.148 -qds.73 -qfs.150 -qds.74 -qfs.152 -qds.75 -qfs.154 -qds.76 -qfs.156 -qds.77
+ -qfs.158 -qds.78 -qfs.160 -qds.79 -qfs.162 -qds2a1.3 -qfs2a1.3 -qds2a2.3 -qfa.2 -bac1.2
+ -qdaac1.1 -bac1.3 -qfaac1.3 -bac2.2 -qdaac2.1 -bac2.3 -qfaac2.3 -bac3.2 -qdaac3.1 -bac3.3
+ -qfaac3.3 -bac4.2 -qdaac4.1 -bac4.3 -qfaac4.3 -bac5.2 -qdaac5.1 -bac5.3 -qfaac5.3 -bac6.2
+ -qdaac6.1 -bac6.3 -qfaac6.3
+! TNRING 5
+! +rgtnlo -rgtnli

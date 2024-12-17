@@ -1,0 +1,16 @@
+*
+*---- TT line element lattice ----
+*
+LATTICE, BEND0, , , TTMBEnv, , ,tltr3
+LATTICE, MQF0T, , , TTMQEnv, , ,tltr6
+LATTICE, MQCT, , , TTMQEnv, , ,tltr8
+LATTICE, MQD0T, , , TTMQEnv, , ,tltr10
+LATTICE, MQF1T, , , TTMQEnv, , ,tltr14
+LATTICE, MQD1T, , , TTMQEnv, , ,tltr16
+LATTICE, MQC1T, , , TTMQEnv, , ,tltr18
+LATTICE, MQD1T.HS1, , , TTMQEnv, , ,tltr23
+LATTICE, MQF1T.HS1, , , TTMQEnv, , ,tltr25
+LATTICE, MQD0T.HS1, , , TTMQEnv, , ,tltr29
+LATTICE, MQCT.HS1, , , TTMQEnv, , ,tltr31
+LATTICE, MQF0T.HS1, , , TTMQEnv, , ,tltr33
+LATTICE, BEND1, , , TTMBEnv, , ,tltr36

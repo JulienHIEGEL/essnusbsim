@@ -1,0 +1,29 @@
+*
+*---- TT line element regions ----
+* 
+BEND0 5
+    +bend0
+MQF0T 5
+    +mqf0t
+MQCT 5
+    +mqct
+MQD0T 5
+    +mqd0t
+MQF1T 5
+    +mqf1t
+MQD1T 5
+    +mqd1t
+MQC1T 5
+    +mqc1t
+MQD1T.HS1 5
+    +mqd1t.hs1
+MQF1T.HS1 5
+    +mqf1t.hs1
+MQD0T.HS1 5
+    +mqd0t.hs1
+MQCT.HS1 5
+    +mqct.hs1
+MQF0T.HS1 5
+    +mqf0t.hs1
+BEND1 5
+    +bend1

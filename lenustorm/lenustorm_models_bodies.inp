@@ -1,0 +1,53 @@
+*
+*---- LEnuSTORM magnet models bodies  ----
+*
+$start_translat 0 0 -10100
+RPP     ttmbvol -55.26809275558003 55.26809275558003 -40.1 40.1 -0.1 115.19301902871099
+RPP     ttmbfe -55.16809275558003 55.16809275558003 -40.0 40.0 0 115.093019028711
+RPP     ttmbvac -25.168092755580027 25.168092755580027 -12.0 12.0 -0.1 115.19301902871099
+$end_translat
+$start_translat 0 0 -10400
+RPP     ttmqvol -39.1 39.1 -39.1 39.1 -0.1 80.1
+RPP     ttmqfe -39.0 39.0 -39.0 39.0 0 80.0
+RCC     ttmqvac 0.0 0.0 -0.1 0.0 0.0 80.1 10.0
+$end_translat
+$start_translat 0 0 -10700
+RPP     qfavol -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP     qfafe -39.0 39.0 -39.0 39.0 0 25.0
+RCC     qfavac 0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11000
+RPP     qdavol -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP     qdafe -39.0 39.0 -39.0 39.0 0 25.0
+RCC     qdavac 0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11300
+RPP     qfsvol -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP     qfsfe -39.0 39.0 -39.0 39.0 0 25.0
+RCC     qfsvac 0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11600
+RPP     qdsvol -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP     qdsfe -39.0 39.0 -39.0 39.0 0 25.0
+RCC     qdsvac 0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11900
+RPP     qdsa1vol -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP     qdsa1fe -39.0 39.0 -39.0 39.0 0 25.0
+RCC     qdsa1vac 0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -12200
+RPP     qdsa2vol -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP     qdsa2fe -39.0 39.0 -39.0 39.0 0 25.0
+RCC     qdsa2vac 0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -12500
+RPP     qfsa1vol -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP     qfsa1fe -39.0 39.0 -39.0 39.0 0 25.0
+RCC     qfsa1vac 0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -12800
+RPP     bvol -44.00461268806402 44.00461268806402 -40.1 40.1 -0.1 59.416955767922154
+RPP     bfe -43.90461268806402 43.90461268806402 -40.0 40.0 0 59.31695576792215
+RPP     bvac -13.904612688064018 13.904612688064018 -12.0 12.0 -0.1 59.416955767922154
+$end_translat

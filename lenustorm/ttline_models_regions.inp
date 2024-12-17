@@ -1,0 +1,15 @@
+*
+* ---- TTline models regions
+*
+MBHAEnv      5 
+    +mbhavol -mbhafe -mbhavac
+MBHAFe       5 
+    +mbhafe -mbhavac
+MBHAVac      5 
+    +mbhavac
+MQAEnv       5 
+    +mqavol -mqafe -mqavac
+MQAFe        5 
+    +mqafe -mqavac
+MQAVac       5 
+    +mqavac

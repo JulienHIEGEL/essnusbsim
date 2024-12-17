@@ -1,0 +1,51 @@
+*
+*---- LEnuSTORM Magnet Models -----
+*
+REGION QFAEnv 5
+    +qfavol -qfaFe -qfavac
+REGION QFAFe 5
+    +qfafe -qfavac
+REGION QFAVac 5
+    +qfavac 
+REGION QDAEnv 5
+    +qdavol -qdaFe -qdavac
+REGION QDAFe 5
+    +qdafe -qdavac
+REGION QDAVac 5
+    +qdavac 
+REGION QFSEnv 5
+    +qfsvol -qfsFe -qfsvac
+REGION QFSFe 5
+    +qfsfe -qfsvac
+REGION QFSVac 5
+    +qfsvac 
+REGION QDSEnv 5
+    +qdsvol -qdsFe -qdsvac
+REGION QDSFe 5
+    +qdsfe -qdsvac
+REGION QDSVac 5
+    +qdsvac 
+REGION QDSA1Env 5
+    +qdsa1vol -qdsa1Fe -qdsa1vac
+REGION QDSA1Fe 5
+    +qdsa1fe -qdsa1vac
+REGION QDSA1Vac 5
+    +qdsa1vac 
+REGION QDSA2Env 5
+    +qdsa2vol -qdsa2Fe -qdsa2vac
+REGION QDSA2Fe 5
+    +qdsa2fe -qdsa2vac
+REGION QDSA2Vac 5
+    +qdsa2vac 
+REGION QFSA1Env 5
+    +qfsa1vol -qfsa1Fe -qfsa1vac
+REGION QFSA1Fe 5
+    +qfsa1fe -qfsa1vac
+REGION QFSA1Vac 5
+    +qfsa1vac 
+REGION BEnv 5
+    +bvol -bFe -bvac
+REGION BFe 5
+    +bfe -bvac
+REGION BVac 5
+    +bvac

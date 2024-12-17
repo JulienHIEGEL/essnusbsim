@@ -1,0 +1,899 @@
+*
+*---- LEnuSTORM element ROT-DEFI ----
+*
+*! - ROTDEFI for element QDS2A2.0 at s=0.9944096426539861
+ROT-DEFI  , 0, , ,1144.98416, ,-2309.80244, frtr1
+ROT-DEFI  , 200, , 2.89125, , , , frtr1 
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr1 
+*! - ROTDEFI for element QFS2A1.0 at s=2.2388192853079723
+ROT-DEFI  , 0, , ,1138.70731, ,-2434.08500, frtr3
+ROT-DEFI  , 200, , 2.89125, , , , frtr3 
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr3 
+*! - ROTDEFI for element QDS2A1.0 at s=3.4832289279619584
+ROT-DEFI  , 0, , ,1132.43046, ,-2558.36756, frtr5
+ROT-DEFI  , 200, , 2.89125, , , , frtr5 
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr5 
+*! - ROTDEFI for element QFS.0 at s=4.7276385706159445
+ROT-DEFI  , 0, , ,1126.15360, ,-2682.65012, frtr7
+ROT-DEFI  , 200, , 2.89125, , , , frtr7 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr7 
+*! - ROTDEFI for element QDS.0 at s=5.9776385706159445
+ROT-DEFI  , 0, , ,1119.84855, ,-2807.49100, frtr14
+ROT-DEFI  , 200, , 2.89125, , , , frtr14 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr14 
+*! - ROTDEFI for element QFS.2 at s=7.2276385706159445
+ROT-DEFI  , 0, , ,1113.54350, ,-2932.33188, frtr20
+ROT-DEFI  , 200, , 2.89125, , , , frtr20 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr20 
+*! - ROTDEFI for element QDS.1 at s=8.477638570615946
+ROT-DEFI  , 0, , ,1107.23846, ,-3057.17277, frtr27
+ROT-DEFI  , 200, , 2.89125, , , , frtr27 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr27 
+*! - ROTDEFI for element QFS.4 at s=9.727638570615948
+ROT-DEFI  , 0, , ,1100.93341, ,-3182.01365, frtr33
+ROT-DEFI  , 200, , 2.89125, , , , frtr33 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr33 
+*! - ROTDEFI for element QDS.2 at s=10.97763857061595
+ROT-DEFI  , 0, , ,1094.62836, ,-3306.85454, frtr40
+ROT-DEFI  , 200, , 2.89125, , , , frtr40 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr40 
+*! - ROTDEFI for element QFS.6 at s=12.227638570615952
+ROT-DEFI  , 0, , ,1088.32331, ,-3431.69542, frtr46
+ROT-DEFI  , 200, , 2.89125, , , , frtr46 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr46 
+*! - ROTDEFI for element QDS.3 at s=13.477638570615953
+ROT-DEFI  , 0, , ,1082.01826, ,-3556.53631, frtr53
+ROT-DEFI  , 200, , 2.89125, , , , frtr53 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr53 
+*! - ROTDEFI for element QFS.8 at s=14.727638570615955
+ROT-DEFI  , 0, , ,1075.71321, ,-3681.37719, frtr59
+ROT-DEFI  , 200, , 2.89125, , , , frtr59 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr59 
+*! - ROTDEFI for element QDS.4 at s=15.977638570615957
+ROT-DEFI  , 0, , ,1069.40816, ,-3806.21807, frtr66
+ROT-DEFI  , 200, , 2.89125, , , , frtr66 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr66 
+*! - ROTDEFI for element QFS.10 at s=17.22763857061596
+ROT-DEFI  , 0, , ,1063.10311, ,-3931.05896, frtr72
+ROT-DEFI  , 200, , 2.89125, , , , frtr72 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr72 
+*! - ROTDEFI for element QDS.5 at s=18.47763857061596
+ROT-DEFI  , 0, , ,1056.79806, ,-4055.89984, frtr79
+ROT-DEFI  , 200, , 2.89125, , , , frtr79 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr79 
+*! - ROTDEFI for element QFS.12 at s=19.72763857061596
+ROT-DEFI  , 0, , ,1050.49301, ,-4180.74073, frtr85
+ROT-DEFI  , 200, , 2.89125, , , , frtr85 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr85 
+*! - ROTDEFI for element QDS.6 at s=20.97763857061596
+ROT-DEFI  , 0, , ,1044.18796, ,-4305.58161, frtr92
+ROT-DEFI  , 200, , 2.89125, , , , frtr92 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr92 
+*! - ROTDEFI for element QFS.14 at s=22.22763857061596
+ROT-DEFI  , 0, , ,1037.88291, ,-4430.42249, frtr98
+ROT-DEFI  , 200, , 2.89125, , , , frtr98 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr98 
+*! - ROTDEFI for element QDS.7 at s=23.47763857061596
+ROT-DEFI  , 0, , ,1031.57786, ,-4555.26338, frtr105
+ROT-DEFI  , 200, , 2.89125, , , , frtr105 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr105 
+*! - ROTDEFI for element QFS.16 at s=24.72763857061596
+ROT-DEFI  , 0, , ,1025.27281, ,-4680.10426, frtr111
+ROT-DEFI  , 200, , 2.89125, , , , frtr111 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr111 
+*! - ROTDEFI for element QDS.8 at s=25.97763857061596
+ROT-DEFI  , 0, , ,1018.96776, ,-4804.94515, frtr118
+ROT-DEFI  , 200, , 2.89125, , , , frtr118 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr118 
+*! - ROTDEFI for element QFS.18 at s=27.22763857061596
+ROT-DEFI  , 0, , ,1012.66271, ,-4929.78603, frtr124
+ROT-DEFI  , 200, , 2.89125, , , , frtr124 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr124 
+*! - ROTDEFI for element QDS.9 at s=28.47763857061596
+ROT-DEFI  , 0, , ,1006.35766, ,-5054.62692, frtr131
+ROT-DEFI  , 200, , 2.89125, , , , frtr131 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr131 
+*! - ROTDEFI for element QFS.20 at s=29.72763857061596
+ROT-DEFI  , 0, , ,1000.05261, ,-5179.46780, frtr137
+ROT-DEFI  , 200, , 2.89125, , , , frtr137 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr137 
+*! - ROTDEFI for element QDS.10 at s=30.97763857061596
+ROT-DEFI  , 0, , ,993.74756, ,-5304.30868, frtr144
+ROT-DEFI  , 200, , 2.89125, , , , frtr144 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr144 
+*! - ROTDEFI for element QFS.22 at s=32.22763857061595
+ROT-DEFI  , 0, , ,987.44252, ,-5429.14957, frtr150
+ROT-DEFI  , 200, , 2.89125, , , , frtr150 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr150 
+*! - ROTDEFI for element QDS.11 at s=33.477638570615945
+ROT-DEFI  , 0, , ,981.13747, ,-5553.99045, frtr157
+ROT-DEFI  , 200, , 2.89125, , , , frtr157 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr157 
+*! - ROTDEFI for element QFS.24 at s=34.72763857061594
+ROT-DEFI  , 0, , ,974.83242, ,-5678.83134, frtr163
+ROT-DEFI  , 200, , 2.89125, , , , frtr163 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr163 
+*! - ROTDEFI for element QDS.12 at s=35.97763857061593
+ROT-DEFI  , 0, , ,968.52737, ,-5803.67222, frtr170
+ROT-DEFI  , 200, , 2.89125, , , , frtr170 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr170 
+*! - ROTDEFI for element QFS.26 at s=37.22763857061592
+ROT-DEFI  , 0, , ,962.22232, ,-5928.51310, frtr176
+ROT-DEFI  , 200, , 2.89125, , , , frtr176 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr176 
+*! - ROTDEFI for element QDS.13 at s=38.477638570615916
+ROT-DEFI  , 0, , ,955.91727, ,-6053.35399, frtr183
+ROT-DEFI  , 200, , 2.89125, , , , frtr183 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr183 
+*! - ROTDEFI for element QFS.28 at s=39.72763857061591
+ROT-DEFI  , 0, , ,949.61222, ,-6178.19487, frtr189
+ROT-DEFI  , 200, , 2.89125, , , , frtr189 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr189 
+*! - ROTDEFI for element QDS.14 at s=40.9776385706159
+ROT-DEFI  , 0, , ,943.30717, ,-6303.03576, frtr196
+ROT-DEFI  , 200, , 2.89125, , , , frtr196 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr196 
+*! - ROTDEFI for element QFS.30 at s=42.227638570615895
+ROT-DEFI  , 0, , ,937.00212, ,-6427.87664, frtr202
+ROT-DEFI  , 200, , 2.89125, , , , frtr202 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr202 
+*! - ROTDEFI for element QDS.15 at s=43.47763857061589
+ROT-DEFI  , 0, , ,930.69707, ,-6552.71752, frtr209
+ROT-DEFI  , 200, , 2.89125, , , , frtr209 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr209 
+*! - ROTDEFI for element QFS.32 at s=44.72763857061588
+ROT-DEFI  , 0, , ,924.39202, ,-6677.55841, frtr215
+ROT-DEFI  , 200, , 2.89125, , , , frtr215 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr215 
+*! - ROTDEFI for element QDS.16 at s=45.97763857061587
+ROT-DEFI  , 0, , ,918.08697, ,-6802.39929, frtr222
+ROT-DEFI  , 200, , 2.89125, , , , frtr222 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr222 
+*! - ROTDEFI for element QFS.34 at s=47.227638570615866
+ROT-DEFI  , 0, , ,911.78192, ,-6927.24018, frtr228
+ROT-DEFI  , 200, , 2.89125, , , , frtr228 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr228 
+*! - ROTDEFI for element QDS.17 at s=48.47763857061586
+ROT-DEFI  , 0, , ,905.47687, ,-7052.08106, frtr235
+ROT-DEFI  , 200, , 2.89125, , , , frtr235 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr235 
+*! - ROTDEFI for element QFS.36 at s=49.72763857061585
+ROT-DEFI  , 0, , ,899.17182, ,-7176.92195, frtr241
+ROT-DEFI  , 200, , 2.89125, , , , frtr241 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr241 
+*! - ROTDEFI for element QDS.18 at s=50.977638570615845
+ROT-DEFI  , 0, , ,892.86677, ,-7301.76283, frtr248
+ROT-DEFI  , 200, , 2.89125, , , , frtr248 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr248 
+*! - ROTDEFI for element QFS.38 at s=52.22763857061584
+ROT-DEFI  , 0, , ,886.56172, ,-7426.60371, frtr254
+ROT-DEFI  , 200, , 2.89125, , , , frtr254 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr254 
+*! - ROTDEFI for element QDS.19 at s=53.47763857061583
+ROT-DEFI  , 0, , ,880.25667, ,-7551.44460, frtr261
+ROT-DEFI  , 200, , 2.89125, , , , frtr261 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr261 
+*! - ROTDEFI for element QFS.40 at s=54.727638570615824
+ROT-DEFI  , 0, , ,873.95162, ,-7676.28548, frtr267
+ROT-DEFI  , 200, , 2.89125, , , , frtr267 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr267 
+*! - ROTDEFI for element QDS.20 at s=55.97763857061582
+ROT-DEFI  , 0, , ,867.64658, ,-7801.12637, frtr274
+ROT-DEFI  , 200, , 2.89125, , , , frtr274 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr274 
+*! - ROTDEFI for element QFS.42 at s=57.22763857061581
+ROT-DEFI  , 0, , ,861.34153, ,-7925.96725, frtr280
+ROT-DEFI  , 200, , 2.89125, , , , frtr280 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr280 
+*! - ROTDEFI for element QDS.21 at s=58.4776385706158
+ROT-DEFI  , 0, , ,855.03648, ,-8050.80813, frtr287
+ROT-DEFI  , 200, , 2.89125, , , , frtr287 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr287 
+*! - ROTDEFI for element QFS.44 at s=59.727638570615795
+ROT-DEFI  , 0, , ,848.73143, ,-8175.64902, frtr293
+ROT-DEFI  , 200, , 2.89125, , , , frtr293 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr293 
+*! - ROTDEFI for element QDS.22 at s=60.97763857061579
+ROT-DEFI  , 0, , ,842.42638, ,-8300.48990, frtr300
+ROT-DEFI  , 200, , 2.89125, , , , frtr300 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr300 
+*! - ROTDEFI for element QFS.46 at s=62.22763857061578
+ROT-DEFI  , 0, , ,836.12133, ,-8425.33079, frtr306
+ROT-DEFI  , 200, , 2.89125, , , , frtr306 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr306 
+*! - ROTDEFI for element QDS.23 at s=63.477638570615774
+ROT-DEFI  , 0, , ,829.81628, ,-8550.17167, frtr313
+ROT-DEFI  , 200, , 2.89125, , , , frtr313 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr313 
+*! - ROTDEFI for element QFS.48 at s=64.72763857061577
+ROT-DEFI  , 0, , ,823.51123, ,-8675.01255, frtr319
+ROT-DEFI  , 200, , 2.89125, , , , frtr319 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr319 
+*! - ROTDEFI for element QDS.24 at s=65.97763857061577
+ROT-DEFI  , 0, , ,817.20618, ,-8799.85344, frtr326
+ROT-DEFI  , 200, , 2.89125, , , , frtr326 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr326 
+*! - ROTDEFI for element QFS.50 at s=67.22763857061577
+ROT-DEFI  , 0, , ,810.90113, ,-8924.69432, frtr332
+ROT-DEFI  , 200, , 2.89125, , , , frtr332 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr332 
+*! - ROTDEFI for element QDS.25 at s=68.47763857061577
+ROT-DEFI  , 0, , ,804.59608, ,-9049.53521, frtr339
+ROT-DEFI  , 200, , 2.89125, , , , frtr339 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr339 
+*! - ROTDEFI for element QFS.52 at s=69.72763857061577
+ROT-DEFI  , 0, , ,798.29103, ,-9174.37609, frtr345
+ROT-DEFI  , 200, , 2.89125, , , , frtr345 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr345 
+*! - ROTDEFI for element QDS.26 at s=70.97763857061577
+ROT-DEFI  , 0, , ,791.98598, ,-9299.21698, frtr352
+ROT-DEFI  , 200, , 2.89125, , , , frtr352 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr352 
+*! - ROTDEFI for element QFS.54 at s=72.22763857061577
+ROT-DEFI  , 0, , ,785.68093, ,-9424.05786, frtr358
+ROT-DEFI  , 200, , 2.89125, , , , frtr358 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr358 
+*! - ROTDEFI for element QDS.27 at s=73.47763857061577
+ROT-DEFI  , 0, , ,779.37588, ,-9548.89874, frtr365
+ROT-DEFI  , 200, , 2.89125, , , , frtr365 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr365 
+*! - ROTDEFI for element QFS.56 at s=74.72763857061577
+ROT-DEFI  , 0, , ,773.07083, ,-9673.73963, frtr371
+ROT-DEFI  , 200, , 2.89125, , , , frtr371 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr371 
+*! - ROTDEFI for element QDS.28 at s=75.97763857061577
+ROT-DEFI  , 0, , ,766.76578, ,-9798.58051, frtr378
+ROT-DEFI  , 200, , 2.89125, , , , frtr378 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr378 
+*! - ROTDEFI for element QFS.58 at s=77.22763857061577
+ROT-DEFI  , 0, , ,760.46073, ,-9923.42140, frtr384
+ROT-DEFI  , 200, , 2.89125, , , , frtr384 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr384 
+*! - ROTDEFI for element QDS.29 at s=78.47763857061577
+ROT-DEFI  , 0, , ,754.15568, ,-10048.26228, frtr391
+ROT-DEFI  , 200, , 2.89125, , , , frtr391 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr391 
+*! - ROTDEFI for element QFS.60 at s=79.72763857061577
+ROT-DEFI  , 0, , ,747.85064, ,-10173.10316, frtr397
+ROT-DEFI  , 200, , 2.89125, , , , frtr397 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr397 
+*! - ROTDEFI for element QDS.30 at s=80.97763857061577
+ROT-DEFI  , 0, , ,741.54559, ,-10297.94405, frtr404
+ROT-DEFI  , 200, , 2.89125, , , , frtr404 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr404 
+*! - ROTDEFI for element QFS.62 at s=82.22763857061577
+ROT-DEFI  , 0, , ,735.24054, ,-10422.78493, frtr410
+ROT-DEFI  , 200, , 2.89125, , , , frtr410 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr410 
+*! - ROTDEFI for element QDS.31 at s=83.47763857061577
+ROT-DEFI  , 0, , ,728.93549, ,-10547.62582, frtr417
+ROT-DEFI  , 200, , 2.89125, , , , frtr417 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr417 
+*! - ROTDEFI for element QFS.64 at s=84.72763857061577
+ROT-DEFI  , 0, , ,722.63044, ,-10672.46670, frtr423
+ROT-DEFI  , 200, , 2.89125, , , , frtr423 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr423 
+*! - ROTDEFI for element QDS.32 at s=85.97763857061577
+ROT-DEFI  , 0, , ,716.32539, ,-10797.30759, frtr430
+ROT-DEFI  , 200, , 2.89125, , , , frtr430 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr430 
+*! - ROTDEFI for element QFS.66 at s=87.22763857061577
+ROT-DEFI  , 0, , ,710.02034, ,-10922.14847, frtr436
+ROT-DEFI  , 200, , 2.89125, , , , frtr436 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr436 
+*! - ROTDEFI for element QDS.33 at s=88.47763857061577
+ROT-DEFI  , 0, , ,703.71529, ,-11046.98935, frtr443
+ROT-DEFI  , 200, , 2.89125, , , , frtr443 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr443 
+*! - ROTDEFI for element QFS.68 at s=89.72763857061577
+ROT-DEFI  , 0, , ,697.41024, ,-11171.83024, frtr449
+ROT-DEFI  , 200, , 2.89125, , , , frtr449 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr449 
+*! - ROTDEFI for element QDS.34 at s=90.97763857061577
+ROT-DEFI  , 0, , ,691.10519, ,-11296.67112, frtr456
+ROT-DEFI  , 200, , 2.89125, , , , frtr456 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr456 
+*! - ROTDEFI for element QFS.70 at s=92.22763857061577
+ROT-DEFI  , 0, , ,684.80014, ,-11421.51201, frtr462
+ROT-DEFI  , 200, , 2.89125, , , , frtr462 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr462 
+*! - ROTDEFI for element QDS.35 at s=93.47763857061577
+ROT-DEFI  , 0, , ,678.49509, ,-11546.35289, frtr469
+ROT-DEFI  , 200, , 2.89125, , , , frtr469 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr469 
+*! - ROTDEFI for element QFS.72 at s=94.72763857061577
+ROT-DEFI  , 0, , ,672.19004, ,-11671.19377, frtr475
+ROT-DEFI  , 200, , 2.89125, , , , frtr475 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr475 
+*! - ROTDEFI for element QDS.36 at s=95.97763857061577
+ROT-DEFI  , 0, , ,665.88499, ,-11796.03466, frtr482
+ROT-DEFI  , 200, , 2.89125, , , , frtr482 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr482 
+*! - ROTDEFI for element QFS.74 at s=97.22763857061577
+ROT-DEFI  , 0, , ,659.57994, ,-11920.87554, frtr488
+ROT-DEFI  , 200, , 2.89125, , , , frtr488 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr488 
+*! - ROTDEFI for element QDS.37 at s=98.47763857061577
+ROT-DEFI  , 0, , ,653.27489, ,-12045.71643, frtr495
+ROT-DEFI  , 200, , 2.89125, , , , frtr495 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr495 
+*! - ROTDEFI for element QFS.76 at s=99.72763857061577
+ROT-DEFI  , 0, , ,646.96984, ,-12170.55731, frtr501
+ROT-DEFI  , 200, , 2.89125, , , , frtr501 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr501 
+*! - ROTDEFI for element QDS.38 at s=100.97763857061577
+ROT-DEFI  , 0, , ,640.66479, ,-12295.39819, frtr508
+ROT-DEFI  , 200, , 2.89125, , , , frtr508 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr508 
+*! - ROTDEFI for element QFS.78 at s=102.22763857061577
+ROT-DEFI  , 0, , ,634.35974, ,-12420.23908, frtr514
+ROT-DEFI  , 200, , 2.89125, , , , frtr514 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr514 
+*! - ROTDEFI for element QDS.39 at s=103.47763857061577
+ROT-DEFI  , 0, , ,628.05470, ,-12545.07996, frtr521
+ROT-DEFI  , 200, , 2.89125, , , , frtr521 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr521 
+*! - ROTDEFI for element QFS.80 at s=104.72763857061577
+ROT-DEFI  , 0, , ,621.74965, ,-12669.92085, frtr527
+ROT-DEFI  , 200, , 2.89125, , , , frtr527 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr527 
+*! - ROTDEFI for element QDS2A1.1 at s=105.97204821326976
+ROT-DEFI  , 0, , ,615.47279, ,-12794.20341, frtr530
+ROT-DEFI  , 200, , 2.89125, , , , frtr530 
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr530 
+*! - ROTDEFI for element QFS2A1.1 at s=107.21645785592375
+ROT-DEFI  , 0, , ,609.19594, ,-12918.48597, frtr532
+ROT-DEFI  , 200, , 2.89125, , , , frtr532 
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr532 
+*! - ROTDEFI for element QDS2A2.1 at s=108.46086749857774
+ROT-DEFI  , 0, , ,602.91909, ,-13042.76853, frtr534
+ROT-DEFI  , 200, , 2.89125, , , , frtr534 
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr534 
+*! - ROTDEFI for element QFA.0 at s=109.70527714123173
+ROT-DEFI  , 0, , ,596.64224, ,-13167.05109, frtr536
+ROT-DEFI  , 200, , 2.89125, , , , frtr536 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr536 
+*! - ROTDEFI for element Bac1.0 at s=110.15527714123174
+ROT-DEFI  , 0, , ,594.37242, ,-13211.99381, frtr540
+ROT-DEFI  , 200, , -4.60875, , , , frtr540 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr540 
+*! - ROTDEFI for element QDAac1.0 at s=110.95527714123173
+ROT-DEFI  , 0, , ,603.37509, ,-13291.18418, frtr543
+ROT-DEFI  , 200, , -12.1088, , , , frtr543 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr543 
+*! - ROTDEFI for element Bac1.1 at s=111.40527714123174
+ROT-DEFI  , 0, , ,612.81465, ,-13335.18298, frtr546
+ROT-DEFI  , 200, , -19.6088, , , , frtr546 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr546 
+*! - ROTDEFI for element QFAac1.1 at s=112.20527714123173
+ROT-DEFI  , 0, , ,642.00654, ,-13409.34495, frtr549
+ROT-DEFI  , 200, , -27.1088, , , , frtr549 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr549 
+*! - ROTDEFI for element Bac2.0 at s=112.65527714123174
+ROT-DEFI  , 0, , ,662.51218, ,-13449.40139, frtr553
+ROT-DEFI  , 200, , -34.6088, , , , frtr553 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr553 
+*! - ROTDEFI for element QDAac2.0 at s=113.45527714123173
+ROT-DEFI  , 0, , ,709.90391, ,-13513.48093, frtr556
+ROT-DEFI  , 200, , -42.1088, , , , frtr556 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr556 
+*! - ROTDEFI for element Bac2.1 at s=113.90527714123174
+ROT-DEFI  , 0, , ,740.07821, ,-13546.86524, frtr559
+ROT-DEFI  , 200, , -49.6088, , , , frtr559 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr559 
+*! - ROTDEFI for element QFAac2.1 at s=114.70527714123173
+ROT-DEFI  , 0, , ,802.44011, ,-13596.49544, frtr562
+ROT-DEFI  , 200, , -57.1088, , , , frtr562 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr562 
+*! - ROTDEFI for element Bac3.0 at s=115.15527714123174
+ROT-DEFI  , 0, , ,840.22673, ,-13620.93252, frtr566
+ROT-DEFI  , 200, , -64.6088, , , , frtr566 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr566 
+*! - ROTDEFI for element QDAac3.0 at s=115.95527714123173
+ROT-DEFI  , 0, , ,913.30895, ,-13652.73116, frtr569
+ROT-DEFI  , 200, , -72.1088, , , , frtr569 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr569 
+*! - ROTDEFI for element Bac3.1 at s=116.40527714123174
+ROT-DEFI  , 0, , ,956.13281, ,-13666.55567, frtr572
+ROT-DEFI  , 200, , -79.6088, , , , frtr572 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr572 
+*! - ROTDEFI for element QFAac3.1 at s=117.20527714123173
+ROT-DEFI  , 0, , ,1034.95490, ,-13678.35573, frtr575
+ROT-DEFI  , 200, , -87.1088, , , , frtr575 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr575 
+*! - ROTDEFI for element Bac4.0 at s=117.65527714123174
+ROT-DEFI  , 0, , ,1079.89762, ,-13680.62555, frtr579
+ROT-DEFI  , 200, , -94.6088, , , , frtr579 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr579 
+*! - ROTDEFI for element QDAac4.0 at s=118.45527714123173
+ROT-DEFI  , 0, , ,1159.08799, ,-13671.62288, frtr582
+ROT-DEFI  , 200, , -102.109, , , , frtr582 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr582 
+*! - ROTDEFI for element Bac4.1 at s=118.90527714123174
+ROT-DEFI  , 0, , ,1203.08679, ,-13662.18332, frtr585
+ROT-DEFI  , 200, , -109.609, , , , frtr585 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr585 
+*! - ROTDEFI for element QFAac4.1 at s=119.70527714123173
+ROT-DEFI  , 0, , ,1277.24876, ,-13632.99143, frtr588
+ROT-DEFI  , 200, , -117.109, , , , frtr588 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr588 
+*! - ROTDEFI for element Bac5.0 at s=120.15527714123174
+ROT-DEFI  , 0, , ,1317.30520, ,-13612.48579, frtr592
+ROT-DEFI  , 200, , -124.609, , , , frtr592 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr592 
+*! - ROTDEFI for element QDAac5.0 at s=120.95527714123173
+ROT-DEFI  , 0, , ,1381.38474, ,-13565.09406, frtr595
+ROT-DEFI  , 200, , -132.109, , , , frtr595 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr595 
+*! - ROTDEFI for element Bac5.1 at s=121.40527714123174
+ROT-DEFI  , 0, , ,1414.76905, ,-13534.91976, frtr598
+ROT-DEFI  , 200, , -139.609, , , , frtr598 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr598 
+*! - ROTDEFI for element QFAac5.1 at s=122.20527714123173
+ROT-DEFI  , 0, , ,1464.39925, ,-13472.55786, frtr601
+ROT-DEFI  , 200, , -147.109, , , , frtr601 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr601 
+*! - ROTDEFI for element Bac6.0 at s=122.65527714123174
+ROT-DEFI  , 0, , ,1488.83633, ,-13434.77124, frtr605
+ROT-DEFI  , 200, , -154.609, , , , frtr605 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr605 
+*! - ROTDEFI for element QDAac6.0 at s=123.45527714123173
+ROT-DEFI  , 0, , ,1520.63497, ,-13361.68902, frtr608
+ROT-DEFI  , 200, , -162.109, , , , frtr608 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr608 
+*! - ROTDEFI for element Bac6.1 at s=123.90527714123174
+ROT-DEFI  , 0, , ,1534.45948, ,-13318.86516, frtr611
+ROT-DEFI  , 200, , -169.609, , , , frtr611 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr611 
+*! - ROTDEFI for element QFAac6.1 at s=124.70527714123173
+ROT-DEFI  , 0, , ,1546.25954, ,-13240.04307, frtr614
+ROT-DEFI  , 200, , -177.109, , , , frtr614 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr614 
+*! - ROTDEFI for element QDS2A2.2 at s=125.94968678388572
+ROT-DEFI  , 0, , ,1552.53639, ,-13115.76051, frtr617
+ROT-DEFI  , 200, , -177.109, , , , frtr617 
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr617 
+*! - ROTDEFI for element QFS2A1.2 at s=127.19409642653972
+ROT-DEFI  , 0, , ,1558.81324, ,-12991.47795, frtr619
+ROT-DEFI  , 200, , -177.109, , , , frtr619 
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr619 
+*! - ROTDEFI for element QDS2A1.2 at s=128.4385060691937
+ROT-DEFI  , 0, , ,1565.09010, ,-12867.19539, frtr621
+ROT-DEFI  , 200, , -177.109, , , , frtr621 
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr621 
+*! - ROTDEFI for element QFS.82 at s=129.68291571184767
+ROT-DEFI  , 0, , ,1571.36695, ,-12742.91283, frtr623
+ROT-DEFI  , 200, , -177.109, , , , frtr623 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr623 
+*! - ROTDEFI for element QDS.40 at s=130.9329157118477
+ROT-DEFI  , 0, , ,1577.67200, ,-12618.07195, frtr630
+ROT-DEFI  , 200, , -177.109, , , , frtr630 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr630 
+*! - ROTDEFI for element QFS.84 at s=132.18291571184773
+ROT-DEFI  , 0, , ,1583.97705, ,-12493.23106, frtr636
+ROT-DEFI  , 200, , -177.109, , , , frtr636 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr636 
+*! - ROTDEFI for element QDS.41 at s=133.43291571184776
+ROT-DEFI  , 0, , ,1590.28210, ,-12368.39018, frtr643
+ROT-DEFI  , 200, , -177.109, , , , frtr643 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr643 
+*! - ROTDEFI for element QFS.86 at s=134.68291571184778
+ROT-DEFI  , 0, , ,1596.58715, ,-12243.54930, frtr649
+ROT-DEFI  , 200, , -177.109, , , , frtr649 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr649 
+*! - ROTDEFI for element QDS.42 at s=135.9329157118478
+ROT-DEFI  , 0, , ,1602.89220, ,-12118.70841, frtr656
+ROT-DEFI  , 200, , -177.109, , , , frtr656 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr656 
+*! - ROTDEFI for element QFS.88 at s=137.18291571184784
+ROT-DEFI  , 0, , ,1609.19724, ,-11993.86753, frtr662
+ROT-DEFI  , 200, , -177.109, , , , frtr662 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr662 
+*! - ROTDEFI for element QDS.43 at s=138.43291571184787
+ROT-DEFI  , 0, , ,1615.50229, ,-11869.02664, frtr669
+ROT-DEFI  , 200, , -177.109, , , , frtr669 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr669 
+*! - ROTDEFI for element QFS.90 at s=139.6829157118479
+ROT-DEFI  , 0, , ,1621.80734, ,-11744.18576, frtr675
+ROT-DEFI  , 200, , -177.109, , , , frtr675 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr675 
+*! - ROTDEFI for element QDS.44 at s=140.93291571184793
+ROT-DEFI  , 0, , ,1628.11239, ,-11619.34488, frtr682
+ROT-DEFI  , 200, , -177.109, , , , frtr682 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr682 
+*! - ROTDEFI for element QFS.92 at s=142.18291571184795
+ROT-DEFI  , 0, , ,1634.41744, ,-11494.50399, frtr688
+ROT-DEFI  , 200, , -177.109, , , , frtr688 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr688 
+*! - ROTDEFI for element QDS.45 at s=143.43291571184798
+ROT-DEFI  , 0, , ,1640.72249, ,-11369.66311, frtr695
+ROT-DEFI  , 200, , -177.109, , , , frtr695 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr695 
+*! - ROTDEFI for element QFS.94 at s=144.682915711848
+ROT-DEFI  , 0, , ,1647.02754, ,-11244.82222, frtr701
+ROT-DEFI  , 200, , -177.109, , , , frtr701 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr701 
+*! - ROTDEFI for element QDS.46 at s=145.93291571184804
+ROT-DEFI  , 0, , ,1653.33259, ,-11119.98134, frtr708
+ROT-DEFI  , 200, , -177.109, , , , frtr708 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr708 
+*! - ROTDEFI for element QFS.96 at s=147.18291571184807
+ROT-DEFI  , 0, , ,1659.63764, ,-10995.14046, frtr714
+ROT-DEFI  , 200, , -177.109, , , , frtr714 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr714 
+*! - ROTDEFI for element QDS.47 at s=148.4329157118481
+ROT-DEFI  , 0, , ,1665.94269, ,-10870.29957, frtr721
+ROT-DEFI  , 200, , -177.109, , , , frtr721 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr721 
+*! - ROTDEFI for element QFS.98 at s=149.68291571184812
+ROT-DEFI  , 0, , ,1672.24774, ,-10745.45869, frtr727
+ROT-DEFI  , 200, , -177.109, , , , frtr727 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr727 
+*! - ROTDEFI for element QDS.48 at s=150.93291571184815
+ROT-DEFI  , 0, , ,1678.55279, ,-10620.61780, frtr734
+ROT-DEFI  , 200, , -177.109, , , , frtr734 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr734 
+*! - ROTDEFI for element QFS.100 at s=152.18291571184818
+ROT-DEFI  , 0, , ,1684.85784, ,-10495.77692, frtr740
+ROT-DEFI  , 200, , -177.109, , , , frtr740 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr740 
+*! - ROTDEFI for element QDS.49 at s=153.4329157118482
+ROT-DEFI  , 0, , ,1691.16289, ,-10370.93603, frtr747
+ROT-DEFI  , 200, , -177.109, , , , frtr747 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr747 
+*! - ROTDEFI for element QFS.102 at s=154.68291571184824
+ROT-DEFI  , 0, , ,1697.46794, ,-10246.09515, frtr753
+ROT-DEFI  , 200, , -177.109, , , , frtr753 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr753 
+*! - ROTDEFI for element QDS.50 at s=155.93291571184827
+ROT-DEFI  , 0, , ,1703.77299, ,-10121.25427, frtr760
+ROT-DEFI  , 200, , -177.109, , , , frtr760 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr760 
+*! - ROTDEFI for element QFS.104 at s=157.1829157118483
+ROT-DEFI  , 0, , ,1710.07804, ,-9996.41338, frtr766
+ROT-DEFI  , 200, , -177.109, , , , frtr766 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr766 
+*! - ROTDEFI for element QDS.51 at s=158.43291571184832
+ROT-DEFI  , 0, , ,1716.38309, ,-9871.57250, frtr773
+ROT-DEFI  , 200, , -177.109, , , , frtr773 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr773 
+*! - ROTDEFI for element QFS.106 at s=159.68291571184835
+ROT-DEFI  , 0, , ,1722.68814, ,-9746.73161, frtr779
+ROT-DEFI  , 200, , -177.109, , , , frtr779 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr779 
+*! - ROTDEFI for element QDS.52 at s=160.93291571184838
+ROT-DEFI  , 0, , ,1728.99318, ,-9621.89073, frtr786
+ROT-DEFI  , 200, , -177.109, , , , frtr786 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr786 
+*! - ROTDEFI for element QFS.108 at s=162.1829157118484
+ROT-DEFI  , 0, , ,1735.29823, ,-9497.04985, frtr792
+ROT-DEFI  , 200, , -177.109, , , , frtr792 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr792 
+*! - ROTDEFI for element QDS.53 at s=163.43291571184844
+ROT-DEFI  , 0, , ,1741.60328, ,-9372.20896, frtr799
+ROT-DEFI  , 200, , -177.109, , , , frtr799 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr799 
+*! - ROTDEFI for element QFS.110 at s=164.68291571184847
+ROT-DEFI  , 0, , ,1747.90833, ,-9247.36808, frtr805
+ROT-DEFI  , 200, , -177.109, , , , frtr805 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr805 
+*! - ROTDEFI for element QDS.54 at s=165.9329157118485
+ROT-DEFI  , 0, , ,1754.21338, ,-9122.52719, frtr812
+ROT-DEFI  , 200, , -177.109, , , , frtr812 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr812 
+*! - ROTDEFI for element QFS.112 at s=167.18291571184852
+ROT-DEFI  , 0, , ,1760.51843, ,-8997.68631, frtr818
+ROT-DEFI  , 200, , -177.109, , , , frtr818 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr818 
+*! - ROTDEFI for element QDS.55 at s=168.43291571184855
+ROT-DEFI  , 0, , ,1766.82348, ,-8872.84543, frtr825
+ROT-DEFI  , 200, , -177.109, , , , frtr825 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr825 
+*! - ROTDEFI for element QFS.114 at s=169.68291571184858
+ROT-DEFI  , 0, , ,1773.12853, ,-8748.00454, frtr831
+ROT-DEFI  , 200, , -177.109, , , , frtr831 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr831 
+*! - ROTDEFI for element QDS.56 at s=170.9329157118486
+ROT-DEFI  , 0, , ,1779.43358, ,-8623.16366, frtr838
+ROT-DEFI  , 200, , -177.109, , , , frtr838 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr838 
+*! - ROTDEFI for element QFS.116 at s=172.18291571184864
+ROT-DEFI  , 0, , ,1785.73863, ,-8498.32277, frtr844
+ROT-DEFI  , 200, , -177.109, , , , frtr844 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr844 
+*! - ROTDEFI for element QDS.57 at s=173.43291571184866
+ROT-DEFI  , 0, , ,1792.04368, ,-8373.48189, frtr851
+ROT-DEFI  , 200, , -177.109, , , , frtr851 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr851 
+*! - ROTDEFI for element QFS.118 at s=174.6829157118487
+ROT-DEFI  , 0, , ,1798.34873, ,-8248.64100, frtr857
+ROT-DEFI  , 200, , -177.109, , , , frtr857 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr857 
+*! - ROTDEFI for element QDS.58 at s=175.93291571184872
+ROT-DEFI  , 0, , ,1804.65378, ,-8123.80012, frtr864
+ROT-DEFI  , 200, , -177.109, , , , frtr864 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr864 
+*! - ROTDEFI for element QFS.120 at s=177.18291571184875
+ROT-DEFI  , 0, , ,1810.95883, ,-7998.95924, frtr870
+ROT-DEFI  , 200, , -177.109, , , , frtr870 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr870 
+*! - ROTDEFI for element QDS.59 at s=178.43291571184878
+ROT-DEFI  , 0, , ,1817.26388, ,-7874.11835, frtr877
+ROT-DEFI  , 200, , -177.109, , , , frtr877 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr877 
+*! - ROTDEFI for element QFS.122 at s=179.6829157118488
+ROT-DEFI  , 0, , ,1823.56893, ,-7749.27747, frtr883
+ROT-DEFI  , 200, , -177.109, , , , frtr883 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr883 
+*! - ROTDEFI for element QDS.60 at s=180.93291571184884
+ROT-DEFI  , 0, , ,1829.87398, ,-7624.43658, frtr890
+ROT-DEFI  , 200, , -177.109, , , , frtr890 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr890 
+*! - ROTDEFI for element QFS.124 at s=182.18291571184886
+ROT-DEFI  , 0, , ,1836.17903, ,-7499.59570, frtr896
+ROT-DEFI  , 200, , -177.109, , , , frtr896 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr896 
+*! - ROTDEFI for element QDS.61 at s=183.4329157118489
+ROT-DEFI  , 0, , ,1842.48408, ,-7374.75482, frtr903
+ROT-DEFI  , 200, , -177.109, , , , frtr903 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr903 
+*! - ROTDEFI for element QFS.126 at s=184.68291571184892
+ROT-DEFI  , 0, , ,1848.78912, ,-7249.91393, frtr909
+ROT-DEFI  , 200, , -177.109, , , , frtr909 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr909 
+*! - ROTDEFI for element QDS.62 at s=185.93291571184895
+ROT-DEFI  , 0, , ,1855.09417, ,-7125.07305, frtr916
+ROT-DEFI  , 200, , -177.109, , , , frtr916 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr916 
+*! - ROTDEFI for element QFS.128 at s=187.18291571184898
+ROT-DEFI  , 0, , ,1861.39922, ,-7000.23216, frtr922
+ROT-DEFI  , 200, , -177.109, , , , frtr922 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr922 
+*! - ROTDEFI for element QDS.63 at s=188.432915711849
+ROT-DEFI  , 0, , ,1867.70427, ,-6875.39128, frtr929
+ROT-DEFI  , 200, , -177.109, , , , frtr929 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr929 
+*! - ROTDEFI for element QFS.130 at s=189.68291571184903
+ROT-DEFI  , 0, , ,1874.00932, ,-6750.55039, frtr935
+ROT-DEFI  , 200, , -177.109, , , , frtr935 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr935 
+*! - ROTDEFI for element QDS.64 at s=190.93291571184906
+ROT-DEFI  , 0, , ,1880.31437, ,-6625.70951, frtr942
+ROT-DEFI  , 200, , -177.109, , , , frtr942 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr942 
+*! - ROTDEFI for element QFS.132 at s=192.1829157118491
+ROT-DEFI  , 0, , ,1886.61942, ,-6500.86863, frtr948
+ROT-DEFI  , 200, , -177.109, , , , frtr948 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr948 
+*! - ROTDEFI for element QDS.65 at s=193.43291571184912
+ROT-DEFI  , 0, , ,1892.92447, ,-6376.02774, frtr955
+ROT-DEFI  , 200, , -177.109, , , , frtr955 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr955 
+*! - ROTDEFI for element QFS.134 at s=194.68291571184915
+ROT-DEFI  , 0, , ,1899.22952, ,-6251.18686, frtr961
+ROT-DEFI  , 200, , -177.109, , , , frtr961 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr961 
+*! - ROTDEFI for element QDS.66 at s=195.93291571184918
+ROT-DEFI  , 0, , ,1905.53457, ,-6126.34597, frtr968
+ROT-DEFI  , 200, , -177.109, , , , frtr968 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr968 
+*! - ROTDEFI for element QFS.136 at s=197.1829157118492
+ROT-DEFI  , 0, , ,1911.83962, ,-6001.50509, frtr974
+ROT-DEFI  , 200, , -177.109, , , , frtr974 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr974 
+*! - ROTDEFI for element QDS.67 at s=198.43291571184923
+ROT-DEFI  , 0, , ,1918.14467, ,-5876.66421, frtr981
+ROT-DEFI  , 200, , -177.109, , , , frtr981 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr981 
+*! - ROTDEFI for element QFS.138 at s=199.68291571184926
+ROT-DEFI  , 0, , ,1924.44972, ,-5751.82332, frtr987
+ROT-DEFI  , 200, , -177.109, , , , frtr987 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr987 
+*! - ROTDEFI for element QDS.68 at s=200.9329157118493
+ROT-DEFI  , 0, , ,1930.75477, ,-5626.98244, frtr994
+ROT-DEFI  , 200, , -177.109, , , , frtr994 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr994 
+*! - ROTDEFI for element QFS.140 at s=202.18291571184932
+ROT-DEFI  , 0, , ,1937.05982, ,-5502.14155, frtr1000
+ROT-DEFI  , 200, , -177.109, , , , frtr1000 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1000 
+*! - ROTDEFI for element QDS.69 at s=203.43291571184935
+ROT-DEFI  , 0, , ,1943.36487, ,-5377.30067, frtr1007
+ROT-DEFI  , 200, , -177.109, , , , frtr1007 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1007 
+*! - ROTDEFI for element QFS.142 at s=204.68291571184938
+ROT-DEFI  , 0, , ,1949.66992, ,-5252.45979, frtr1013
+ROT-DEFI  , 200, , -177.109, , , , frtr1013 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1013 
+*! - ROTDEFI for element QDS.70 at s=205.9329157118494
+ROT-DEFI  , 0, , ,1955.97497, ,-5127.61890, frtr1020
+ROT-DEFI  , 200, , -177.109, , , , frtr1020 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1020 
+*! - ROTDEFI for element QFS.144 at s=207.18291571184943
+ROT-DEFI  , 0, , ,1962.28002, ,-5002.77802, frtr1026
+ROT-DEFI  , 200, , -177.109, , , , frtr1026 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1026 
+*! - ROTDEFI for element QDS.71 at s=208.43291571184946
+ROT-DEFI  , 0, , ,1968.58506, ,-4877.93713, frtr1033
+ROT-DEFI  , 200, , -177.109, , , , frtr1033 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1033 
+*! - ROTDEFI for element QFS.146 at s=209.6829157118495
+ROT-DEFI  , 0, , ,1974.89011, ,-4753.09625, frtr1039
+ROT-DEFI  , 200, , -177.109, , , , frtr1039 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1039 
+*! - ROTDEFI for element QDS.72 at s=210.93291571184952
+ROT-DEFI  , 0, , ,1981.19516, ,-4628.25536, frtr1046
+ROT-DEFI  , 200, , -177.109, , , , frtr1046 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1046 
+*! - ROTDEFI for element QFS.148 at s=212.18291571184955
+ROT-DEFI  , 0, , ,1987.50021, ,-4503.41448, frtr1052
+ROT-DEFI  , 200, , -177.109, , , , frtr1052 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1052 
+*! - ROTDEFI for element QDS.73 at s=213.43291571184957
+ROT-DEFI  , 0, , ,1993.80526, ,-4378.57360, frtr1059
+ROT-DEFI  , 200, , -177.109, , , , frtr1059 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1059 
+*! - ROTDEFI for element QFS.150 at s=214.6829157118496
+ROT-DEFI  , 0, , ,2000.11031, ,-4253.73271, frtr1065
+ROT-DEFI  , 200, , -177.109, , , , frtr1065 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1065 
+*! - ROTDEFI for element QDS.74 at s=215.93291571184963
+ROT-DEFI  , 0, , ,2006.41536, ,-4128.89183, frtr1072
+ROT-DEFI  , 200, , -177.109, , , , frtr1072 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1072 
+*! - ROTDEFI for element QFS.152 at s=217.18291571184966
+ROT-DEFI  , 0, , ,2012.72041, ,-4004.05094, frtr1078
+ROT-DEFI  , 200, , -177.109, , , , frtr1078 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1078 
+*! - ROTDEFI for element QDS.75 at s=218.4329157118497
+ROT-DEFI  , 0, , ,2019.02546, ,-3879.21006, frtr1085
+ROT-DEFI  , 200, , -177.109, , , , frtr1085 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1085 
+*! - ROTDEFI for element QFS.154 at s=219.68291571184972
+ROT-DEFI  , 0, , ,2025.33051, ,-3754.36918, frtr1091
+ROT-DEFI  , 200, , -177.109, , , , frtr1091 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1091 
+*! - ROTDEFI for element QDS.76 at s=220.93291571184974
+ROT-DEFI  , 0, , ,2031.63556, ,-3629.52829, frtr1098
+ROT-DEFI  , 200, , -177.109, , , , frtr1098 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1098 
+*! - ROTDEFI for element QFS.156 at s=222.18291571184977
+ROT-DEFI  , 0, , ,2037.94061, ,-3504.68741, frtr1104
+ROT-DEFI  , 200, , -177.109, , , , frtr1104 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1104 
+*! - ROTDEFI for element QDS.77 at s=223.4329157118498
+ROT-DEFI  , 0, , ,2044.24566, ,-3379.84652, frtr1111
+ROT-DEFI  , 200, , -177.109, , , , frtr1111 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1111 
+*! - ROTDEFI for element QFS.158 at s=224.68291571184983
+ROT-DEFI  , 0, , ,2050.55071, ,-3255.00564, frtr1117
+ROT-DEFI  , 200, , -177.109, , , , frtr1117 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1117 
+*! - ROTDEFI for element QDS.78 at s=225.93291571184986
+ROT-DEFI  , 0, , ,2056.85576, ,-3130.16476, frtr1124
+ROT-DEFI  , 200, , -177.109, , , , frtr1124 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1124 
+*! - ROTDEFI for element QFS.160 at s=227.1829157118499
+ROT-DEFI  , 0, , ,2063.16081, ,-3005.32387, frtr1130
+ROT-DEFI  , 200, , -177.109, , , , frtr1130 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1130 
+*! - ROTDEFI for element QDS.79 at s=228.43291571184992
+ROT-DEFI  , 0, , ,2069.46586, ,-2880.48299, frtr1137
+ROT-DEFI  , 200, , -177.109, , , , frtr1137 
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1137 
+*! - ROTDEFI for element QFS.162 at s=229.68291571184994
+ROT-DEFI  , 0, , ,2075.77091, ,-2755.64210, frtr1143
+ROT-DEFI  , 200, , -177.109, , , , frtr1143 
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1143 
+*! - ROTDEFI for element QDS2A1.3 at s=230.92732535450392
+ROT-DEFI  , 0, , ,2082.04776, ,-2631.35954, frtr1146
+ROT-DEFI  , 200, , -177.109, , , , frtr1146 
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr1146 
+*! - ROTDEFI for element QFS2A1.3 at s=232.1717349971579
+ROT-DEFI  , 0, , ,2088.32461, ,-2507.07698, frtr1148
+ROT-DEFI  , 200, , -177.109, , , , frtr1148 
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr1148 
+*! - ROTDEFI for element QDS2A2.3 at s=233.41614463981188
+ROT-DEFI  , 0, , ,2094.60146, ,-2382.79442, frtr1150
+ROT-DEFI  , 200, , -177.109, , , , frtr1150 
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr1150 
+*! - ROTDEFI for element QFA.2 at s=234.66055428246585
+ROT-DEFI  , 0, , ,2100.87831, ,-2258.51186, frtr1152
+ROT-DEFI  , 200, , -177.109, , , , frtr1152 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1152 
+*! - ROTDEFI for element Bac1.2 at s=235.11055428246587
+ROT-DEFI  , 0, , ,2103.14813, ,-2213.56914, frtr1156
+ROT-DEFI  , 200, , 175.391, , , , frtr1156 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1156 
+*! - ROTDEFI for element QDAac1.1 at s=235.91055428246588
+ROT-DEFI  , 0, , ,2094.14546, ,-2134.37877, frtr1159
+ROT-DEFI  , 200, , 167.891, , , , frtr1159 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1159 
+*! - ROTDEFI for element Bac1.3 at s=236.3605542824659
+ROT-DEFI  , 0, , ,2084.70590, ,-2090.37997, frtr1162
+ROT-DEFI  , 200, , 160.391, , , , frtr1162 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1162 
+*! - ROTDEFI for element QFAac1.3 at s=237.1605542824659
+ROT-DEFI  , 0, , ,2055.51401, ,-2016.21800, frtr1165
+ROT-DEFI  , 200, , 152.891, , , , frtr1165 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1165 
+*! - ROTDEFI for element Bac2.2 at s=237.61055428246593
+ROT-DEFI  , 0, , ,2035.00837, ,-1976.16156, frtr1169
+ROT-DEFI  , 200, , 145.391, , , , frtr1169 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1169 
+*! - ROTDEFI for element QDAac2.1 at s=238.41055428246594
+ROT-DEFI  , 0, , ,1987.61664, ,-1912.08202, frtr1172
+ROT-DEFI  , 200, , 137.891, , , , frtr1172 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1172 
+*! - ROTDEFI for element Bac2.3 at s=238.86055428246596
+ROT-DEFI  , 0, , ,1957.44234, ,-1878.69771, frtr1175
+ROT-DEFI  , 200, , 130.391, , , , frtr1175 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1175 
+*! - ROTDEFI for element QFAac2.3 at s=239.66055428246597
+ROT-DEFI  , 0, , ,1895.08044, ,-1829.06751, frtr1178
+ROT-DEFI  , 200, , 122.891, , , , frtr1178 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1178 
+*! - ROTDEFI for element Bac3.2 at s=240.11055428246598
+ROT-DEFI  , 0, , ,1857.29382, ,-1804.63043, frtr1182
+ROT-DEFI  , 200, , 115.391, , , , frtr1182 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1182 
+*! - ROTDEFI for element QDAac3.1 at s=240.910554282466
+ROT-DEFI  , 0, , ,1784.21160, ,-1772.83179, frtr1185
+ROT-DEFI  , 200, , 107.891, , , , frtr1185 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1185 
+*! - ROTDEFI for element Bac3.3 at s=241.360554282466
+ROT-DEFI  , 0, , ,1741.38774, ,-1759.00728, frtr1188
+ROT-DEFI  , 200, , 100.391, , , , frtr1188 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1188 
+*! - ROTDEFI for element QFAac3.3 at s=242.16055428246602
+ROT-DEFI  , 0, , ,1662.56565, ,-1747.20722, frtr1191
+ROT-DEFI  , 200, , 92.8912, , , , frtr1191 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1191 
+*! - ROTDEFI for element Bac4.2 at s=242.61055428246604
+ROT-DEFI  , 0, , ,1617.62294, ,-1744.93740, frtr1195
+ROT-DEFI  , 200, , 85.3912, , , , frtr1195 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1195 
+*! - ROTDEFI for element QDAac4.1 at s=243.41055428246605
+ROT-DEFI  , 0, , ,1538.43256, ,-1753.94007, frtr1198
+ROT-DEFI  , 200, , 77.8912, , , , frtr1198 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1198 
+*! - ROTDEFI for element Bac4.3 at s=243.86055428246607
+ROT-DEFI  , 0, , ,1494.43376, ,-1763.37963, frtr1201
+ROT-DEFI  , 200, , 70.3912, , , , frtr1201 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1201 
+*! - ROTDEFI for element QFAac4.3 at s=244.66055428246608
+ROT-DEFI  , 0, , ,1420.27179, ,-1792.57152, frtr1204
+ROT-DEFI  , 200, , 62.8912, , , , frtr1204 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1204 
+*! - ROTDEFI for element Bac5.2 at s=245.1105542824661
+ROT-DEFI  , 0, , ,1380.21535, ,-1813.07716, frtr1208
+ROT-DEFI  , 200, , 55.3912, , , , frtr1208 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1208 
+*! - ROTDEFI for element QDAac5.1 at s=245.9105542824661
+ROT-DEFI  , 0, , ,1316.13581, ,-1860.46889, frtr1211
+ROT-DEFI  , 200, , 47.8912, , , , frtr1211 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1211 
+*! - ROTDEFI for element Bac5.3 at s=246.36055428246613
+ROT-DEFI  , 0, , ,1282.75150, ,-1890.64319, frtr1214
+ROT-DEFI  , 200, , 40.3912, , , , frtr1214 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1214 
+*! - ROTDEFI for element QFAac5.3 at s=247.16055428246614
+ROT-DEFI  , 0, , ,1233.12130, ,-1953.00509, frtr1217
+ROT-DEFI  , 200, , 32.8912, , , , frtr1217 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1217 
+*! - ROTDEFI for element Bac6.2 at s=247.61055428246615
+ROT-DEFI  , 0, , ,1208.68422, ,-1990.79171, frtr1221
+ROT-DEFI  , 200, , 25.3912, , , , frtr1221 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1221 
+*! - ROTDEFI for element QDAac6.1 at s=248.41055428246617
+ROT-DEFI  , 0, , ,1176.88558, ,-2063.87393, frtr1224
+ROT-DEFI  , 200, , 17.8912, , , , frtr1224 
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1224 
+*! - ROTDEFI for element Bac6.3 at s=248.86055428246618
+ROT-DEFI  , 0, , ,1163.06107, ,-2106.69779, frtr1227
+ROT-DEFI  , 200, , 10.3912, , , , frtr1227 
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1227 
+*! - ROTDEFI for element QFAac6.3 at s=249.6605542824662
+ROT-DEFI  , 0, , ,1151.26101, ,-2185.51988, frtr1230
+ROT-DEFI  , 200, , 2.89125, , , , frtr1230 
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1230 

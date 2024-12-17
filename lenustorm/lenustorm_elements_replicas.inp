@@ -1,0 +1,1123 @@
+*
+*---- LEnuSTORM element replicas ----
+*
+$start_transform -frtr1
+$start_translat 0 0 -12200
+RPP     qds2a2.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr3
+$start_translat 0 0 -12500
+RPP     qfs2a1.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr5
+$start_translat 0 0 -11900
+RPP     qds2a1.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr7
+$start_translat 0 0 -11300
+RPP     qfs.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr14
+$start_translat 0 0 -11600
+RPP     qds.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr20
+$start_translat 0 0 -11300
+RPP     qfs.2 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr27
+$start_translat 0 0 -11600
+RPP     qds.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr33
+$start_translat 0 0 -11300
+RPP     qfs.4 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr40
+$start_translat 0 0 -11600
+RPP     qds.2 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr46
+$start_translat 0 0 -11300
+RPP     qfs.6 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr53
+$start_translat 0 0 -11600
+RPP     qds.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr59
+$start_translat 0 0 -11300
+RPP     qfs.8 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr66
+$start_translat 0 0 -11600
+RPP     qds.4 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr72
+$start_translat 0 0 -11300
+RPP     qfs.10 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr79
+$start_translat 0 0 -11600
+RPP     qds.5 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr85
+$start_translat 0 0 -11300
+RPP     qfs.12 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr92
+$start_translat 0 0 -11600
+RPP     qds.6 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr98
+$start_translat 0 0 -11300
+RPP     qfs.14 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr105
+$start_translat 0 0 -11600
+RPP     qds.7 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr111
+$start_translat 0 0 -11300
+RPP     qfs.16 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr118
+$start_translat 0 0 -11600
+RPP     qds.8 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr124
+$start_translat 0 0 -11300
+RPP     qfs.18 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr131
+$start_translat 0 0 -11600
+RPP     qds.9 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr137
+$start_translat 0 0 -11300
+RPP     qfs.20 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr144
+$start_translat 0 0 -11600
+RPP     qds.10 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr150
+$start_translat 0 0 -11300
+RPP     qfs.22 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr157
+$start_translat 0 0 -11600
+RPP     qds.11 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr163
+$start_translat 0 0 -11300
+RPP     qfs.24 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr170
+$start_translat 0 0 -11600
+RPP     qds.12 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr176
+$start_translat 0 0 -11300
+RPP     qfs.26 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr183
+$start_translat 0 0 -11600
+RPP     qds.13 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr189
+$start_translat 0 0 -11300
+RPP     qfs.28 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr196
+$start_translat 0 0 -11600
+RPP     qds.14 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr202
+$start_translat 0 0 -11300
+RPP     qfs.30 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr209
+$start_translat 0 0 -11600
+RPP     qds.15 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr215
+$start_translat 0 0 -11300
+RPP     qfs.32 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr222
+$start_translat 0 0 -11600
+RPP     qds.16 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr228
+$start_translat 0 0 -11300
+RPP     qfs.34 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr235
+$start_translat 0 0 -11600
+RPP     qds.17 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr241
+$start_translat 0 0 -11300
+RPP     qfs.36 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr248
+$start_translat 0 0 -11600
+RPP     qds.18 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr254
+$start_translat 0 0 -11300
+RPP     qfs.38 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr261
+$start_translat 0 0 -11600
+RPP     qds.19 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr267
+$start_translat 0 0 -11300
+RPP     qfs.40 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr274
+$start_translat 0 0 -11600
+RPP     qds.20 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr280
+$start_translat 0 0 -11300
+RPP     qfs.42 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr287
+$start_translat 0 0 -11600
+RPP     qds.21 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr293
+$start_translat 0 0 -11300
+RPP     qfs.44 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr300
+$start_translat 0 0 -11600
+RPP     qds.22 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr306
+$start_translat 0 0 -11300
+RPP     qfs.46 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr313
+$start_translat 0 0 -11600
+RPP     qds.23 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr319
+$start_translat 0 0 -11300
+RPP     qfs.48 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr326
+$start_translat 0 0 -11600
+RPP     qds.24 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr332
+$start_translat 0 0 -11300
+RPP     qfs.50 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr339
+$start_translat 0 0 -11600
+RPP     qds.25 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr345
+$start_translat 0 0 -11300
+RPP     qfs.52 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr352
+$start_translat 0 0 -11600
+RPP     qds.26 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr358
+$start_translat 0 0 -11300
+RPP     qfs.54 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr365
+$start_translat 0 0 -11600
+RPP     qds.27 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr371
+$start_translat 0 0 -11300
+RPP     qfs.56 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr378
+$start_translat 0 0 -11600
+RPP     qds.28 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr384
+$start_translat 0 0 -11300
+RPP     qfs.58 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr391
+$start_translat 0 0 -11600
+RPP     qds.29 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr397
+$start_translat 0 0 -11300
+RPP     qfs.60 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr404
+$start_translat 0 0 -11600
+RPP     qds.30 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr410
+$start_translat 0 0 -11300
+RPP     qfs.62 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr417
+$start_translat 0 0 -11600
+RPP     qds.31 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr423
+$start_translat 0 0 -11300
+RPP     qfs.64 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr430
+$start_translat 0 0 -11600
+RPP     qds.32 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr436
+$start_translat 0 0 -11300
+RPP     qfs.66 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr443
+$start_translat 0 0 -11600
+RPP     qds.33 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr449
+$start_translat 0 0 -11300
+RPP     qfs.68 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr456
+$start_translat 0 0 -11600
+RPP     qds.34 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr462
+$start_translat 0 0 -11300
+RPP     qfs.70 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr469
+$start_translat 0 0 -11600
+RPP     qds.35 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr475
+$start_translat 0 0 -11300
+RPP     qfs.72 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr482
+$start_translat 0 0 -11600
+RPP     qds.36 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr488
+$start_translat 0 0 -11300
+RPP     qfs.74 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr495
+$start_translat 0 0 -11600
+RPP     qds.37 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr501
+$start_translat 0 0 -11300
+RPP     qfs.76 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr508
+$start_translat 0 0 -11600
+RPP     qds.38 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr514
+$start_translat 0 0 -11300
+RPP     qfs.78 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr521
+$start_translat 0 0 -11600
+RPP     qds.39 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr527
+$start_translat 0 0 -11300
+RPP     qfs.80 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr530
+$start_translat 0 0 -11900
+RPP     qds2a1.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr532
+$start_translat 0 0 -12500
+RPP     qfs2a1.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr534
+$start_translat 0 0 -12200
+RPP     qds2a2.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr536
+$start_translat 0 0 -10700
+RPP     qfa.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr540
+$start_translat 0 0 -12800
+RPP     bac1.0 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr543
+$start_translat 0 0 -11000
+RPP     qdaac1.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr546
+$start_translat 0 0 -12800
+RPP     bac1.1 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr549
+$start_translat 0 0 -10700
+RPP     qfaac1.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr553
+$start_translat 0 0 -12800
+RPP     bac2.0 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr556
+$start_translat 0 0 -11000
+RPP     qdaac2.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr559
+$start_translat 0 0 -12800
+RPP     bac2.1 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr562
+$start_translat 0 0 -10700
+RPP     qfaac2.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr566
+$start_translat 0 0 -12800
+RPP     bac3.0 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr569
+$start_translat 0 0 -11000
+RPP     qdaac3.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr572
+$start_translat 0 0 -12800
+RPP     bac3.1 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr575
+$start_translat 0 0 -10700
+RPP     qfaac3.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr579
+$start_translat 0 0 -12800
+RPP     bac4.0 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr582
+$start_translat 0 0 -11000
+RPP     qdaac4.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr585
+$start_translat 0 0 -12800
+RPP     bac4.1 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr588
+$start_translat 0 0 -10700
+RPP     qfaac4.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr592
+$start_translat 0 0 -12800
+RPP     bac5.0 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr595
+$start_translat 0 0 -11000
+RPP     qdaac5.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr598
+$start_translat 0 0 -12800
+RPP     bac5.1 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr601
+$start_translat 0 0 -10700
+RPP     qfaac5.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr605
+$start_translat 0 0 -12800
+RPP     bac6.0 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr608
+$start_translat 0 0 -11000
+RPP     qdaac6.0 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr611
+$start_translat 0 0 -12800
+RPP     bac6.1 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr614
+$start_translat 0 0 -10700
+RPP     qfaac6.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr617
+$start_translat 0 0 -12200
+RPP     qds2a2.2 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr619
+$start_translat 0 0 -12500
+RPP     qfs2a1.2 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr621
+$start_translat 0 0 -11900
+RPP     qds2a1.2 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr623
+$start_translat 0 0 -11300
+RPP     qfs.82 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr630
+$start_translat 0 0 -11600
+RPP     qds.40 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr636
+$start_translat 0 0 -11300
+RPP     qfs.84 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr643
+$start_translat 0 0 -11600
+RPP     qds.41 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr649
+$start_translat 0 0 -11300
+RPP     qfs.86 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr656
+$start_translat 0 0 -11600
+RPP     qds.42 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr662
+$start_translat 0 0 -11300
+RPP     qfs.88 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr669
+$start_translat 0 0 -11600
+RPP     qds.43 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr675
+$start_translat 0 0 -11300
+RPP     qfs.90 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr682
+$start_translat 0 0 -11600
+RPP     qds.44 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr688
+$start_translat 0 0 -11300
+RPP     qfs.92 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr695
+$start_translat 0 0 -11600
+RPP     qds.45 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr701
+$start_translat 0 0 -11300
+RPP     qfs.94 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr708
+$start_translat 0 0 -11600
+RPP     qds.46 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr714
+$start_translat 0 0 -11300
+RPP     qfs.96 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr721
+$start_translat 0 0 -11600
+RPP     qds.47 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr727
+$start_translat 0 0 -11300
+RPP     qfs.98 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr734
+$start_translat 0 0 -11600
+RPP     qds.48 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr740
+$start_translat 0 0 -11300
+RPP     qfs.100 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr747
+$start_translat 0 0 -11600
+RPP     qds.49 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr753
+$start_translat 0 0 -11300
+RPP     qfs.102 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr760
+$start_translat 0 0 -11600
+RPP     qds.50 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr766
+$start_translat 0 0 -11300
+RPP     qfs.104 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr773
+$start_translat 0 0 -11600
+RPP     qds.51 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr779
+$start_translat 0 0 -11300
+RPP     qfs.106 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr786
+$start_translat 0 0 -11600
+RPP     qds.52 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr792
+$start_translat 0 0 -11300
+RPP     qfs.108 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr799
+$start_translat 0 0 -11600
+RPP     qds.53 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr805
+$start_translat 0 0 -11300
+RPP     qfs.110 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr812
+$start_translat 0 0 -11600
+RPP     qds.54 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr818
+$start_translat 0 0 -11300
+RPP     qfs.112 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr825
+$start_translat 0 0 -11600
+RPP     qds.55 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr831
+$start_translat 0 0 -11300
+RPP     qfs.114 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr838
+$start_translat 0 0 -11600
+RPP     qds.56 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr844
+$start_translat 0 0 -11300
+RPP     qfs.116 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr851
+$start_translat 0 0 -11600
+RPP     qds.57 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr857
+$start_translat 0 0 -11300
+RPP     qfs.118 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr864
+$start_translat 0 0 -11600
+RPP     qds.58 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr870
+$start_translat 0 0 -11300
+RPP     qfs.120 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr877
+$start_translat 0 0 -11600
+RPP     qds.59 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr883
+$start_translat 0 0 -11300
+RPP     qfs.122 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr890
+$start_translat 0 0 -11600
+RPP     qds.60 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr896
+$start_translat 0 0 -11300
+RPP     qfs.124 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr903
+$start_translat 0 0 -11600
+RPP     qds.61 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr909
+$start_translat 0 0 -11300
+RPP     qfs.126 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr916
+$start_translat 0 0 -11600
+RPP     qds.62 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr922
+$start_translat 0 0 -11300
+RPP     qfs.128 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr929
+$start_translat 0 0 -11600
+RPP     qds.63 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr935
+$start_translat 0 0 -11300
+RPP     qfs.130 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr942
+$start_translat 0 0 -11600
+RPP     qds.64 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr948
+$start_translat 0 0 -11300
+RPP     qfs.132 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr955
+$start_translat 0 0 -11600
+RPP     qds.65 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr961
+$start_translat 0 0 -11300
+RPP     qfs.134 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr968
+$start_translat 0 0 -11600
+RPP     qds.66 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr974
+$start_translat 0 0 -11300
+RPP     qfs.136 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr981
+$start_translat 0 0 -11600
+RPP     qds.67 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr987
+$start_translat 0 0 -11300
+RPP     qfs.138 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr994
+$start_translat 0 0 -11600
+RPP     qds.68 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1000
+$start_translat 0 0 -11300
+RPP     qfs.140 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1007
+$start_translat 0 0 -11600
+RPP     qds.69 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1013
+$start_translat 0 0 -11300
+RPP     qfs.142 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1020
+$start_translat 0 0 -11600
+RPP     qds.70 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1026
+$start_translat 0 0 -11300
+RPP     qfs.144 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1033
+$start_translat 0 0 -11600
+RPP     qds.71 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1039
+$start_translat 0 0 -11300
+RPP     qfs.146 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1046
+$start_translat 0 0 -11600
+RPP     qds.72 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1052
+$start_translat 0 0 -11300
+RPP     qfs.148 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1059
+$start_translat 0 0 -11600
+RPP     qds.73 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1065
+$start_translat 0 0 -11300
+RPP     qfs.150 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1072
+$start_translat 0 0 -11600
+RPP     qds.74 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1078
+$start_translat 0 0 -11300
+RPP     qfs.152 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1085
+$start_translat 0 0 -11600
+RPP     qds.75 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1091
+$start_translat 0 0 -11300
+RPP     qfs.154 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1098
+$start_translat 0 0 -11600
+RPP     qds.76 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1104
+$start_translat 0 0 -11300
+RPP     qfs.156 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1111
+$start_translat 0 0 -11600
+RPP     qds.77 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1117
+$start_translat 0 0 -11300
+RPP     qfs.158 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1124
+$start_translat 0 0 -11600
+RPP     qds.78 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1130
+$start_translat 0 0 -11300
+RPP     qfs.160 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1137
+$start_translat 0 0 -11600
+RPP     qds.79 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1143
+$start_translat 0 0 -11300
+RPP     qfs.162 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1146
+$start_translat 0 0 -11900
+RPP     qds2a1.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1148
+$start_translat 0 0 -12500
+RPP     qfs2a1.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1150
+$start_translat 0 0 -12200
+RPP     qds2a2.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1152
+$start_translat 0 0 -10700
+RPP     qfa.2 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1156
+$start_translat 0 0 -12800
+RPP     bac1.2 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1159
+$start_translat 0 0 -11000
+RPP     qdaac1.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1162
+$start_translat 0 0 -12800
+RPP     bac1.3 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1165
+$start_translat 0 0 -10700
+RPP     qfaac1.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1169
+$start_translat 0 0 -12800
+RPP     bac2.2 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1172
+$start_translat 0 0 -11000
+RPP     qdaac2.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1175
+$start_translat 0 0 -12800
+RPP     bac2.3 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1178
+$start_translat 0 0 -10700
+RPP     qfaac2.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1182
+$start_translat 0 0 -12800
+RPP     bac3.2 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1185
+$start_translat 0 0 -11000
+RPP     qdaac3.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1188
+$start_translat 0 0 -12800
+RPP     bac3.3 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1191
+$start_translat 0 0 -10700
+RPP     qfaac3.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1195
+$start_translat 0 0 -12800
+RPP     bac4.2 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1198
+$start_translat 0 0 -11000
+RPP     qdaac4.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1201
+$start_translat 0 0 -12800
+RPP     bac4.3 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1204
+$start_translat 0 0 -10700
+RPP     qfaac4.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1208
+$start_translat 0 0 -12800
+RPP     bac5.2 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1211
+$start_translat 0 0 -11000
+RPP     qdaac5.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1214
+$start_translat 0 0 -12800
+RPP     bac5.3 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1217
+$start_translat 0 0 -10700
+RPP     qfaac5.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1221
+$start_translat 0 0 -12800
+RPP     bac6.2 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1224
+$start_translat 0 0 -11000
+RPP     qdaac6.1 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1227
+$start_translat 0 0 -12800
+RPP     bac6.3 -44.00461268806402 44.00461268806402 -44.00461268806402 44.00461268806402 -0.1 59.416955767922154
+$end_translat
+$end_transform
+$start_transform -frtr1230
+$start_translat 0 0 -10700
+RPP     qfaac6.3 -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform

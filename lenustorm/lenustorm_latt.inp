@@ -151,158 +151,259 @@ RCC thbox      0 0 $thbox_zmin 0 0 $thbox_zmax $thbox_rad
 RCC target     0 0 0 0 0 $tgt_len $tgt_rad
 *
 *---- Magnet Models -----
-$start_translat -1000 0 0
+*$start_translat -1000 0 0
+#if 0
 !@what.1=-d1_xsiz/2-0.1
 !@what.2=d1_xsiz/2+0.1
 !@what.3=-d1_ysiz/2-0.1
 !@what.4=d1_ysiz/2+0.1
 !@what.6=d1_len+0.1
 RPP mbhavol    -106.6395400789188 106.6395400789188 -70.1 70.1 -0.1 221.1
+#endif
+#if 0
 !@what.1=-d1_xsiz/2
 !@what.2=d1_xsiz/2
 !@what.3=-d1_ysiz/2
 !@what.4=d1_ysiz/2
 RPP mbhafe     -106.5395400789188 106.5395400789188 -70 70 0 $d1_len
+#endif
+#if 0
 !@what.1=-d1_apx/2
 !@what.2=d1_apx/2
 !@what.3=-d1_apy/2
 !@what.4=d1_apy/2
 RPP mbhavac    -76.5395400789188 76.5395400789188 -20 20 0 $d1_len
-$end_translat
-$start_translat -1500 0 0
+#endif
+*$end_translat
+*$start_translat -1500 0 0
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC mqavol     0 0 -0.1 0 0 80.2 84.1
+#endif
+#if 0
 RCC mqafe      0 0 0 0 0 $q1_len $q1_rad
+#endif
+#if 0
 !@what.6=q1_len+0.1
 RCC mqavac     0 0 -0.05 0 0 80.1 $q1_ap
-$end_translat
+#endif
+*$end_translat
 *
 * --- insert lenustorm_models.bodies
 *
-$start_translat -1000 0 -400
+*$start_translat -1000 0 -400
+#if 0
 RPP qfavol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+#if 0
 RPP qfafe      -78.0 78.0 -78.0 78.0 0 25.0
+#endif
+#if 0
 RCC qfavac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -550
+#endif
+*$end_translat
+*$start_translat -1000 0 -550
+#if 0
 RPP qdavol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+#if 0
 RPP qdafe      -78.0 78.0 -78.0 78.0 0 25.0
+#endif
+#if 0
 RCC qdavac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -700
+#endif
+*$end_translat
+*$start_translat -1000 0 -700
+#if 0
 RPP qfsvol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+#if 0
 RPP qfsfe      -78.0 78.0 -78.0 78.0 0 25.0
+#endif
+#if 0
 RCC qfsvac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -850
+#endif
+*$end_translat
+*$start_translat -1000 0 -850
+#if 0
 RPP qdsvol     -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+#if 0
 RPP qdsfe      -78.0 78.0 -78.0 78.0 0 25.0
+#endif
+#if 0
 RCC qdsvac     0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1000
+#endif
+*$end_translat
+*$start_translat -1000 0 -1000
+#if 0
 RPP qdsa1vol   -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+#if 0
 RPP qdsa1fe    -78.0 78.0 -78.0 78.0 0 25.0
+#endif
+#if 0
 RCC qdsa1vac   0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1150
+#endif
+*$end_translat
+*$start_translat -1000 0 -1150
+#if 0
 RPP qdsa2vol   -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+#if 0
 RPP qdsa2fe    -78.0 78.0 -78.0 78.0 0 25.0
+#endif
+#if 0
 RCC qdsa2vac   0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1300
+#endif
+*$end_translat
+*$start_translat -1000 0 -1300
+#if 0
 RPP qfsa1vol   -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+#if 0
 RPP qfsa1fe    -78.0 78.0 -78.0 78.0 0 25.0
+#endif
+#if 0
 RCC qfsa1vac   0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1450
+#endif
+*$end_translat
+*$start_translat -1000 0 -1450
+#if 0
 RPP bvol       -45.1 45.1 -40.1 40.1 -0.1 60.1
+#endif
+#if 0
 RPP bfe        -45.0 45.0 -40.0 40.0 0 60.0
+#endif
+#if 0
 RPP bvac       -25.0 25.0 -20.0 20.0 -0.1 60.1
-$end_translat
+#endif
+*$end_translat
 *
 * ---- Beam lines ----
 *Transfer line magnets
-$start_transform -trd1
-$start_translat -1000 0 0
+*$start_transform -trd1
+*$start_translat -1000 0 0
+#if 0
 !@what.1=-d1_xsiz/2-0.1
 !@what.2=d1_xsiz/2
 !@what.3=-d1_ysiz/2-0.1
 !@what.4=d1_ysiz/2+0.1
 !@what.6=d1_len+0.1
 RPP D1rp       -106.6395400789188 106.5395400789188 -70.1 70.1 -0.1 221.1
-$end_translat
-$end_transform
-$start_transform -trd2
-$start_translat -1000 0 0
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trd2
+*$start_translat -1000 0 0
+#if 0
 !@what.1=-d1_xsiz/2-0.1
 !@what.2=d1_xsiz/2
 !@what.3=-d1_ysiz/2-0.1
 !@what.4=d1_ysiz/2+0.1
 !@what.6=d1_len+0.1
 RPP D2rp       -106.6395400789188 106.5395400789188 -70.1 70.1 -0.1 221.1
-$end_translat
-$end_transform
-$start_transform -trq1
-$start_translat -1500
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trq1
+*$start_translat -1500
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC Q1rp       0 0 -0.1 0 0 80.2 84.1
-$end_translat
-$end_transform
-$start_transform -trq2
-$start_translat -1500
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trq2
+*$start_translat -1500
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC Q2rp       0 0 -0.1 0 0 80.2 84.1
-$end_translat
-$end_transform
-$start_transform -trq3
-$start_translat -1500
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trq3
+*$start_translat -1500
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC Q3rp       0 0 -0.1 0 0 80.2 84.1
-$end_translat
-$end_transform
-$start_transform -trq4
-$start_translat -1500
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trq4
+*$start_translat -1500
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC Q4rp       0 0 -0.1 0 0 80.2 84.1
-$end_translat
-$end_transform
-$start_transform -trq5
-$start_translat -1500
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trq5
+*$start_translat -1500
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC Q5rp       0 0 -0.1 0 0 80.2 84.1
-$end_translat
-$end_transform
-$start_transform -trq6
-$start_translat -1500
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trq6
+*$start_translat -1500
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC Q6rp       0 0 -0.1 0 0 80.2 84.1
-$end_translat
-$end_transform
-$start_transform -trq7
-$start_translat -1500
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -trq7
+*$start_translat -1500
+#if 0
 !@what.6=q1_len+0.2
 !@what.7=q1_rad+0.1
 RCC Q7rp       0 0 -0.1 0 0 80.2 84.1
-$end_translat
-$end_transform
+#endif
+*$end_translat
+*$end_transform
 *
-$start_transform -frtr1
-$start_translat -1000 0 -1150
+*$start_transform -frtr1
+*$start_translat -1000 0 -1150
+#if 0
 RPP qds2a2.0   -78.1 78.1 -78.1 78.1 -0.1 25.1
-$end_translat
-$end_transform
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -frtr3
+*$start_translat -1000 0 -1300
+#if 0
+RPP qfs2a1.0   -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -frtr5
+*$start_translat -1000 0 -1000
+#if 0
+RPP qds2a1.0   -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+*$end_translat
+*$end_transform
+*$start_transform -frtr7
+*$start_translat -1000 0 -700
+#if 0
+RPP qfs.0      -78.1 78.1 -78.1 78.1 -0.1 25.1
+#endif
+*$end_translat
+*$end_transform
 *
 END
 BLKBODY      5 +blkbody -void
 VOID         5 +void -tcc_o -tdec_o -mbhavol -mqavol -qdavol -qfavol -qdsvol -qfsvol -qdsa1vol -qdsa2vol
-               -qfsa1vol -bvol -ttline -D2rp -qds2a2.0
+               -qfsa1vol -bvol -ttline -D2rp
 SHIELD       5 +tcc_o -tcc | +tdec_o -tcc_o -tcc -tdec -(+ttline +ttline_u)
 TCC_CAV      5 (+tcc -thbox -D1rp
                | +tdec -D1rp
@@ -314,62 +415,154 @@ TCC_CAV1     5 +tcc -thbox
 #endif
 THBOX        5 +thbox -target
 TARGET       5 +target
+#if 0
 * --- Magent models
 MBHAEnv      5 +mbhavol -mbhafe -mbhavac
+#endif
+#if 0
 MBHAFe       5 +mbhafe -mbhavac
+#endif
+#if 0
 MBHAVac      5 +mbhavac
+#endif
+#if 0
 MQAEnv       5 +mqavol -mqafe -mqavac
+#endif
+#if 0
 MQAFe        5 +mqafe -mqavac
+#endif
+#if 0
 MQAVac       5 +mqavac
+#endif
+#if 0
 * --- include lenustorm_models.regions
 QFAEnv       5 +qfavol -qfafe -qfavac
+#endif
+#if 0
 QFAFe        5 +qfafe -qfavac
+#endif
+#if 0
 QFAVac       5 +qfavac
+#endif
+#if 0
 QDAEnv       5 +qdavol -qdafe -qdavac
+#endif
+#if 0
 QDAFe        5 +qdafe -qdavac
+#endif
+#if 0
 QDAVac       5 +qdavac
+#endif
+#if 0
 QFSEnv       5 +qfsvol -qfsfe -qfsvac
+#endif
+#if 0
 QFSFe        5 +qfsfe -qfsvac
+#endif
+#if 0
 QFSVac       5 +qfsvac
+#endif
+#if 0
 QDSEnv       5 +qdsvol -qdsfe -qdsvac
+#endif
+#if 0
 QDSFe        5 +qdsfe -qdsvac
+#endif
+#if 0
 QDSVac       5 +qdsvac
+#endif
+#if 0
 QDSA1Env     5 +qdsa1vol -qdsa1fe -qdsa1vac
+#endif
+#if 0
 QDSA1Fe      5 +qdsa1fe -qdsa1vac
+#endif
+#if 0
 QDSA1Vac     5 +qdsa1vac
+#endif
+#if 0
 QDSA2Env     5 +qdsa2vol -qdsa2fe -qdsa2vac
+#endif
+#if 0
 QDSA2Fe      5 +qdsa2fe -qdsa2vac
+#endif
+#if 0
 QDSA2Vac     5 +qdsa2vac
+#endif
+#if 0
 QFSA1Env     5 +qfsa1vol -qfsa1fe -qfsa1vac
+#endif
+#if 0
 QFSA1Fe      5 +qfsa1fe -qfsa1vac
+#endif
+#if 0
 QFSA1Vac     5 +qfsa1vac
+#endif
+#if 0
 BEnv         5 +bvol -bfe -bvac
+#endif
+#if 0
 BFe          5 +bfe -bvac
+#endif
+#if 0
 BVac         5 +bvac
+#endif
+#if 0
 *
 D1           5 +D1rp
+#endif
+#if 0
 D2           5 +D2rp
+#endif
+#if 0
 Q1           5 +Q1rp
+#endif
+#if 0
 Q2           5 +Q2rp
+#endif
+#if 0
 Q3           5 +Q3rp
+#endif
+#if 0
 Q4           5 +Q4rp
+#endif
+#if 0
 Q5           5 +Q5rp
+#endif
+#if 0
 Q6           5 +Q6rp
+#endif
+#if 0
 Q7           5 +Q7rp
+#endif
+#if 0
 *
 QDS2A2.0     5 +qds2a2.0
+#endif
+#if 0
+QFS2A1.0     5 +qfs2a1.0
+#endif
+#if 0
+QDS2A1.0     5 +qds2a1.0
+#endif
+#if 0
+QFS.0        5 +qfs.0
+#endif
 *
 END
-LATTICE   , D1, , , MBHAEnv,  , ,trd1
-LATTICE   , D2, , , MBHAEnv,  , ,trd2
-LATTICE   , Q1, , , MQAEnv,  , ,trq1
-LATTICE   , Q2, , , MQAEnv,  , ,trq2
-LATTICE   , Q3, , , MQAEnv,  , ,trq3
-LATTICE   , Q4, , , MQAEnv,  , ,trq4
-LATTICE   , Q5, , , MQAEnv,  , ,trq5
-LATTICE   , Q6, , , MQAEnv,  , ,trq6
-LATTICE   , Q7, , , MQAEnv,  , ,trq7
-LATTICE   , QDS2A2.0, , , QDSA2Env,  , ,frtr1
+*LATTICE   , D1, , , MBHAEnv,  , ,trd1
+*LATTICE   , D2, , , MBHAEnv,  , ,trd2
+*LATTICE   , Q1, , , MQAEnv,  , ,trq1
+*LATTICE   , Q2, , , MQAEnv,  , ,trq2
+*LATTICE   , Q3, , , MQAEnv,  , ,trq3
+*LATTICE   , Q4, , , MQAEnv,  , ,trq4
+*LATTICE   , Q5, , , MQAEnv,  , ,trq5
+*LATTICE   , Q6, , , MQAEnv,  , ,trq6
+*LATTICE   , Q7, , , MQAEnv,  , ,trq7
+*LATTICE   , QDS2A2.0, , , QDSA2Env,  , ,frtr1
+*LATTICE   , QFS2A1.0, , , QFSA1Env,  , ,frtr3
+*LATTICE   , QDS2A1.0, , , QDSA1Env,  , ,frtr5
+*LATTICE   , QFS.0, , , QFSEnv,  , ,frtr7
 GEOEND
 #if 0
 Black     , -, size,  , , , ,body
@@ -448,10 +641,9 @@ ROT-DEFI  , 200, , -$d1_adeg,  , , ,trq7
 ROT-DEFI  , 300, , , -1500,  , ,trq7
 *
 *! - ROTDEFI for element QDS2A2.0 at s=0.9944096426539861
-ROT-DEFI  , 0, , , 995.7722955833584, , -1599.35105379108, frtr1
-ROT-DEFI  , 200, , 2.4366482,  , , ,frtr1
-ROT-DEFI  , 300, , 0, -1000, 0, -1150, frtr1
-*
+*ROT-DEFI  , 0, , , 995.7722955833584, , -1599.35105379108, frtr1
+*ROT-DEFI  , 200, , 2.4366482,  , , ,frtr1
+*ROT-DEFI  , 300, , 0, -1000, 0, -1150, frtr1
 *
 *Set the random number seed
 RANDOMIZ  , 1.0
