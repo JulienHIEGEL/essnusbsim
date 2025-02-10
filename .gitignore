@@ -6,6 +6,10 @@
 *.log
 *.o
 *.err
+*.png
+*.lis
+*.bnx
+*.eps
 
 *.*~
 *.pickle
@@ -17,3 +21,5 @@ ran*
 **/.vscode/
 myanal/
 run/
+lenustorm/fluka_*
+lenustorm/obs/
