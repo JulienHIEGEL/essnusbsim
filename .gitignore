@@ -21,5 +21,6 @@ ran*
 **/.vscode/
 myanal/
 run/
+fastsim/
 lenustorm/fluka_*
 lenustorm/obs/
