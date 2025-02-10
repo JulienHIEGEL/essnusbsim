@@ -1,0 +1,338 @@
+# flair project file
+Version: 300
+Mode: fluka
+Title: ESS-Transfer Line and LEnuStorm Simulation
+md5: 53d1d2b30e0b5ec6464459313df15512
+Input:
+TITLE
+	ESS-Transfer Line and LEnuStorm Simulation
+#define primary 0
+*
+* General Parameters
+*   beamrad : nominal beam radius to calculate apertures
+#define pbeam 0.7
+#define ptline 0.7
+#define beam_rad 20
+#define clight 29979245800
+*
+* Facility
+*    target chamber : 3m x 5m
+*    shielding : 4m width
+#define tcc_len 300
+#define tcc_width 350
+#define tcc_shield 400
+#define tcc_o =tcc_width+tcc_shield
+*
+* Decay pipe
+*	length = 80m
+*	radius = 1m
+*	shielding = 4m
+#define tdec_len 8000
+#define tdec_rad 250
+#define tdec_shield 400
+#define tdec_wid =tdec_rad+tdec_shield
+*
+* Beam dump
+*	length 	= 5m
+*	width 	= 3m
+#define bdump_len 500
+#define bdump_wid 300
+*
+* ESSnuSB near detector
+*	distance (from target) = 250m
+#define ndet_dis 25000
+#define ndet_wid 500
+*
+* TTline to leNuSTORM
+* -------------------
+*
+* Magnet prototypes
+#define d1_len 120.3517
+#define d1_vlen =d1_len+0.1
+#define d1_k0 0.428275
+#define d1_arad =d1_k0*d1_len/100
+#define d1_adeg =d1_arad*180/pi
+#define d1_b0 =d1_arad*ptline/clight/d1_len*1.0e13
+#define d1_defl =d1_len*tan(d1_arad/2)
+#define d1_pivot '=d1_len - d1_defl/tan(d1_arad)'
+#define d1_apx '=d1_defl + 2*beam_rad'
+#define d1_apy =2*beam_rad
+#define d1_xsiz =d1_apx+60
+#define d1_ysiz =d1_apy+100
+#define q1_len 80
+#define q1_ap 44
+#define q1_fe 40
+#define q1_rad =q1_ap+q1_fe
+#define drift0 200
+#define drift1 50
+#define drift2 20
+#define drift3 35.3
+#define drift4 35.3
+#define drift5 35.3
+#define drift6 35.3
+#define drift7 20
+#define drift8 50
+#define s_d1 =drift0
+#define s_q1 =d1_pivot+drift1
+#define s_q2 =s_q1+q1_len+drift2
+#define s_q3 =s_q2+q1_len+drift3
+#define s_q4 =s_q3+q1_len+drift4
+#define s_q5 =s_q4+q1_len+drift5
+#define s_q6 =s_q5+q1_len+drift6
+#define s_q7 =s_q6+q1_len+drift7
+#define s_d2 =s_q7+q1_len+drift8
+*
+* LEnuSTORM
+*	nstorm_ss_len	= 75m
+*	nstorm_tun_wid = 4m
+#define nstorm_ss_len 7500
+#define nstorm_tun_wid 400
+*
+* Target & Horn
+#define thbox_rad 100
+#define thbox_zmax 100
+#define thbox_zmin -10
+*
+* Target
+#define tgt_rad 1.5
+#define tgt_len 78
+*
+*Set the defaults for precision simulations
+DEFAULTS PRECISIO
+FREE
+*
+*Define the beam characteristics
+#ifdef primary
+BEAM MUON+ -2.5 0 0 2.5 2.5
+#else
+BEAM MUON+ $pbeam 0 0 2.5 2.5
+#endif
+*Define the beam position
+BEAMPOS , 0 0 0
+GEOBEGIN COMBNAME
+SPH blkbody 0 0 0 100000
+SPH void 0 0 0 90000
+RPP tcc_o -$tcc_o $tcc_o -$tcc_o $tcc_o -100 $tcc_len
+RPP tcc -$tcc_width $tcc_width -$tcc_width $tcc_width -50 =tcc_len+1
+RPP tdec_o -$tdec_wid $tdec_wid -$tdec_wid $tdec_wid =tcc_len-1 =tdec_len+1
+RPP tdec -$tdec_rad $tdec_rad -$tdec_rad $tdec_rad =tcc_len-2 $tdec_len
+!$start_transform -trttl
+!RPP ttline =-1.2*d1_xsiz/2 =1.2*d1_xsiz/2 =-1.2*d1_ysiz/2 =1.2*d1_ysiz/2 0 2000
+!$end_transform
+!YZP ttline_u -$tdec_rad
+!YZP ttline_d =-tdec_wid-1000
+*Target & Horn box
+RCC thbox 0 0 $thbox_zmin 0 0 $thbox_zmax $thbox_rad
+RCC target 0 0 0 0 0 $tgt_len $tgt_rad
+* Model Parking
+* RPP parko      -1050 1050 -1050 1050 -20050 -9000
+* RPP parki      -1000 1000 -1000 1000 -20000 -9050
+* RCC parko 0.0, 0.0, -13300.0, 0, 0, 3600.0, 1200
+* RCC parki 0.0, 0.0, -13100.0, 0, 0, 3200.0, 1000
+*
+* $start_transform tltnl
+* RPP   tltun  -100 200.0 -200.0 200.0 -100 2547.7948339646373
+* $end_transform
+*
+* $start_transform rgtnl
+* RPP rgtnlo -776.0451267158968 776.0451267158968 -300.0 300.0 -300 12247.617967554968
+* RPP rgtnli -676.0451267158968 676.0451267158968 -200.0 200.0 -200 12147.617967554968
+* $end_transform
+*
+* --- LEMOND detector
+RCC lemond 0 0 25000 0 0 500 500
+*
+* --- Models and tunnels bodies ----
+#include models_and_tunnels_bodies.inp
+*
+*---- Magnet models bodies -----
+*
+#include lenustorm_models_bodies.inp
+*
+* ---- Beam elements (replicas) ----
+*
+#include ttline_elements_replicas.inp
+#include lenustorm_elements_replicas.inp
+*
+END
+REGION BLKBODY 5
+	+blkbody -void
+REGION VOID 5
+	+void -tcc_o -tdec_o -parko -tltuno -rgtnlo -lemond
+REGION SHIELD 5
+	(+tcc_o -tcc)
+	| +tdec_o -tcc_o -tcc -tdec -tltun
+	| +rgtnlo -rgtnli -tltun
+	| +tltuno -tltun -rgtnlo -tdec_o -tcc_o
+REGION THBOX 5
+	+thbox -target
+REGION TARGET 5
+	+target
+REGION LEMOND 5
+	+lemond
+*
+* --- Models and tunnels regions ----
+#include models_and_tunnels_regions.inp
+*
+* --- Magnet models regions -----
+*
+#include lenustorm_models_regions.inp
+*
+* --- Beam line element regions -----
+*
+#include ttline_elements_regions.inp
+#include lenustorm_elements_regions.inp
+*
+END
+*
+* --- Beam line element lattices -----
+*
+#include ttline_elements_lattice.inp
+#include lenustorm_elements_lattice.inp
+GEOEND
+!Black body - size
+*..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+ASSIGNMA , BLCKHOLE BLKBODY
+ASSIGNMA , VACUUM VOID
+ASSIGNMA , BLCKHOLE PARKBB
+ASSIGNMA , VACUUM PARK
+ASSIGNMA , IRON SHIELD
+ASSIGNMA , HELIUM TCC_CAV
+ASSIGNMA , VACUUM THBOX
+ASSIGNMA , VACUUM TARGET
+ASSIGNMA , IRON BDUMP
+ASSIGNMA , CARBON BDUMPC
+ASSIGNMA , TUNGSTEN LEMOND
+ASSIGNMA , HELIUM TTMBEnv BEnv 3
+ASSIGNMA , IRON TTMBFe BFe 3
+ASSIGNMA , VACUUM TTMBVac BVac 3 1
+MGNCREAT D1 2
+MGNFIELD D1 $d1_b0,, 2 BEND0
+MGNFIELD D1 -$d1_b0,, 2 BEND1
+*
+* --- Beam line element ROT-DEFI from the replicas to the models  -----
+*
+*! - ROTDEFI for tline punchthrough tunnel
+ROT-DEFI tltnl 200,, 29.5323277145495
+ROT-DEFI tltnl 0,,, 0 0.0 400.0
+*! - ROTDEFI for LEnuSTORM tunnel
+ROT-DEFI rgtnl 0,,, -1826.0451267159 0.0 1621.942926625236
+ROT-DEFI rgtnl 200,, -2.89124868466982
+*
+#include ttline_elements_rotdefi.inp
+#include lenustorm_elements_rotdefi.inp
+!USRBIN Beam 10 MUON+ -21 100 10 1300 -1000 -10 0 100 20 500
+*
+USRBIN Beampart 10 BEAMPART -21 400 100 1400 -800 -100 -200 400 100 600
+USRBIN Beampar1 10 BEAMPART -22 100 10 1300 -1000 -10 0 400 20 500
+*
+*Set the random number seed
+RANDOMIZ , 1.0
+*Set the number of primary histories to be simulated in the run
+START , 500
+STOP
+EndInput
+
+Page: Flair
+plotengine: Gnuplot
+
+# Run information
+Run: <default>
+	Last:     1
+	Status:   3
+	StartRun: 1734624917.223358
+	open:     1
+End
+Geometry: Geometry
+	Frame.tsplit: 1.0
+	Frame.vsplit: 1.0
+	Synchronize: 1
+End
+
+# Plots information
+Plot: Red
+	Type: Geometry
+	basisu: 0 0 1
+	basisv: 1 0 0
+	coord: Z-X
+	extends: 2218.611106740433 1615.1141520693564
+	group: Geometry
+	layer: Lattice
+	origin: -965.925 0 1731.41
+End
+Plot: Green
+	Type: Geometry
+	basisu: 0.836516 0.0173377 0.547668
+	basisv: 0.224144 0.901221 -0.370891
+	extends: 100.0 111600.0
+	group: Geometry
+	layer: Lattice
+End
+Plot: Blue
+	Type: Geometry
+	basisu: 0 0 1
+	coord: Z-Y
+	extends: 1110.0291708218606 1.447234903287954
+	group: Geometry
+	layer: Lattice
+	origin: -965.925 0 1731.41
+End
+Plot: Magenta
+	Type: Geometry
+	coord: X-Y
+	extends: 1108.5819359185725 1.4472349032879537
+	group: Geometry
+	layer: Lattice
+	origin: -965.925 0 1731.41
+End
+Plot: ttline_and_lenustorm_v2_21_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ttline_and_lenustorm_v2_21.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 1121.1067492370109
+	max: 1.68081140E-03
+	min: 8.10358625E-09
+	open: 1
+	proj: Y
+	title: USRBIN ttline and lenustorm v2 21
+End
+Plot: ttline_and_lenustorm_v2_22_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ttline_and_lenustorm_v2_22.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 1111.9959714351212
+	max: 1.82842631E-02
+	min: 1.46584981E-07
+	open: 1
+	proj: Y
+	title: USRBIN ttline and lenustorm v2 22
+End
+Plot: ttline_and_lenustorm_v2_21_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ttline_and_lenustorm_v2_21.bnn
+	format: .png
+	grid: 0
+	hist: 2D Projection
+	int: 1121.1067492370109
+	max: 1.68081140E-03
+	min: 8.10358625E-09
+	open: 1
+	proj: Y
+	title: TCC and TT line - Primary Beam
+End
+Plot: ttline_and_lenustorm_v2_22_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: ttline_and_lenustorm_v2_22.bnn
+	open: 1
+	title: USRBIN ttline and lenustorm v2 22
+End

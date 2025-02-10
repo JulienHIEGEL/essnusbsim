@@ -1,0 +1,2982 @@
+TITLE
+TTLINE pion beam 0.7 GeV
+!#define primary 0
+*
+* General Parameters
+*   beamrad : nominal beam radius to calculate apertures
+#define pbeam 0.7
+#define ptline 0.7
+#define beam_rad 20
+#define clight 29979245800
+*
+* Facility
+*    target chamber : 3m x 5m
+*    shielding : 4m width
+#define tcc_len 300
+#define tcc_width 350
+#define tcc_shield 400
+#define tcc_o 750
+*
+* Decay pipe
+*	length = 80m
+*	radius = 1m
+*	shielding = 4m
+#define tdec_len 8000
+#define tdec_rad 250
+#define tdec_shield 400
+#define tdec_wid 650
+*
+* Beam dump
+*	length 	= 5m
+*	width 	= 3m
+#define bdump_len 500
+#define bdump_wid 300
+*
+* ESSnuSB near detector
+*	distance (from target) = 250m
+#define ndet_dis 25000
+#define ndet_wid 500
+*
+* TTline to leNuSTORM
+* -------------------
+*
+* Magnet prototypes
+#define d1_len 120.3517
+#define d1_vlen 120.4517
+#define d1_k0 0.428275
+#define d1_arad 0.515436243175
+#define d1_adeg 29.53232134200628
+#define d1_b0 1.00000014009692
+#define d1_defl 31.72226000131154
+#define d1_pivot 64.35652123102876
+#define d1_apx 71.72226000131154
+#define d1_apy 40
+#define d1_xsiz 131.7222600013116
+#define d1_ysiz 140
+#define q1_len 80
+#define q1_ap 44
+#define q1_fe 40
+#define q1_rad 84
+#define drift0 200
+#define drift1 50
+#define drift2 20
+#define drift3 35.3
+#define drift4 35.3
+#define drift5 35.3
+#define drift6 35.3
+#define drift7 20
+#define drift8 50
+#define s_d1 200
+#define s_q1 114.3565212310288
+#define s_q2 214.3565212310288
+#define s_q3 329.6565212310288
+#define s_q4 444.9565212310288
+#define s_q5 560.2565212310287
+#define s_q6 675.5565212310287
+#define s_q7 775.5565212310287
+#define s_d2 905.5565212310287
+*
+* LEnuSTORM
+*	nstorm_ss_len	= 75m
+*	nstorm_tun_wid = 4m
+#define nstorm_ss_len 7500
+#define nstorm_tun_wid 400
+*
+* Target & Horn
+#define thbox_rad 100
+#define thbox_zmax 100
+#define thbox_zmin -10
+*
+* Target
+#define tgt_rad 1.5
+#define tgt_len 78
+*
+*Set the defaults for precision simulations
+DEFAULTS                                                              PRECISIO
+FREE
+*
+*Define the beam characteristics
+#ifdef primary
+BEAM      , -2.5, 0, 0, 2.5, 2.5,  ,MUON+
+#else
+BEAM      , $pbeam, 0, 0, 2.5, 2.5,  ,MUON+
+#endif
+*Define the beam position
+BEAMPOS   , 0, 0, 0
+GEOBEGIN   ,  ,  ,  ,  ,  ,  , COMBNAME
+0,0,
+SPH blkbody    0 0 0 100000
+SPH void       0 0 0 90000
+RPP tcc_o      -$tcc_o $tcc_o -$tcc_o $tcc_o -100 $tcc_len
+RPP tcc        -$tcc_width $tcc_width -$tcc_width $tcc_width -50 301
+RPP tdec_o     -$tdec_wid $tdec_wid -$tdec_wid $tdec_wid 299 8001
+RPP tdec       -$tdec_rad $tdec_rad -$tdec_rad $tdec_rad 298 $tdec_len
+*$start_transform -trttl
+#if 0
+RPP ttline     -79.03335600078692 79.03335600078692 -84 84 0 2000
+#endif
+*$end_transform
+#if 0
+YZP ttline_u   -$tdec_rad
+#endif
+#if 0
+YZP ttline_d   -1650
+#endif
+*Target & Horn box
+RCC thbox      0 0 $thbox_zmin 0 0 $thbox_zmax $thbox_rad
+RCC target     0 0 0 0 0 $tgt_len $tgt_rad
+*
+*---- Models and Tunnels bodies ----
+*
+RCC parko      0.0 0.0 -13300.0 0 0 3600.0 1200
+RCC parki      0.0 0.0 -13100.0 0 0 3200.0 1000
+$start_transform tltnl
+RPP tltuno     -350 400.0 -400.0 400.0 -100 2624.129840055357
+RPP tltun      -150 200.0 -200.0 200.0 -100 2524.129840055357
+$end_transform
+$start_transform rgtnl
+RPP rgtnlo     -776.045126715897 776.0451267158968 -300.0 300.0 -300
+              12247.61796755497
+RPP rgtnli     -676.045126715897 676.0451267158968 -200.0 200.0 -200
+              12147.61796755497
+$end_transform
+RPP dumpo      -240.0 240.0 -240.0 240.0 850.0 1450.0
+RPP dumpc      -116.717882233719 24.0 -24.0 24.0 850.0 950.0
+*
+*---- LEnuSTORM magnet models bodies  ----
+*
+$start_translat 0 0 -10100
+RPP ttmbvol    -90.5034226133921 90.50342261339205 -40.1 40.1 -0.1
+              115.193019028711
+RPP ttmbfe     -90.4034226133921 90.40342261339205 -40.0 40.0 0 115.093019028711
+RPP ttmbvac    -60.4034226133921 60.40342261339206 -12.0 12.0 -0.1
+              115.193019028711
+$end_translat
+$start_translat 0 0 -10400
+RPP ttmqvol    -39.1 39.1 -39.1 39.1 -0.1 80.1
+RPP ttmqfe     -39.0 39.0 -39.0 39.0 0 80.0
+RCC ttmqvac    0.0 0.0 -0.1 0.0 0.0 80.1 10.0
+$end_translat
+$start_translat 0 0 -10700
+RPP qfavol     -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP qfafe      -39.0 39.0 -39.0 39.0 0 25.0
+RCC qfavac     0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11000
+RPP qdavol     -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP qdafe      -39.0 39.0 -39.0 39.0 0 25.0
+RCC qdavac     0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11300
+RPP qfsvol     -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP qfsfe      -39.0 39.0 -39.0 39.0 0 25.0
+RCC qfsvac     0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11600
+RPP qdsvol     -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP qdsfe      -39.0 39.0 -39.0 39.0 0 25.0
+RCC qdsvac     0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -11900
+RPP qdsa1vol   -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP qdsa1fe    -39.0 39.0 -39.0 39.0 0 25.0
+RCC qdsa1vac   0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -12200
+RPP qdsa2vol   -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP qdsa2fe    -39.0 39.0 -39.0 39.0 0 25.0
+RCC qdsa2vac   0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -12500
+RPP qfsa1vol   -39.1 39.1 -39.1 39.1 -0.1 25.1
+RPP qfsa1fe    -39.0 39.0 -39.0 39.0 0 25.0
+RCC qfsa1vac   0.0 0.0 -0.1 0.0 0.0 25.1 10.0
+$end_translat
+$start_translat 0 0 -12800
+RPP bvol       -63.4710704513537 63.47107045135365 -40.1 40.1 -0.1
+              59.41695576792215
+RPP bfe        -63.3710704513537 63.37107045135365 -40.0 40.0 0
+              59.31695576792215
+RPP bvac       -33.3710704513537 33.37107045135365 -12.0 12.0 -0.1
+              59.41695576792215
+$end_translat
+*
+*---- TT line element replicas ----
+*
+$start_transform -tltr3
+$start_translat 0 0 -10100
+RPP bend0      -90.5034226133921 90.50342261339205 -90.5034226133921
+              90.50342261339205 -0.1 115.193019028711
+$end_translat
+$end_transform
+$start_transform -tltr6
+$start_translat 0 0 -10400
+RPP mqf0       -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr8
+$start_translat 0 0 -10400
+RPP mqc        -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr10
+$start_translat 0 0 -10400
+RPP mqd0       -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr14
+$start_translat 0 0 -10400
+RPP mqf1       -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr16
+$start_translat 0 0 -10400
+RPP mqd1       -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr18
+$start_translat 0 0 -10400
+RPP mqc1       -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr23
+$start_translat 0 0 -10400
+RPP mqd1b      -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr25
+$start_translat 0 0 -10400
+RPP mqf1b      -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr29
+$start_translat 0 0 -10400
+RPP mqd0b      -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr31
+$start_translat 0 0 -10400
+RPP mqcb       -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr33
+$start_translat 0 0 -10400
+RPP mqf0b      -39.1 39.1 -39.1 39.1 -0.1 80.1
+$end_translat
+$end_transform
+$start_transform -tltr36
+$start_translat 0 0 -10100
+RPP bend1      -90.5034226133921 90.50342261339205 -90.5034226133921
+              90.50342261339205 -0.1 115.193019028711
+$end_translat
+$end_transform
+*
+*---- LEnuSTORM element replicas ----
+*
+$start_transform -frtr1
+$start_translat 0 0 -12200
+RPP qds2a2.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr3
+$start_translat 0 0 -12500
+RPP qfs2a1.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr5
+$start_translat 0 0 -11900
+RPP qds2a1.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr7
+$start_translat 0 0 -11300
+RPP qfs.0      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr14
+$start_translat 0 0 -11600
+RPP qds.0      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr20
+$start_translat 0 0 -11300
+RPP qfs.2      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr27
+$start_translat 0 0 -11600
+RPP qds.1      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr33
+$start_translat 0 0 -11300
+RPP qfs.4      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr40
+$start_translat 0 0 -11600
+RPP qds.2      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr46
+$start_translat 0 0 -11300
+RPP qfs.6      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr53
+$start_translat 0 0 -11600
+RPP qds.3      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr59
+$start_translat 0 0 -11300
+RPP qfs.8      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr66
+$start_translat 0 0 -11600
+RPP qds.4      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr72
+$start_translat 0 0 -11300
+RPP qfs.10     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr79
+$start_translat 0 0 -11600
+RPP qds.5      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr85
+$start_translat 0 0 -11300
+RPP qfs.12     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr92
+$start_translat 0 0 -11600
+RPP qds.6      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr98
+$start_translat 0 0 -11300
+RPP qfs.14     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr105
+$start_translat 0 0 -11600
+RPP qds.7      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr111
+$start_translat 0 0 -11300
+RPP qfs.16     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr118
+$start_translat 0 0 -11600
+RPP qds.8      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr124
+$start_translat 0 0 -11300
+RPP qfs.18     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr131
+$start_translat 0 0 -11600
+RPP qds.9      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr137
+$start_translat 0 0 -11300
+RPP qfs.20     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr144
+$start_translat 0 0 -11600
+RPP qds.10     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr150
+$start_translat 0 0 -11300
+RPP qfs.22     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr157
+$start_translat 0 0 -11600
+RPP qds.11     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr163
+$start_translat 0 0 -11300
+RPP qfs.24     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr170
+$start_translat 0 0 -11600
+RPP qds.12     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr176
+$start_translat 0 0 -11300
+RPP qfs.26     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr183
+$start_translat 0 0 -11600
+RPP qds.13     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr189
+$start_translat 0 0 -11300
+RPP qfs.28     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr196
+$start_translat 0 0 -11600
+RPP qds.14     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr202
+$start_translat 0 0 -11300
+RPP qfs.30     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr209
+$start_translat 0 0 -11600
+RPP qds.15     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr215
+$start_translat 0 0 -11300
+RPP qfs.32     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr222
+$start_translat 0 0 -11600
+RPP qds.16     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr228
+$start_translat 0 0 -11300
+RPP qfs.34     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr235
+$start_translat 0 0 -11600
+RPP qds.17     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr241
+$start_translat 0 0 -11300
+RPP qfs.36     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr248
+$start_translat 0 0 -11600
+RPP qds.18     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr254
+$start_translat 0 0 -11300
+RPP qfs.38     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr261
+$start_translat 0 0 -11600
+RPP qds.19     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr267
+$start_translat 0 0 -11300
+RPP qfs.40     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr274
+$start_translat 0 0 -11600
+RPP qds.20     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr280
+$start_translat 0 0 -11300
+RPP qfs.42     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr287
+$start_translat 0 0 -11600
+RPP qds.21     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr293
+$start_translat 0 0 -11300
+RPP qfs.44     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr300
+$start_translat 0 0 -11600
+RPP qds.22     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr306
+$start_translat 0 0 -11300
+RPP qfs.46     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr313
+$start_translat 0 0 -11600
+RPP qds.23     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr319
+$start_translat 0 0 -11300
+RPP qfs.48     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr326
+$start_translat 0 0 -11600
+RPP qds.24     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr332
+$start_translat 0 0 -11300
+RPP qfs.50     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr339
+$start_translat 0 0 -11600
+RPP qds.25     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr345
+$start_translat 0 0 -11300
+RPP qfs.52     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr352
+$start_translat 0 0 -11600
+RPP qds.26     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr358
+$start_translat 0 0 -11300
+RPP qfs.54     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr365
+$start_translat 0 0 -11600
+RPP qds.27     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr371
+$start_translat 0 0 -11300
+RPP qfs.56     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr378
+$start_translat 0 0 -11600
+RPP qds.28     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr384
+$start_translat 0 0 -11300
+RPP qfs.58     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr391
+$start_translat 0 0 -11600
+RPP qds.29     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr397
+$start_translat 0 0 -11300
+RPP qfs.60     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr404
+$start_translat 0 0 -11600
+RPP qds.30     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr410
+$start_translat 0 0 -11300
+RPP qfs.62     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr417
+$start_translat 0 0 -11600
+RPP qds.31     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr423
+$start_translat 0 0 -11300
+RPP qfs.64     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr430
+$start_translat 0 0 -11600
+RPP qds.32     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr436
+$start_translat 0 0 -11300
+RPP qfs.66     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr443
+$start_translat 0 0 -11600
+RPP qds.33     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr449
+$start_translat 0 0 -11300
+RPP qfs.68     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr456
+$start_translat 0 0 -11600
+RPP qds.34     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr462
+$start_translat 0 0 -11300
+RPP qfs.70     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr469
+$start_translat 0 0 -11600
+RPP qds.35     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr475
+$start_translat 0 0 -11300
+RPP qfs.72     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr482
+$start_translat 0 0 -11600
+RPP qds.36     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr488
+$start_translat 0 0 -11300
+RPP qfs.74     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr495
+$start_translat 0 0 -11600
+RPP qds.37     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr501
+$start_translat 0 0 -11300
+RPP qfs.76     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr508
+$start_translat 0 0 -11600
+RPP qds.38     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr514
+$start_translat 0 0 -11300
+RPP qfs.78     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr521
+$start_translat 0 0 -11600
+RPP qds.39     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr527
+$start_translat 0 0 -11300
+RPP qfs.80     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr530
+$start_translat 0 0 -11900
+RPP qds2a1.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr532
+$start_translat 0 0 -12500
+RPP qfs2a1.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr534
+$start_translat 0 0 -12200
+RPP qds2a2.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr536
+$start_translat 0 0 -10700
+RPP qfa.0      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr540
+$start_translat 0 0 -12800
+RPP bac1.0     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr543
+$start_translat 0 0 -11000
+RPP qdaac1.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr546
+$start_translat 0 0 -12800
+RPP bac1.1     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr549
+$start_translat 0 0 -10700
+RPP qfaac1.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr553
+$start_translat 0 0 -12800
+RPP bac2.0     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr556
+$start_translat 0 0 -11000
+RPP qdaac2.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr559
+$start_translat 0 0 -12800
+RPP bac2.1     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr562
+$start_translat 0 0 -10700
+RPP qfaac2.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr566
+$start_translat 0 0 -12800
+RPP bac3.0     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr569
+$start_translat 0 0 -11000
+RPP qdaac3.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr572
+$start_translat 0 0 -12800
+RPP bac3.1     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr575
+$start_translat 0 0 -10700
+RPP qfaac3.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr579
+$start_translat 0 0 -12800
+RPP bac4.0     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr582
+$start_translat 0 0 -11000
+RPP qdaac4.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr585
+$start_translat 0 0 -12800
+RPP bac4.1     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr588
+$start_translat 0 0 -10700
+RPP qfaac4.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr592
+$start_translat 0 0 -12800
+RPP bac5.0     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr595
+$start_translat 0 0 -11000
+RPP qdaac5.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr598
+$start_translat 0 0 -12800
+RPP bac5.1     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr601
+$start_translat 0 0 -10700
+RPP qfaac5.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr605
+$start_translat 0 0 -12800
+RPP bac6.0     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr608
+$start_translat 0 0 -11000
+RPP qdaac6.0   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr611
+$start_translat 0 0 -12800
+RPP bac6.1     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr614
+$start_translat 0 0 -10700
+RPP qfaac6.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr617
+$start_translat 0 0 -12200
+RPP qds2a2.2   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr619
+$start_translat 0 0 -12500
+RPP qfs2a1.2   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr621
+$start_translat 0 0 -11900
+RPP qds2a1.2   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr623
+$start_translat 0 0 -11300
+RPP qfs.82     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr630
+$start_translat 0 0 -11600
+RPP qds.40     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr636
+$start_translat 0 0 -11300
+RPP qfs.84     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr643
+$start_translat 0 0 -11600
+RPP qds.41     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr649
+$start_translat 0 0 -11300
+RPP qfs.86     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr656
+$start_translat 0 0 -11600
+RPP qds.42     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr662
+$start_translat 0 0 -11300
+RPP qfs.88     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr669
+$start_translat 0 0 -11600
+RPP qds.43     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr675
+$start_translat 0 0 -11300
+RPP qfs.90     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr682
+$start_translat 0 0 -11600
+RPP qds.44     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr688
+$start_translat 0 0 -11300
+RPP qfs.92     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr695
+$start_translat 0 0 -11600
+RPP qds.45     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr701
+$start_translat 0 0 -11300
+RPP qfs.94     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr708
+$start_translat 0 0 -11600
+RPP qds.46     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr714
+$start_translat 0 0 -11300
+RPP qfs.96     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr721
+$start_translat 0 0 -11600
+RPP qds.47     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr727
+$start_translat 0 0 -11300
+RPP qfs.98     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr734
+$start_translat 0 0 -11600
+RPP qds.48     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr740
+$start_translat 0 0 -11300
+RPP qfs.100    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr747
+$start_translat 0 0 -11600
+RPP qds.49     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr753
+$start_translat 0 0 -11300
+RPP qfs.102    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr760
+$start_translat 0 0 -11600
+RPP qds.50     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr766
+$start_translat 0 0 -11300
+RPP qfs.104    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr773
+$start_translat 0 0 -11600
+RPP qds.51     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr779
+$start_translat 0 0 -11300
+RPP qfs.106    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr786
+$start_translat 0 0 -11600
+RPP qds.52     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr792
+$start_translat 0 0 -11300
+RPP qfs.108    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr799
+$start_translat 0 0 -11600
+RPP qds.53     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr805
+$start_translat 0 0 -11300
+RPP qfs.110    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr812
+$start_translat 0 0 -11600
+RPP qds.54     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr818
+$start_translat 0 0 -11300
+RPP qfs.112    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr825
+$start_translat 0 0 -11600
+RPP qds.55     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr831
+$start_translat 0 0 -11300
+RPP qfs.114    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr838
+$start_translat 0 0 -11600
+RPP qds.56     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr844
+$start_translat 0 0 -11300
+RPP qfs.116    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr851
+$start_translat 0 0 -11600
+RPP qds.57     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr857
+$start_translat 0 0 -11300
+RPP qfs.118    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr864
+$start_translat 0 0 -11600
+RPP qds.58     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr870
+$start_translat 0 0 -11300
+RPP qfs.120    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr877
+$start_translat 0 0 -11600
+RPP qds.59     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr883
+$start_translat 0 0 -11300
+RPP qfs.122    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr890
+$start_translat 0 0 -11600
+RPP qds.60     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr896
+$start_translat 0 0 -11300
+RPP qfs.124    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr903
+$start_translat 0 0 -11600
+RPP qds.61     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr909
+$start_translat 0 0 -11300
+RPP qfs.126    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr916
+$start_translat 0 0 -11600
+RPP qds.62     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr922
+$start_translat 0 0 -11300
+RPP qfs.128    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr929
+$start_translat 0 0 -11600
+RPP qds.63     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr935
+$start_translat 0 0 -11300
+RPP qfs.130    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr942
+$start_translat 0 0 -11600
+RPP qds.64     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr948
+$start_translat 0 0 -11300
+RPP qfs.132    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr955
+$start_translat 0 0 -11600
+RPP qds.65     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr961
+$start_translat 0 0 -11300
+RPP qfs.134    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr968
+$start_translat 0 0 -11600
+RPP qds.66     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr974
+$start_translat 0 0 -11300
+RPP qfs.136    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr981
+$start_translat 0 0 -11600
+RPP qds.67     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr987
+$start_translat 0 0 -11300
+RPP qfs.138    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr994
+$start_translat 0 0 -11600
+RPP qds.68     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1000
+$start_translat 0 0 -11300
+RPP qfs.140    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1007
+$start_translat 0 0 -11600
+RPP qds.69     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1013
+$start_translat 0 0 -11300
+RPP qfs.142    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1020
+$start_translat 0 0 -11600
+RPP qds.70     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1026
+$start_translat 0 0 -11300
+RPP qfs.144    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1033
+$start_translat 0 0 -11600
+RPP qds.71     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1039
+$start_translat 0 0 -11300
+RPP qfs.146    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1046
+$start_translat 0 0 -11600
+RPP qds.72     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1052
+$start_translat 0 0 -11300
+RPP qfs.148    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1059
+$start_translat 0 0 -11600
+RPP qds.73     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1065
+$start_translat 0 0 -11300
+RPP qfs.150    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1072
+$start_translat 0 0 -11600
+RPP qds.74     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1078
+$start_translat 0 0 -11300
+RPP qfs.152    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1085
+$start_translat 0 0 -11600
+RPP qds.75     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1091
+$start_translat 0 0 -11300
+RPP qfs.154    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1098
+$start_translat 0 0 -11600
+RPP qds.76     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1104
+$start_translat 0 0 -11300
+RPP qfs.156    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1111
+$start_translat 0 0 -11600
+RPP qds.77     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1117
+$start_translat 0 0 -11300
+RPP qfs.158    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1124
+$start_translat 0 0 -11600
+RPP qds.78     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1130
+$start_translat 0 0 -11300
+RPP qfs.160    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1137
+$start_translat 0 0 -11600
+RPP qds.79     -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1143
+$start_translat 0 0 -11300
+RPP qfs.162    -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1146
+$start_translat 0 0 -11900
+RPP qds2a1.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1148
+$start_translat 0 0 -12500
+RPP qfs2a1.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1150
+$start_translat 0 0 -12200
+RPP qds2a2.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1152
+$start_translat 0 0 -10700
+RPP qfa.2      -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1156
+$start_translat 0 0 -12800
+RPP bac1.2     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1159
+$start_translat 0 0 -11000
+RPP qdaac1.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1162
+$start_translat 0 0 -12800
+RPP bac1.3     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1165
+$start_translat 0 0 -10700
+RPP qfaac1.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1169
+$start_translat 0 0 -12800
+RPP bac2.2     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1172
+$start_translat 0 0 -11000
+RPP qdaac2.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1175
+$start_translat 0 0 -12800
+RPP bac2.3     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1178
+$start_translat 0 0 -10700
+RPP qfaac2.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1182
+$start_translat 0 0 -12800
+RPP bac3.2     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1185
+$start_translat 0 0 -11000
+RPP qdaac3.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1188
+$start_translat 0 0 -12800
+RPP bac3.3     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1191
+$start_translat 0 0 -10700
+RPP qfaac3.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1195
+$start_translat 0 0 -12800
+RPP bac4.2     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1198
+$start_translat 0 0 -11000
+RPP qdaac4.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1201
+$start_translat 0 0 -12800
+RPP bac4.3     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1204
+$start_translat 0 0 -10700
+RPP qfaac4.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1208
+$start_translat 0 0 -12800
+RPP bac5.2     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1211
+$start_translat 0 0 -11000
+RPP qdaac5.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1214
+$start_translat 0 0 -12800
+RPP bac5.3     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1217
+$start_translat 0 0 -10700
+RPP qfaac5.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1221
+$start_translat 0 0 -12800
+RPP bac6.2     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1224
+$start_translat 0 0 -11000
+RPP qdaac6.1   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+$start_transform -frtr1227
+$start_translat 0 0 -12800
+RPP bac6.3     -63.4710704513537 63.47107045135365 -63.4710704513537
+              63.47107045135365 -0.1 59.41695576792215
+$end_translat
+$end_transform
+$start_transform -frtr1230
+$start_translat 0 0 -10700
+RPP qfaac6.3   -39.1 39.1 -39.1 39.1 -0.1 25.1
+$end_translat
+$end_transform
+*
+END
+BLKBODY      5 +blkbody -void
+VOID         5 +void -tcc_o -tdec_o -parko -tltuno -rgtnlo
+SHIELD       5 (+tcc_o -tcc)
+               | +tdec_o -tcc_o -tcc -tdec -tltun
+               | +rgtnlo -rgtnli -tltun
+               | +tltuno -tltun -rgtnlo -tdec_o -tcc_o
+THBOX        5 +thbox -target
+TARGET       5 +target
+*
+*---- Models and Tunnels regions ----
+*
+PARKBB       5 +parko -parki
+PARK         5 +parki -ttmbvol -ttmqvol -qfavol -qdavol -qfsvol -qdsvol -qdsa1vol -qdsa2vol -qfsa1vol -bvol
+TCC_CAV      5 (+tcc -thbox -tltun -bend0 )
+               | +tdec -dumpo  -bend0 -mqf0 -mqc -mqd0 -mqf1 -mqd1 -mqc1 -mqd1b -mqf1b -mqd0b -mqcb -mqf0b -bend1
+               | +tltun  -dumpo -dumpc  -bend0 -mqf0 -mqc -mqd0 -mqf1 -mqd1 -mqc1 -mqd1b -mqf1b -mqd0b -mqcb
+               -mqf0b -bend1 -rgtnli
+               | +rgtnli  -qds2a2.0
+               -qfs2a1.0 -qds2a1.0 -qfs.0 -qds.0 -qfs.2 -qds.1 -qfs.4 -qds.2 -qfs.6 -qds.3
+               -qfs.8 -qds.4 -qfs.10 -qds.5 -qfs.12 -qds.6 -qfs.14 -qds.7 -qfs.16 -qds.8
+               -qfs.18 -qds.9 -qfs.20 -qds.10 -qfs.22 -qds.11 -qfs.24 -qds.12 -qfs.26 -qds.13
+               -qfs.28 -qds.14 -qfs.30 -qds.15 -qfs.32 -qds.16 -qfs.34 -qds.17 -qfs.36 -qds.18
+               -qfs.38 -qds.19 -qfs.40 -qds.20 -qfs.42 -qds.21 -qfs.44 -qds.22 -qfs.46 -qds.23
+               -qfs.48 -qds.24 -qfs.50 -qds.25 -qfs.52 -qds.26 -qfs.54 -qds.27 -qfs.56 -qds.28
+               -qfs.58 -qds.29 -qfs.60 -qds.30 -qfs.62 -qds.31 -qfs.64 -qds.32 -qfs.66 -qds.33
+               -qfs.68 -qds.34 -qfs.70 -qds.35 -qfs.72 -qds.36 -qfs.74 -qds.37 -qfs.76 -qds.38
+               -qfs.78 -qds.39 -qfs.80 -qds2a1.1 -qfs2a1.1 -qds2a2.1 -qfa.0 -bac1.0 -qdaac1.0 -bac1.1
+               -qfaac1.1 -bac2.0 -qdaac2.0 -bac2.1 -qfaac2.1 -bac3.0 -qdaac3.0 -bac3.1 -qfaac3.1 -bac4.0
+               -qdaac4.0 -bac4.1 -qfaac4.1 -bac5.0 -qdaac5.0 -bac5.1 -qfaac5.1 -bac6.0 -qdaac6.0 -bac6.1
+               -qfaac6.1 -qds2a2.2 -qfs2a1.2 -qds2a1.2 -qfs.82 -qds.40 -qfs.84 -qds.41 -qfs.86 -qds.42
+               -qfs.88 -qds.43 -qfs.90 -qds.44 -qfs.92 -qds.45 -qfs.94 -qds.46 -qfs.96 -qds.47
+               -qfs.98 -qds.48 -qfs.100 -qds.49 -qfs.102 -qds.50 -qfs.104 -qds.51 -qfs.106 -qds.52
+               -qfs.108 -qds.53 -qfs.110 -qds.54 -qfs.112 -qds.55 -qfs.114 -qds.56 -qfs.116 -qds.57
+               -qfs.118 -qds.58 -qfs.120 -qds.59 -qfs.122 -qds.60 -qfs.124 -qds.61 -qfs.126 -qds.62
+               -qfs.128 -qds.63 -qfs.130 -qds.64 -qfs.132 -qds.65 -qfs.134 -qds.66 -qfs.136 -qds.67
+               -qfs.138 -qds.68 -qfs.140 -qds.69 -qfs.142 -qds.70 -qfs.144 -qds.71 -qfs.146 -qds.72
+               -qfs.148 -qds.73 -qfs.150 -qds.74 -qfs.152 -qds.75 -qfs.154 -qds.76 -qfs.156 -qds.77
+               -qfs.158 -qds.78 -qfs.160 -qds.79 -qfs.162 -qds2a1.3 -qfs2a1.3 -qds2a2.3 -qfa.2 -bac1.2
+               -qdaac1.1 -bac1.3 -qfaac1.3 -bac2.2 -qdaac2.1 -bac2.3 -qfaac2.3 -bac3.2 -qdaac3.1 -bac3.3
+               -qfaac3.3 -bac4.2 -qdaac4.1 -bac4.3 -qfaac4.3 -bac5.2 -qdaac5.1 -bac5.3 -qfaac5.3 -bac6.2
+               -qdaac6.1 -bac6.3 -qfaac6.3
+BDUMP        5 +dumpo -dumpc
+BDUMPC       5 +dumpc
+*
+*---- LEnuSTORM magnet models regions  ----
+*
+TTMBEnv      5 +ttmbvol -ttmbfe -ttmbvac
+TTMBFe       5 +ttmbfe -ttmbvac
+TTMBVac      5 +ttmbvac
+TTMQEnv      5 +ttmqvol -ttmqfe -ttmqvac
+TTMQFe       5 +ttmqfe -ttmqvac
+TTMQVac      5 +ttmqvac
+QFAEnv       5 +qfavol -qfafe -qfavac
+QFAFe        5 +qfafe -qfavac
+QFAVac       5 +qfavac
+QDAEnv       5 +qdavol -qdafe -qdavac
+QDAFe        5 +qdafe -qdavac
+QDAVac       5 +qdavac
+QFSEnv       5 +qfsvol -qfsfe -qfsvac
+QFSFe        5 +qfsfe -qfsvac
+QFSVac       5 +qfsvac
+QDSEnv       5 +qdsvol -qdsfe -qdsvac
+QDSFe        5 +qdsfe -qdsvac
+QDSVac       5 +qdsvac
+QDSA1Env     5 +qdsa1vol -qdsa1fe -qdsa1vac
+QDSA1Fe      5 +qdsa1fe -qdsa1vac
+QDSA1Vac     5 +qdsa1vac
+QDSA2Env     5 +qdsa2vol -qdsa2fe -qdsa2vac
+QDSA2Fe      5 +qdsa2fe -qdsa2vac
+QDSA2Vac     5 +qdsa2vac
+QFSA1Env     5 +qfsa1vol -qfsa1fe -qfsa1vac
+QFSA1Fe      5 +qfsa1fe -qfsa1vac
+QFSA1Vac     5 +qfsa1vac
+BEnv         5 +bvol -bfe -bvac
+BFe          5 +bfe -bvac
+BVac         5 +bvac
+*
+*---- TT line element regions ----
+*
+BEND0        5 +bend0
+MQF0         5 +mqf0
+MQC          5 +mqc
+MQD0         5 +mqd0
+MQF1         5 +mqf1
+MQD1         5 +mqd1
+MQC1         5 +mqc1
+MQD1B        5 +mqd1b
+MQF1B        5 +mqf1b
+MQD0B        5 +mqd0b
+MQCB         5 +mqcb
+MQF0B        5 +mqf0b
+BEND1        5 +bend1
+*
+*---- LEnuSTORM element regions ----
+*
+QDS2A2.0     5 +qds2a2.0
+QFS2A1.0     5 +qfs2a1.0
+QDS2A1.0     5 +qds2a1.0
+QFS.0        5 +qfs.0
+QDS.0        5 +qds.0
+QFS.2        5 +qfs.2
+QDS.1        5 +qds.1
+QFS.4        5 +qfs.4
+QDS.2        5 +qds.2
+QFS.6        5 +qfs.6
+QDS.3        5 +qds.3
+QFS.8        5 +qfs.8
+QDS.4        5 +qds.4
+QFS.10       5 +qfs.10
+QDS.5        5 +qds.5
+QFS.12       5 +qfs.12
+QDS.6        5 +qds.6
+QFS.14       5 +qfs.14
+QDS.7        5 +qds.7
+QFS.16       5 +qfs.16
+QDS.8        5 +qds.8
+QFS.18       5 +qfs.18
+QDS.9        5 +qds.9
+QFS.20       5 +qfs.20
+QDS.10       5 +qds.10
+QFS.22       5 +qfs.22
+QDS.11       5 +qds.11
+QFS.24       5 +qfs.24
+QDS.12       5 +qds.12
+QFS.26       5 +qfs.26
+QDS.13       5 +qds.13
+QFS.28       5 +qfs.28
+QDS.14       5 +qds.14
+QFS.30       5 +qfs.30
+QDS.15       5 +qds.15
+QFS.32       5 +qfs.32
+QDS.16       5 +qds.16
+QFS.34       5 +qfs.34
+QDS.17       5 +qds.17
+QFS.36       5 +qfs.36
+QDS.18       5 +qds.18
+QFS.38       5 +qfs.38
+QDS.19       5 +qds.19
+QFS.40       5 +qfs.40
+QDS.20       5 +qds.20
+QFS.42       5 +qfs.42
+QDS.21       5 +qds.21
+QFS.44       5 +qfs.44
+QDS.22       5 +qds.22
+QFS.46       5 +qfs.46
+QDS.23       5 +qds.23
+QFS.48       5 +qfs.48
+QDS.24       5 +qds.24
+QFS.50       5 +qfs.50
+QDS.25       5 +qds.25
+QFS.52       5 +qfs.52
+QDS.26       5 +qds.26
+QFS.54       5 +qfs.54
+QDS.27       5 +qds.27
+QFS.56       5 +qfs.56
+QDS.28       5 +qds.28
+QFS.58       5 +qfs.58
+QDS.29       5 +qds.29
+QFS.60       5 +qfs.60
+QDS.30       5 +qds.30
+QFS.62       5 +qfs.62
+QDS.31       5 +qds.31
+QFS.64       5 +qfs.64
+QDS.32       5 +qds.32
+QFS.66       5 +qfs.66
+QDS.33       5 +qds.33
+QFS.68       5 +qfs.68
+QDS.34       5 +qds.34
+QFS.70       5 +qfs.70
+QDS.35       5 +qds.35
+QFS.72       5 +qfs.72
+QDS.36       5 +qds.36
+QFS.74       5 +qfs.74
+QDS.37       5 +qds.37
+QFS.76       5 +qfs.76
+QDS.38       5 +qds.38
+QFS.78       5 +qfs.78
+QDS.39       5 +qds.39
+QFS.80       5 +qfs.80
+QDS2A1.1     5 +qds2a1.1
+QFS2A1.1     5 +qfs2a1.1
+QDS2A2.1     5 +qds2a2.1
+QFA.0        5 +qfa.0
+BAC1.0       5 +bac1.0
+QDAAC1.0     5 +qdaac1.0
+BAC1.1       5 +bac1.1
+QFAAC1.1     5 +qfaac1.1
+BAC2.0       5 +bac2.0
+QDAAC2.0     5 +qdaac2.0
+BAC2.1       5 +bac2.1
+QFAAC2.1     5 +qfaac2.1
+BAC3.0       5 +bac3.0
+QDAAC3.0     5 +qdaac3.0
+BAC3.1       5 +bac3.1
+QFAAC3.1     5 +qfaac3.1
+BAC4.0       5 +bac4.0
+QDAAC4.0     5 +qdaac4.0
+BAC4.1       5 +bac4.1
+QFAAC4.1     5 +qfaac4.1
+BAC5.0       5 +bac5.0
+QDAAC5.0     5 +qdaac5.0
+BAC5.1       5 +bac5.1
+QFAAC5.1     5 +qfaac5.1
+BAC6.0       5 +bac6.0
+QDAAC6.0     5 +qdaac6.0
+BAC6.1       5 +bac6.1
+QFAAC6.1     5 +qfaac6.1
+QDS2A2.2     5 +qds2a2.2
+QFS2A1.2     5 +qfs2a1.2
+QDS2A1.2     5 +qds2a1.2
+QFS.82       5 +qfs.82
+QDS.40       5 +qds.40
+QFS.84       5 +qfs.84
+QDS.41       5 +qds.41
+QFS.86       5 +qfs.86
+QDS.42       5 +qds.42
+QFS.88       5 +qfs.88
+QDS.43       5 +qds.43
+QFS.90       5 +qfs.90
+QDS.44       5 +qds.44
+QFS.92       5 +qfs.92
+QDS.45       5 +qds.45
+QFS.94       5 +qfs.94
+QDS.46       5 +qds.46
+QFS.96       5 +qfs.96
+QDS.47       5 +qds.47
+QFS.98       5 +qfs.98
+QDS.48       5 +qds.48
+QFS.100      5 +qfs.100
+QDS.49       5 +qds.49
+QFS.102      5 +qfs.102
+QDS.50       5 +qds.50
+QFS.104      5 +qfs.104
+QDS.51       5 +qds.51
+QFS.106      5 +qfs.106
+QDS.52       5 +qds.52
+QFS.108      5 +qfs.108
+QDS.53       5 +qds.53
+QFS.110      5 +qfs.110
+QDS.54       5 +qds.54
+QFS.112      5 +qfs.112
+QDS.55       5 +qds.55
+QFS.114      5 +qfs.114
+QDS.56       5 +qds.56
+QFS.116      5 +qfs.116
+QDS.57       5 +qds.57
+QFS.118      5 +qfs.118
+QDS.58       5 +qds.58
+QFS.120      5 +qfs.120
+QDS.59       5 +qds.59
+QFS.122      5 +qfs.122
+QDS.60       5 +qds.60
+QFS.124      5 +qfs.124
+QDS.61       5 +qds.61
+QFS.126      5 +qfs.126
+QDS.62       5 +qds.62
+QFS.128      5 +qfs.128
+QDS.63       5 +qds.63
+QFS.130      5 +qfs.130
+QDS.64       5 +qds.64
+QFS.132      5 +qfs.132
+QDS.65       5 +qds.65
+QFS.134      5 +qfs.134
+QDS.66       5 +qds.66
+QFS.136      5 +qfs.136
+QDS.67       5 +qds.67
+QFS.138      5 +qfs.138
+QDS.68       5 +qds.68
+QFS.140      5 +qfs.140
+QDS.69       5 +qds.69
+QFS.142      5 +qfs.142
+QDS.70       5 +qds.70
+QFS.144      5 +qfs.144
+QDS.71       5 +qds.71
+QFS.146      5 +qfs.146
+QDS.72       5 +qds.72
+QFS.148      5 +qfs.148
+QDS.73       5 +qds.73
+QFS.150      5 +qfs.150
+QDS.74       5 +qds.74
+QFS.152      5 +qfs.152
+QDS.75       5 +qds.75
+QFS.154      5 +qfs.154
+QDS.76       5 +qds.76
+QFS.156      5 +qfs.156
+QDS.77       5 +qds.77
+QFS.158      5 +qfs.158
+QDS.78       5 +qds.78
+QFS.160      5 +qfs.160
+QDS.79       5 +qds.79
+QFS.162      5 +qfs.162
+QDS2A1.3     5 +qds2a1.3
+QFS2A1.3     5 +qfs2a1.3
+QDS2A2.3     5 +qds2a2.3
+QFA.2        5 +qfa.2
+BAC1.2       5 +bac1.2
+QDAAC1.1     5 +qdaac1.1
+BAC1.3       5 +bac1.3
+QFAAC1.3     5 +qfaac1.3
+BAC2.2       5 +bac2.2
+QDAAC2.1     5 +qdaac2.1
+BAC2.3       5 +bac2.3
+QFAAC2.3     5 +qfaac2.3
+BAC3.2       5 +bac3.2
+QDAAC3.1     5 +qdaac3.1
+BAC3.3       5 +bac3.3
+QFAAC3.3     5 +qfaac3.3
+BAC4.2       5 +bac4.2
+QDAAC4.1     5 +qdaac4.1
+BAC4.3       5 +bac4.3
+QFAAC4.3     5 +qfaac4.3
+BAC5.2       5 +bac5.2
+QDAAC5.1     5 +qdaac5.1
+BAC5.3       5 +bac5.3
+QFAAC5.3     5 +qfaac5.3
+BAC6.2       5 +bac6.2
+QDAAC6.1     5 +qdaac6.1
+BAC6.3       5 +bac6.3
+QFAAC6.3     5 +qfaac6.3
+*
+END
+*
+*---- TT line element lattice ----
+*
+LATTICE   , BEND0, , , TTMBEnv,  , ,tltr3
+LATTICE   , MQF0, , , TTMQEnv,  , ,tltr6
+LATTICE   , MQC, , , TTMQEnv,  , ,tltr8
+LATTICE   , MQD0, , , TTMQEnv,  , ,tltr10
+LATTICE   , MQF1, , , TTMQEnv,  , ,tltr14
+LATTICE   , MQD1, , , TTMQEnv,  , ,tltr16
+LATTICE   , MQC1, , , TTMQEnv,  , ,tltr18
+LATTICE   , MQD1B, , , TTMQEnv,  , ,tltr23
+LATTICE   , MQF1B, , , TTMQEnv,  , ,tltr25
+LATTICE   , MQD0B, , , TTMQEnv,  , ,tltr29
+LATTICE   , MQCB, , , TTMQEnv,  , ,tltr31
+LATTICE   , MQF0B, , , TTMQEnv,  , ,tltr33
+LATTICE   , BEND1, , , TTMBEnv,  , ,tltr36
+*
+*---- LEnuSTORM element lattice ----
+*
+LATTICE   , QDS2A2.0, , , QDSA2Env,  , ,frtr1
+LATTICE   , QFS2A1.0, , , QFSA1Env,  , ,frtr3
+LATTICE   , QDS2A1.0, , , QDSA1Env,  , ,frtr5
+LATTICE   , QFS.0, , , QFSEnv,  , ,frtr7
+LATTICE   , QDS.0, , , QDSEnv,  , ,frtr14
+LATTICE   , QFS.2, , , QFSEnv,  , ,frtr20
+LATTICE   , QDS.1, , , QDSEnv,  , ,frtr27
+LATTICE   , QFS.4, , , QFSEnv,  , ,frtr33
+LATTICE   , QDS.2, , , QDSEnv,  , ,frtr40
+LATTICE   , QFS.6, , , QFSEnv,  , ,frtr46
+LATTICE   , QDS.3, , , QDSEnv,  , ,frtr53
+LATTICE   , QFS.8, , , QFSEnv,  , ,frtr59
+LATTICE   , QDS.4, , , QDSEnv,  , ,frtr66
+LATTICE   , QFS.10, , , QFSEnv,  , ,frtr72
+LATTICE   , QDS.5, , , QDSEnv,  , ,frtr79
+LATTICE   , QFS.12, , , QFSEnv,  , ,frtr85
+LATTICE   , QDS.6, , , QDSEnv,  , ,frtr92
+LATTICE   , QFS.14, , , QFSEnv,  , ,frtr98
+LATTICE   , QDS.7, , , QDSEnv,  , ,frtr105
+LATTICE   , QFS.16, , , QFSEnv,  , ,frtr111
+LATTICE   , QDS.8, , , QDSEnv,  , ,frtr118
+LATTICE   , QFS.18, , , QFSEnv,  , ,frtr124
+LATTICE   , QDS.9, , , QDSEnv,  , ,frtr131
+LATTICE   , QFS.20, , , QFSEnv,  , ,frtr137
+LATTICE   , QDS.10, , , QDSEnv,  , ,frtr144
+LATTICE   , QFS.22, , , QFSEnv,  , ,frtr150
+LATTICE   , QDS.11, , , QDSEnv,  , ,frtr157
+LATTICE   , QFS.24, , , QFSEnv,  , ,frtr163
+LATTICE   , QDS.12, , , QDSEnv,  , ,frtr170
+LATTICE   , QFS.26, , , QFSEnv,  , ,frtr176
+LATTICE   , QDS.13, , , QDSEnv,  , ,frtr183
+LATTICE   , QFS.28, , , QFSEnv,  , ,frtr189
+LATTICE   , QDS.14, , , QDSEnv,  , ,frtr196
+LATTICE   , QFS.30, , , QFSEnv,  , ,frtr202
+LATTICE   , QDS.15, , , QDSEnv,  , ,frtr209
+LATTICE   , QFS.32, , , QFSEnv,  , ,frtr215
+LATTICE   , QDS.16, , , QDSEnv,  , ,frtr222
+LATTICE   , QFS.34, , , QFSEnv,  , ,frtr228
+LATTICE   , QDS.17, , , QDSEnv,  , ,frtr235
+LATTICE   , QFS.36, , , QFSEnv,  , ,frtr241
+LATTICE   , QDS.18, , , QDSEnv,  , ,frtr248
+LATTICE   , QFS.38, , , QFSEnv,  , ,frtr254
+LATTICE   , QDS.19, , , QDSEnv,  , ,frtr261
+LATTICE   , QFS.40, , , QFSEnv,  , ,frtr267
+LATTICE   , QDS.20, , , QDSEnv,  , ,frtr274
+LATTICE   , QFS.42, , , QFSEnv,  , ,frtr280
+LATTICE   , QDS.21, , , QDSEnv,  , ,frtr287
+LATTICE   , QFS.44, , , QFSEnv,  , ,frtr293
+LATTICE   , QDS.22, , , QDSEnv,  , ,frtr300
+LATTICE   , QFS.46, , , QFSEnv,  , ,frtr306
+LATTICE   , QDS.23, , , QDSEnv,  , ,frtr313
+LATTICE   , QFS.48, , , QFSEnv,  , ,frtr319
+LATTICE   , QDS.24, , , QDSEnv,  , ,frtr326
+LATTICE   , QFS.50, , , QFSEnv,  , ,frtr332
+LATTICE   , QDS.25, , , QDSEnv,  , ,frtr339
+LATTICE   , QFS.52, , , QFSEnv,  , ,frtr345
+LATTICE   , QDS.26, , , QDSEnv,  , ,frtr352
+LATTICE   , QFS.54, , , QFSEnv,  , ,frtr358
+LATTICE   , QDS.27, , , QDSEnv,  , ,frtr365
+LATTICE   , QFS.56, , , QFSEnv,  , ,frtr371
+LATTICE   , QDS.28, , , QDSEnv,  , ,frtr378
+LATTICE   , QFS.58, , , QFSEnv,  , ,frtr384
+LATTICE   , QDS.29, , , QDSEnv,  , ,frtr391
+LATTICE   , QFS.60, , , QFSEnv,  , ,frtr397
+LATTICE   , QDS.30, , , QDSEnv,  , ,frtr404
+LATTICE   , QFS.62, , , QFSEnv,  , ,frtr410
+LATTICE   , QDS.31, , , QDSEnv,  , ,frtr417
+LATTICE   , QFS.64, , , QFSEnv,  , ,frtr423
+LATTICE   , QDS.32, , , QDSEnv,  , ,frtr430
+LATTICE   , QFS.66, , , QFSEnv,  , ,frtr436
+LATTICE   , QDS.33, , , QDSEnv,  , ,frtr443
+LATTICE   , QFS.68, , , QFSEnv,  , ,frtr449
+LATTICE   , QDS.34, , , QDSEnv,  , ,frtr456
+LATTICE   , QFS.70, , , QFSEnv,  , ,frtr462
+LATTICE   , QDS.35, , , QDSEnv,  , ,frtr469
+LATTICE   , QFS.72, , , QFSEnv,  , ,frtr475
+LATTICE   , QDS.36, , , QDSEnv,  , ,frtr482
+LATTICE   , QFS.74, , , QFSEnv,  , ,frtr488
+LATTICE   , QDS.37, , , QDSEnv,  , ,frtr495
+LATTICE   , QFS.76, , , QFSEnv,  , ,frtr501
+LATTICE   , QDS.38, , , QDSEnv,  , ,frtr508
+LATTICE   , QFS.78, , , QFSEnv,  , ,frtr514
+LATTICE   , QDS.39, , , QDSEnv,  , ,frtr521
+LATTICE   , QFS.80, , , QFSEnv,  , ,frtr527
+LATTICE   , QDS2A1.1, , , QDSA1Env,  , ,frtr530
+LATTICE   , QFS2A1.1, , , QFSA1Env,  , ,frtr532
+LATTICE   , QDS2A2.1, , , QDSA2Env,  , ,frtr534
+LATTICE   , QFA.0, , , QFAEnv,  , ,frtr536
+LATTICE   , BAC1.0, , , BEnv,  , ,frtr540
+LATTICE   , QDAAC1.0, , , QDAEnv,  , ,frtr543
+LATTICE   , BAC1.1, , , BEnv,  , ,frtr546
+LATTICE   , QFAAC1.1, , , QFAEnv,  , ,frtr549
+LATTICE   , BAC2.0, , , BEnv,  , ,frtr553
+LATTICE   , QDAAC2.0, , , QDAEnv,  , ,frtr556
+LATTICE   , BAC2.1, , , BEnv,  , ,frtr559
+LATTICE   , QFAAC2.1, , , QFAEnv,  , ,frtr562
+LATTICE   , BAC3.0, , , BEnv,  , ,frtr566
+LATTICE   , QDAAC3.0, , , QDAEnv,  , ,frtr569
+LATTICE   , BAC3.1, , , BEnv,  , ,frtr572
+LATTICE   , QFAAC3.1, , , QFAEnv,  , ,frtr575
+LATTICE   , BAC4.0, , , BEnv,  , ,frtr579
+LATTICE   , QDAAC4.0, , , QDAEnv,  , ,frtr582
+LATTICE   , BAC4.1, , , BEnv,  , ,frtr585
+LATTICE   , QFAAC4.1, , , QFAEnv,  , ,frtr588
+LATTICE   , BAC5.0, , , BEnv,  , ,frtr592
+LATTICE   , QDAAC5.0, , , QDAEnv,  , ,frtr595
+LATTICE   , BAC5.1, , , BEnv,  , ,frtr598
+LATTICE   , QFAAC5.1, , , QFAEnv,  , ,frtr601
+LATTICE   , BAC6.0, , , BEnv,  , ,frtr605
+LATTICE   , QDAAC6.0, , , QDAEnv,  , ,frtr608
+LATTICE   , BAC6.1, , , BEnv,  , ,frtr611
+LATTICE   , QFAAC6.1, , , QFAEnv,  , ,frtr614
+LATTICE   , QDS2A2.2, , , QDSA2Env,  , ,frtr617
+LATTICE   , QFS2A1.2, , , QFSA1Env,  , ,frtr619
+LATTICE   , QDS2A1.2, , , QDSA1Env,  , ,frtr621
+LATTICE   , QFS.82, , , QFSEnv,  , ,frtr623
+LATTICE   , QDS.40, , , QDSEnv,  , ,frtr630
+LATTICE   , QFS.84, , , QFSEnv,  , ,frtr636
+LATTICE   , QDS.41, , , QDSEnv,  , ,frtr643
+LATTICE   , QFS.86, , , QFSEnv,  , ,frtr649
+LATTICE   , QDS.42, , , QDSEnv,  , ,frtr656
+LATTICE   , QFS.88, , , QFSEnv,  , ,frtr662
+LATTICE   , QDS.43, , , QDSEnv,  , ,frtr669
+LATTICE   , QFS.90, , , QFSEnv,  , ,frtr675
+LATTICE   , QDS.44, , , QDSEnv,  , ,frtr682
+LATTICE   , QFS.92, , , QFSEnv,  , ,frtr688
+LATTICE   , QDS.45, , , QDSEnv,  , ,frtr695
+LATTICE   , QFS.94, , , QFSEnv,  , ,frtr701
+LATTICE   , QDS.46, , , QDSEnv,  , ,frtr708
+LATTICE   , QFS.96, , , QFSEnv,  , ,frtr714
+LATTICE   , QDS.47, , , QDSEnv,  , ,frtr721
+LATTICE   , QFS.98, , , QFSEnv,  , ,frtr727
+LATTICE   , QDS.48, , , QDSEnv,  , ,frtr734
+LATTICE   , QFS.100, , , QFSEnv,  , ,frtr740
+LATTICE   , QDS.49, , , QDSEnv,  , ,frtr747
+LATTICE   , QFS.102, , , QFSEnv,  , ,frtr753
+LATTICE   , QDS.50, , , QDSEnv,  , ,frtr760
+LATTICE   , QFS.104, , , QFSEnv,  , ,frtr766
+LATTICE   , QDS.51, , , QDSEnv,  , ,frtr773
+LATTICE   , QFS.106, , , QFSEnv,  , ,frtr779
+LATTICE   , QDS.52, , , QDSEnv,  , ,frtr786
+LATTICE   , QFS.108, , , QFSEnv,  , ,frtr792
+LATTICE   , QDS.53, , , QDSEnv,  , ,frtr799
+LATTICE   , QFS.110, , , QFSEnv,  , ,frtr805
+LATTICE   , QDS.54, , , QDSEnv,  , ,frtr812
+LATTICE   , QFS.112, , , QFSEnv,  , ,frtr818
+LATTICE   , QDS.55, , , QDSEnv,  , ,frtr825
+LATTICE   , QFS.114, , , QFSEnv,  , ,frtr831
+LATTICE   , QDS.56, , , QDSEnv,  , ,frtr838
+LATTICE   , QFS.116, , , QFSEnv,  , ,frtr844
+LATTICE   , QDS.57, , , QDSEnv,  , ,frtr851
+LATTICE   , QFS.118, , , QFSEnv,  , ,frtr857
+LATTICE   , QDS.58, , , QDSEnv,  , ,frtr864
+LATTICE   , QFS.120, , , QFSEnv,  , ,frtr870
+LATTICE   , QDS.59, , , QDSEnv,  , ,frtr877
+LATTICE   , QFS.122, , , QFSEnv,  , ,frtr883
+LATTICE   , QDS.60, , , QDSEnv,  , ,frtr890
+LATTICE   , QFS.124, , , QFSEnv,  , ,frtr896
+LATTICE   , QDS.61, , , QDSEnv,  , ,frtr903
+LATTICE   , QFS.126, , , QFSEnv,  , ,frtr909
+LATTICE   , QDS.62, , , QDSEnv,  , ,frtr916
+LATTICE   , QFS.128, , , QFSEnv,  , ,frtr922
+LATTICE   , QDS.63, , , QDSEnv,  , ,frtr929
+LATTICE   , QFS.130, , , QFSEnv,  , ,frtr935
+LATTICE   , QDS.64, , , QDSEnv,  , ,frtr942
+LATTICE   , QFS.132, , , QFSEnv,  , ,frtr948
+LATTICE   , QDS.65, , , QDSEnv,  , ,frtr955
+LATTICE   , QFS.134, , , QFSEnv,  , ,frtr961
+LATTICE   , QDS.66, , , QDSEnv,  , ,frtr968
+LATTICE   , QFS.136, , , QFSEnv,  , ,frtr974
+LATTICE   , QDS.67, , , QDSEnv,  , ,frtr981
+LATTICE   , QFS.138, , , QFSEnv,  , ,frtr987
+LATTICE   , QDS.68, , , QDSEnv,  , ,frtr994
+LATTICE   , QFS.140, , , QFSEnv,  , ,frtr1000
+LATTICE   , QDS.69, , , QDSEnv,  , ,frtr1007
+LATTICE   , QFS.142, , , QFSEnv,  , ,frtr1013
+LATTICE   , QDS.70, , , QDSEnv,  , ,frtr1020
+LATTICE   , QFS.144, , , QFSEnv,  , ,frtr1026
+LATTICE   , QDS.71, , , QDSEnv,  , ,frtr1033
+LATTICE   , QFS.146, , , QFSEnv,  , ,frtr1039
+LATTICE   , QDS.72, , , QDSEnv,  , ,frtr1046
+LATTICE   , QFS.148, , , QFSEnv,  , ,frtr1052
+LATTICE   , QDS.73, , , QDSEnv,  , ,frtr1059
+LATTICE   , QFS.150, , , QFSEnv,  , ,frtr1065
+LATTICE   , QDS.74, , , QDSEnv,  , ,frtr1072
+LATTICE   , QFS.152, , , QFSEnv,  , ,frtr1078
+LATTICE   , QDS.75, , , QDSEnv,  , ,frtr1085
+LATTICE   , QFS.154, , , QFSEnv,  , ,frtr1091
+LATTICE   , QDS.76, , , QDSEnv,  , ,frtr1098
+LATTICE   , QFS.156, , , QFSEnv,  , ,frtr1104
+LATTICE   , QDS.77, , , QDSEnv,  , ,frtr1111
+LATTICE   , QFS.158, , , QFSEnv,  , ,frtr1117
+LATTICE   , QDS.78, , , QDSEnv,  , ,frtr1124
+LATTICE   , QFS.160, , , QFSEnv,  , ,frtr1130
+LATTICE   , QDS.79, , , QDSEnv,  , ,frtr1137
+LATTICE   , QFS.162, , , QFSEnv,  , ,frtr1143
+LATTICE   , QDS2A1.3, , , QDSA1Env,  , ,frtr1146
+LATTICE   , QFS2A1.3, , , QFSA1Env,  , ,frtr1148
+LATTICE   , QDS2A2.3, , , QDSA2Env,  , ,frtr1150
+LATTICE   , QFA.2, , , QFAEnv,  , ,frtr1152
+LATTICE   , BAC1.2, , , BEnv,  , ,frtr1156
+LATTICE   , QDAAC1.1, , , QDAEnv,  , ,frtr1159
+LATTICE   , BAC1.3, , , BEnv,  , ,frtr1162
+LATTICE   , QFAAC1.3, , , QFAEnv,  , ,frtr1165
+LATTICE   , BAC2.2, , , BEnv,  , ,frtr1169
+LATTICE   , QDAAC2.1, , , QDAEnv,  , ,frtr1172
+LATTICE   , BAC2.3, , , BEnv,  , ,frtr1175
+LATTICE   , QFAAC2.3, , , QFAEnv,  , ,frtr1178
+LATTICE   , BAC3.2, , , BEnv,  , ,frtr1182
+LATTICE   , QDAAC3.1, , , QDAEnv,  , ,frtr1185
+LATTICE   , BAC3.3, , , BEnv,  , ,frtr1188
+LATTICE   , QFAAC3.3, , , QFAEnv,  , ,frtr1191
+LATTICE   , BAC4.2, , , BEnv,  , ,frtr1195
+LATTICE   , QDAAC4.1, , , QDAEnv,  , ,frtr1198
+LATTICE   , BAC4.3, , , BEnv,  , ,frtr1201
+LATTICE   , QFAAC4.3, , , QFAEnv,  , ,frtr1204
+LATTICE   , BAC5.2, , , BEnv,  , ,frtr1208
+LATTICE   , QDAAC5.1, , , QDAEnv,  , ,frtr1211
+LATTICE   , BAC5.3, , , BEnv,  , ,frtr1214
+LATTICE   , QFAAC5.3, , , QFAEnv,  , ,frtr1217
+LATTICE   , BAC6.2, , , BEnv,  , ,frtr1221
+LATTICE   , QDAAC6.1, , , QDAEnv,  , ,frtr1224
+LATTICE   , BAC6.3, , , BEnv,  , ,frtr1227
+LATTICE   , QFAAC6.3, , , QFAEnv,  , ,frtr1230
+GEOEND
+#if 0
+Black     , -, size,  , , , ,body
+#endif
+*..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+ASSIGNMA  , BLCKHOLE, BLKBODY
+ASSIGNMA  , VACUUM, VOID
+ASSIGNMA  , BLCKHOLE, PARKBB
+ASSIGNMA  , VACUUM, PARK
+ASSIGNMA  , IRON, SHIELD
+ASSIGNMA  , HELIUM, TCC_CAV
+ASSIGNMA  , VACUUM, THBOX
+ASSIGNMA  , VACUUM, TARGET
+ASSIGNMA  , IRON, BDUMP
+ASSIGNMA  , CARBON, BDUMPC
+ASSIGNMA  , HELIUM, TTMBEnv, BEnv, 3
+ASSIGNMA  , IRON, TTMBFe, BFe, 3
+ASSIGNMA  , VACUUM, TTMBVac, BVac, 3, 1
+MGNCREAT  , 2,  , , , , ,D1
+MGNFIELD  , $d1_b0, , 2, BEND0,  , ,D1
+MGNFIELD  , -$d1_b0, , 2, BEND1,  , ,D1
+*
+* --- Beam line element ROT-DEFI from the replicas to the models  -----
+*
+*! - ROTDEFI for tline punchthrough tunnel
+ROT-DEFI  , 200, , 29.5323277145495,  , , ,tltnl
+ROT-DEFI  , 0, , , 0, 0.0, 400.0, tltnl
+*! - ROTDEFI for LEnuSTORM tunnel
+ROT-DEFI  , 0, , , -1826.0451267159, 0.0, 1521.942926625236, rgtnl
+ROT-DEFI  , 200, , -2.89124868466982,  , , ,rgtnl
+*
+*---- TT line element ROT-DEFI ----
+*
+*! - ROTDEFI for element bend0 at s=0.35
+ROT-DEFI  , 0, , , -0.0, -0.0, -225.488053341134, tltr3
+ROT-DEFI  , 200, , 0,  , , ,tltr3
+ROT-DEFI  , 300, , 0, 0, 0, -10100, tltr3
+*! - ROTDEFI for element mqf0 at s=2.1535174283063605
+ROT-DEFI  , 0, , , 59.91105900252409, -0.0, -392.785735552073, tltr6
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr6
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr6
+*! - ROTDEFI for element mqc at s=3.453517428306361
+ROT-DEFI  , 0, , , 123.9899515671462, -0.0, -505.895839113565, tltr8
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr8
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr8
+*! - ROTDEFI for element mqd0 at s=4.7535174283063615
+ROT-DEFI  , 0, , , 188.0688441317683, -0.0, -619.005942675058, tltr10
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr10
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr10
+*! - ROTDEFI for element mqf1 at s=7.353517428306361
+ROT-DEFI  , 0, , , 316.2266292610124, -0.0, -845.226149798044, tltr14
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr14
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr14
+*! - ROTDEFI for element mqd1 at s=8.653517428306362
+ROT-DEFI  , 0, , , 380.3055218256345, -0.0, -958.336253359537, tltr16
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr16
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr16
+*! - ROTDEFI for element mqc1 at s=10.174630866753022
+ROT-DEFI  , 0, , , 455.283417672424, -0.0, -1090.68494455298, tltr18
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr18
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr18
+*! - ROTDEFI for element mqd1b at s=11.695744305199682
+ROT-DEFI  , 0, , , 530.2613135192136, -0.0, -1223.03363574643, tltr23
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr23
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr23
+*! - ROTDEFI for element mqf1b at s=12.995744305199683
+ROT-DEFI  , 0, , , 594.3402060838357, -0.0, -1336.14373930792, tltr25
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr25
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr25
+*! - ROTDEFI for element mqd0b at s=15.595744305199684
+ROT-DEFI  , 0, , , 722.49799121308, -0.0, -1562.36394643091, tltr29
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr29
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr29
+*! - ROTDEFI for element mqcb at s=16.895744305199685
+ROT-DEFI  , 0, , , 786.5768837777022, -0.0, -1675.4740499924, tltr31
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr31
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr31
+*! - ROTDEFI for element mqf0b at s=18.195744305199685
+ROT-DEFI  , 0, , , 850.6557763423243, -0.0, -1788.58415355389, tltr33
+ROT-DEFI  , 200, , -29.5323,  , , ,tltr33
+ROT-DEFI  , 300, , 0, 0, 0, -10400, tltr33
+*! - ROTDEFI for element bend1 at s=19.595744305199688
+ROT-DEFI  , 0, , , 919.6638144888406, -0.0, -1910.39503431242, tltr36
+ROT-DEFI  , 200, , 0,  , , ,tltr36
+ROT-DEFI  , 300, , 0, 0, 0, -10100, tltr36
+*
+*---- LEnuSTORM element ROT-DEFI ----
+*
+*! - ROTDEFI for element QDS2A2.0 at s=0.9944096426539861
+ROT-DEFI  , 0, , , 1144.98416, , -2309.80244, frtr1
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr1
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr1
+*! - ROTDEFI for element QFS2A1.0 at s=2.2388192853079723
+ROT-DEFI  , 0, , , 1138.70731, , -2434.08500, frtr3
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr3
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr3
+*! - ROTDEFI for element QDS2A1.0 at s=3.4832289279619584
+ROT-DEFI  , 0, , , 1132.43046, , -2558.36756, frtr5
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr5
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr5
+*! - ROTDEFI for element QFS.0 at s=4.7276385706159445
+ROT-DEFI  , 0, , , 1126.15360, , -2682.65012, frtr7
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr7
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr7
+*! - ROTDEFI for element QDS.0 at s=5.9776385706159445
+ROT-DEFI  , 0, , , 1119.84855, , -2807.49100, frtr14
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr14
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr14
+*! - ROTDEFI for element QFS.2 at s=7.2276385706159445
+ROT-DEFI  , 0, , , 1113.54350, , -2932.33188, frtr20
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr20
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr20
+*! - ROTDEFI for element QDS.1 at s=8.477638570615946
+ROT-DEFI  , 0, , , 1107.23846, , -3057.17277, frtr27
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr27
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr27
+*! - ROTDEFI for element QFS.4 at s=9.727638570615948
+ROT-DEFI  , 0, , , 1100.93341, , -3182.01365, frtr33
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr33
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr33
+*! - ROTDEFI for element QDS.2 at s=10.97763857061595
+ROT-DEFI  , 0, , , 1094.62836, , -3306.85454, frtr40
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr40
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr40
+*! - ROTDEFI for element QFS.6 at s=12.227638570615952
+ROT-DEFI  , 0, , , 1088.32331, , -3431.69542, frtr46
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr46
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr46
+*! - ROTDEFI for element QDS.3 at s=13.477638570615953
+ROT-DEFI  , 0, , , 1082.01826, , -3556.53631, frtr53
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr53
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr53
+*! - ROTDEFI for element QFS.8 at s=14.727638570615955
+ROT-DEFI  , 0, , , 1075.71321, , -3681.37719, frtr59
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr59
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr59
+*! - ROTDEFI for element QDS.4 at s=15.977638570615957
+ROT-DEFI  , 0, , , 1069.40816, , -3806.21807, frtr66
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr66
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr66
+*! - ROTDEFI for element QFS.10 at s=17.22763857061596
+ROT-DEFI  , 0, , , 1063.10311, , -3931.05896, frtr72
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr72
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr72
+*! - ROTDEFI for element QDS.5 at s=18.47763857061596
+ROT-DEFI  , 0, , , 1056.79806, , -4055.89984, frtr79
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr79
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr79
+*! - ROTDEFI for element QFS.12 at s=19.72763857061596
+ROT-DEFI  , 0, , , 1050.49301, , -4180.74073, frtr85
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr85
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr85
+*! - ROTDEFI for element QDS.6 at s=20.97763857061596
+ROT-DEFI  , 0, , , 1044.18796, , -4305.58161, frtr92
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr92
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr92
+*! - ROTDEFI for element QFS.14 at s=22.22763857061596
+ROT-DEFI  , 0, , , 1037.88291, , -4430.42249, frtr98
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr98
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr98
+*! - ROTDEFI for element QDS.7 at s=23.47763857061596
+ROT-DEFI  , 0, , , 1031.57786, , -4555.26338, frtr105
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr105
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr105
+*! - ROTDEFI for element QFS.16 at s=24.72763857061596
+ROT-DEFI  , 0, , , 1025.27281, , -4680.10426, frtr111
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr111
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr111
+*! - ROTDEFI for element QDS.8 at s=25.97763857061596
+ROT-DEFI  , 0, , , 1018.96776, , -4804.94515, frtr118
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr118
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr118
+*! - ROTDEFI for element QFS.18 at s=27.22763857061596
+ROT-DEFI  , 0, , , 1012.66271, , -4929.78603, frtr124
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr124
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr124
+*! - ROTDEFI for element QDS.9 at s=28.47763857061596
+ROT-DEFI  , 0, , , 1006.35766, , -5054.62692, frtr131
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr131
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr131
+*! - ROTDEFI for element QFS.20 at s=29.72763857061596
+ROT-DEFI  , 0, , , 1000.05261, , -5179.46780, frtr137
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr137
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr137
+*! - ROTDEFI for element QDS.10 at s=30.97763857061596
+ROT-DEFI  , 0, , , 993.74756, , -5304.30868, frtr144
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr144
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr144
+*! - ROTDEFI for element QFS.22 at s=32.22763857061595
+ROT-DEFI  , 0, , , 987.44252, , -5429.14957, frtr150
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr150
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr150
+*! - ROTDEFI for element QDS.11 at s=33.477638570615945
+ROT-DEFI  , 0, , , 981.13747, , -5553.99045, frtr157
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr157
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr157
+*! - ROTDEFI for element QFS.24 at s=34.72763857061594
+ROT-DEFI  , 0, , , 974.83242, , -5678.83134, frtr163
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr163
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr163
+*! - ROTDEFI for element QDS.12 at s=35.97763857061593
+ROT-DEFI  , 0, , , 968.52737, , -5803.67222, frtr170
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr170
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr170
+*! - ROTDEFI for element QFS.26 at s=37.22763857061592
+ROT-DEFI  , 0, , , 962.22232, , -5928.51310, frtr176
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr176
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr176
+*! - ROTDEFI for element QDS.13 at s=38.477638570615916
+ROT-DEFI  , 0, , , 955.91727, , -6053.35399, frtr183
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr183
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr183
+*! - ROTDEFI for element QFS.28 at s=39.72763857061591
+ROT-DEFI  , 0, , , 949.61222, , -6178.19487, frtr189
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr189
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr189
+*! - ROTDEFI for element QDS.14 at s=40.9776385706159
+ROT-DEFI  , 0, , , 943.30717, , -6303.03576, frtr196
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr196
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr196
+*! - ROTDEFI for element QFS.30 at s=42.227638570615895
+ROT-DEFI  , 0, , , 937.00212, , -6427.87664, frtr202
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr202
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr202
+*! - ROTDEFI for element QDS.15 at s=43.47763857061589
+ROT-DEFI  , 0, , , 930.69707, , -6552.71752, frtr209
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr209
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr209
+*! - ROTDEFI for element QFS.32 at s=44.72763857061588
+ROT-DEFI  , 0, , , 924.39202, , -6677.55841, frtr215
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr215
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr215
+*! - ROTDEFI for element QDS.16 at s=45.97763857061587
+ROT-DEFI  , 0, , , 918.08697, , -6802.39929, frtr222
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr222
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr222
+*! - ROTDEFI for element QFS.34 at s=47.227638570615866
+ROT-DEFI  , 0, , , 911.78192, , -6927.24018, frtr228
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr228
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr228
+*! - ROTDEFI for element QDS.17 at s=48.47763857061586
+ROT-DEFI  , 0, , , 905.47687, , -7052.08106, frtr235
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr235
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr235
+*! - ROTDEFI for element QFS.36 at s=49.72763857061585
+ROT-DEFI  , 0, , , 899.17182, , -7176.92195, frtr241
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr241
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr241
+*! - ROTDEFI for element QDS.18 at s=50.977638570615845
+ROT-DEFI  , 0, , , 892.86677, , -7301.76283, frtr248
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr248
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr248
+*! - ROTDEFI for element QFS.38 at s=52.22763857061584
+ROT-DEFI  , 0, , , 886.56172, , -7426.60371, frtr254
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr254
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr254
+*! - ROTDEFI for element QDS.19 at s=53.47763857061583
+ROT-DEFI  , 0, , , 880.25667, , -7551.44460, frtr261
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr261
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr261
+*! - ROTDEFI for element QFS.40 at s=54.727638570615824
+ROT-DEFI  , 0, , , 873.95162, , -7676.28548, frtr267
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr267
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr267
+*! - ROTDEFI for element QDS.20 at s=55.97763857061582
+ROT-DEFI  , 0, , , 867.64658, , -7801.12637, frtr274
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr274
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr274
+*! - ROTDEFI for element QFS.42 at s=57.22763857061581
+ROT-DEFI  , 0, , , 861.34153, , -7925.96725, frtr280
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr280
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr280
+*! - ROTDEFI for element QDS.21 at s=58.4776385706158
+ROT-DEFI  , 0, , , 855.03648, , -8050.80813, frtr287
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr287
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr287
+*! - ROTDEFI for element QFS.44 at s=59.727638570615795
+ROT-DEFI  , 0, , , 848.73143, , -8175.64902, frtr293
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr293
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr293
+*! - ROTDEFI for element QDS.22 at s=60.97763857061579
+ROT-DEFI  , 0, , , 842.42638, , -8300.48990, frtr300
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr300
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr300
+*! - ROTDEFI for element QFS.46 at s=62.22763857061578
+ROT-DEFI  , 0, , , 836.12133, , -8425.33079, frtr306
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr306
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr306
+*! - ROTDEFI for element QDS.23 at s=63.477638570615774
+ROT-DEFI  , 0, , , 829.81628, , -8550.17167, frtr313
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr313
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr313
+*! - ROTDEFI for element QFS.48 at s=64.72763857061577
+ROT-DEFI  , 0, , , 823.51123, , -8675.01255, frtr319
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr319
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr319
+*! - ROTDEFI for element QDS.24 at s=65.97763857061577
+ROT-DEFI  , 0, , , 817.20618, , -8799.85344, frtr326
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr326
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr326
+*! - ROTDEFI for element QFS.50 at s=67.22763857061577
+ROT-DEFI  , 0, , , 810.90113, , -8924.69432, frtr332
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr332
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr332
+*! - ROTDEFI for element QDS.25 at s=68.47763857061577
+ROT-DEFI  , 0, , , 804.59608, , -9049.53521, frtr339
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr339
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr339
+*! - ROTDEFI for element QFS.52 at s=69.72763857061577
+ROT-DEFI  , 0, , , 798.29103, , -9174.37609, frtr345
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr345
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr345
+*! - ROTDEFI for element QDS.26 at s=70.97763857061577
+ROT-DEFI  , 0, , , 791.98598, , -9299.21698, frtr352
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr352
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr352
+*! - ROTDEFI for element QFS.54 at s=72.22763857061577
+ROT-DEFI  , 0, , , 785.68093, , -9424.05786, frtr358
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr358
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr358
+*! - ROTDEFI for element QDS.27 at s=73.47763857061577
+ROT-DEFI  , 0, , , 779.37588, , -9548.89874, frtr365
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr365
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr365
+*! - ROTDEFI for element QFS.56 at s=74.72763857061577
+ROT-DEFI  , 0, , , 773.07083, , -9673.73963, frtr371
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr371
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr371
+*! - ROTDEFI for element QDS.28 at s=75.97763857061577
+ROT-DEFI  , 0, , , 766.76578, , -9798.58051, frtr378
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr378
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr378
+*! - ROTDEFI for element QFS.58 at s=77.22763857061577
+ROT-DEFI  , 0, , , 760.46073, , -9923.42140, frtr384
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr384
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr384
+*! - ROTDEFI for element QDS.29 at s=78.47763857061577
+ROT-DEFI  , 0, , , 754.15568, , -10048.26228, frtr391
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr391
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr391
+*! - ROTDEFI for element QFS.60 at s=79.72763857061577
+ROT-DEFI  , 0, , , 747.85064, , -10173.10316, frtr397
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr397
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr397
+*! - ROTDEFI for element QDS.30 at s=80.97763857061577
+ROT-DEFI  , 0, , , 741.54559, , -10297.94405, frtr404
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr404
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr404
+*! - ROTDEFI for element QFS.62 at s=82.22763857061577
+ROT-DEFI  , 0, , , 735.24054, , -10422.78493, frtr410
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr410
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr410
+*! - ROTDEFI for element QDS.31 at s=83.47763857061577
+ROT-DEFI  , 0, , , 728.93549, , -10547.62582, frtr417
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr417
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr417
+*! - ROTDEFI for element QFS.64 at s=84.72763857061577
+ROT-DEFI  , 0, , , 722.63044, , -10672.46670, frtr423
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr423
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr423
+*! - ROTDEFI for element QDS.32 at s=85.97763857061577
+ROT-DEFI  , 0, , , 716.32539, , -10797.30759, frtr430
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr430
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr430
+*! - ROTDEFI for element QFS.66 at s=87.22763857061577
+ROT-DEFI  , 0, , , 710.02034, , -10922.14847, frtr436
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr436
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr436
+*! - ROTDEFI for element QDS.33 at s=88.47763857061577
+ROT-DEFI  , 0, , , 703.71529, , -11046.98935, frtr443
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr443
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr443
+*! - ROTDEFI for element QFS.68 at s=89.72763857061577
+ROT-DEFI  , 0, , , 697.41024, , -11171.83024, frtr449
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr449
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr449
+*! - ROTDEFI for element QDS.34 at s=90.97763857061577
+ROT-DEFI  , 0, , , 691.10519, , -11296.67112, frtr456
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr456
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr456
+*! - ROTDEFI for element QFS.70 at s=92.22763857061577
+ROT-DEFI  , 0, , , 684.80014, , -11421.51201, frtr462
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr462
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr462
+*! - ROTDEFI for element QDS.35 at s=93.47763857061577
+ROT-DEFI  , 0, , , 678.49509, , -11546.35289, frtr469
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr469
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr469
+*! - ROTDEFI for element QFS.72 at s=94.72763857061577
+ROT-DEFI  , 0, , , 672.19004, , -11671.19377, frtr475
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr475
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr475
+*! - ROTDEFI for element QDS.36 at s=95.97763857061577
+ROT-DEFI  , 0, , , 665.88499, , -11796.03466, frtr482
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr482
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr482
+*! - ROTDEFI for element QFS.74 at s=97.22763857061577
+ROT-DEFI  , 0, , , 659.57994, , -11920.87554, frtr488
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr488
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr488
+*! - ROTDEFI for element QDS.37 at s=98.47763857061577
+ROT-DEFI  , 0, , , 653.27489, , -12045.71643, frtr495
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr495
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr495
+*! - ROTDEFI for element QFS.76 at s=99.72763857061577
+ROT-DEFI  , 0, , , 646.96984, , -12170.55731, frtr501
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr501
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr501
+*! - ROTDEFI for element QDS.38 at s=100.97763857061577
+ROT-DEFI  , 0, , , 640.66479, , -12295.39819, frtr508
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr508
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr508
+*! - ROTDEFI for element QFS.78 at s=102.22763857061577
+ROT-DEFI  , 0, , , 634.35974, , -12420.23908, frtr514
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr514
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr514
+*! - ROTDEFI for element QDS.39 at s=103.47763857061577
+ROT-DEFI  , 0, , , 628.05470, , -12545.07996, frtr521
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr521
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr521
+*! - ROTDEFI for element QFS.80 at s=104.72763857061577
+ROT-DEFI  , 0, , , 621.74965, , -12669.92085, frtr527
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr527
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr527
+*! - ROTDEFI for element QDS2A1.1 at s=105.97204821326976
+ROT-DEFI  , 0, , , 615.47279, , -12794.20341, frtr530
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr530
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr530
+*! - ROTDEFI for element QFS2A1.1 at s=107.21645785592375
+ROT-DEFI  , 0, , , 609.19594, , -12918.48597, frtr532
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr532
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr532
+*! - ROTDEFI for element QDS2A2.1 at s=108.46086749857774
+ROT-DEFI  , 0, , , 602.91909, , -13042.76853, frtr534
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr534
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr534
+*! - ROTDEFI for element QFA.0 at s=109.70527714123173
+ROT-DEFI  , 0, , , 596.64224, , -13167.05109, frtr536
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr536
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr536
+*! - ROTDEFI for element Bac1.0 at s=110.15527714123174
+ROT-DEFI  , 0, , , 594.37242, , -13211.99381, frtr540
+ROT-DEFI  , 200, , -4.60875,  , , ,frtr540
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr540
+*! - ROTDEFI for element QDAac1.0 at s=110.95527714123173
+ROT-DEFI  , 0, , , 603.37509, , -13291.18418, frtr543
+ROT-DEFI  , 200, , -12.1088,  , , ,frtr543
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr543
+*! - ROTDEFI for element Bac1.1 at s=111.40527714123174
+ROT-DEFI  , 0, , , 612.81465, , -13335.18298, frtr546
+ROT-DEFI  , 200, , -19.6088,  , , ,frtr546
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr546
+*! - ROTDEFI for element QFAac1.1 at s=112.20527714123173
+ROT-DEFI  , 0, , , 642.00654, , -13409.34495, frtr549
+ROT-DEFI  , 200, , -27.1088,  , , ,frtr549
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr549
+*! - ROTDEFI for element Bac2.0 at s=112.65527714123174
+ROT-DEFI  , 0, , , 662.51218, , -13449.40139, frtr553
+ROT-DEFI  , 200, , -34.6088,  , , ,frtr553
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr553
+*! - ROTDEFI for element QDAac2.0 at s=113.45527714123173
+ROT-DEFI  , 0, , , 709.90391, , -13513.48093, frtr556
+ROT-DEFI  , 200, , -42.1088,  , , ,frtr556
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr556
+*! - ROTDEFI for element Bac2.1 at s=113.90527714123174
+ROT-DEFI  , 0, , , 740.07821, , -13546.86524, frtr559
+ROT-DEFI  , 200, , -49.6088,  , , ,frtr559
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr559
+*! - ROTDEFI for element QFAac2.1 at s=114.70527714123173
+ROT-DEFI  , 0, , , 802.44011, , -13596.49544, frtr562
+ROT-DEFI  , 200, , -57.1088,  , , ,frtr562
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr562
+*! - ROTDEFI for element Bac3.0 at s=115.15527714123174
+ROT-DEFI  , 0, , , 840.22673, , -13620.93252, frtr566
+ROT-DEFI  , 200, , -64.6088,  , , ,frtr566
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr566
+*! - ROTDEFI for element QDAac3.0 at s=115.95527714123173
+ROT-DEFI  , 0, , , 913.30895, , -13652.73116, frtr569
+ROT-DEFI  , 200, , -72.1088,  , , ,frtr569
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr569
+*! - ROTDEFI for element Bac3.1 at s=116.40527714123174
+ROT-DEFI  , 0, , , 956.13281, , -13666.55567, frtr572
+ROT-DEFI  , 200, , -79.6088,  , , ,frtr572
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr572
+*! - ROTDEFI for element QFAac3.1 at s=117.20527714123173
+ROT-DEFI  , 0, , , 1034.95490, , -13678.35573, frtr575
+ROT-DEFI  , 200, , -87.1088,  , , ,frtr575
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr575
+*! - ROTDEFI for element Bac4.0 at s=117.65527714123174
+ROT-DEFI  , 0, , , 1079.89762, , -13680.62555, frtr579
+ROT-DEFI  , 200, , -94.6088,  , , ,frtr579
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr579
+*! - ROTDEFI for element QDAac4.0 at s=118.45527714123173
+ROT-DEFI  , 0, , , 1159.08799, , -13671.62288, frtr582
+ROT-DEFI  , 200, , -102.109,  , , ,frtr582
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr582
+*! - ROTDEFI for element Bac4.1 at s=118.90527714123174
+ROT-DEFI  , 0, , , 1203.08679, , -13662.18332, frtr585
+ROT-DEFI  , 200, , -109.609,  , , ,frtr585
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr585
+*! - ROTDEFI for element QFAac4.1 at s=119.70527714123173
+ROT-DEFI  , 0, , , 1277.24876, , -13632.99143, frtr588
+ROT-DEFI  , 200, , -117.109,  , , ,frtr588
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr588
+*! - ROTDEFI for element Bac5.0 at s=120.15527714123174
+ROT-DEFI  , 0, , , 1317.30520, , -13612.48579, frtr592
+ROT-DEFI  , 200, , -124.609,  , , ,frtr592
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr592
+*! - ROTDEFI for element QDAac5.0 at s=120.95527714123173
+ROT-DEFI  , 0, , , 1381.38474, , -13565.09406, frtr595
+ROT-DEFI  , 200, , -132.109,  , , ,frtr595
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr595
+*! - ROTDEFI for element Bac5.1 at s=121.40527714123174
+ROT-DEFI  , 0, , , 1414.76905, , -13534.91976, frtr598
+ROT-DEFI  , 200, , -139.609,  , , ,frtr598
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr598
+*! - ROTDEFI for element QFAac5.1 at s=122.20527714123173
+ROT-DEFI  , 0, , , 1464.39925, , -13472.55786, frtr601
+ROT-DEFI  , 200, , -147.109,  , , ,frtr601
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr601
+*! - ROTDEFI for element Bac6.0 at s=122.65527714123174
+ROT-DEFI  , 0, , , 1488.83633, , -13434.77124, frtr605
+ROT-DEFI  , 200, , -154.609,  , , ,frtr605
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr605
+*! - ROTDEFI for element QDAac6.0 at s=123.45527714123173
+ROT-DEFI  , 0, , , 1520.63497, , -13361.68902, frtr608
+ROT-DEFI  , 200, , -162.109,  , , ,frtr608
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr608
+*! - ROTDEFI for element Bac6.1 at s=123.90527714123174
+ROT-DEFI  , 0, , , 1534.45948, , -13318.86516, frtr611
+ROT-DEFI  , 200, , -169.609,  , , ,frtr611
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr611
+*! - ROTDEFI for element QFAac6.1 at s=124.70527714123173
+ROT-DEFI  , 0, , , 1546.25954, , -13240.04307, frtr614
+ROT-DEFI  , 200, , -177.109,  , , ,frtr614
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr614
+*! - ROTDEFI for element QDS2A2.2 at s=125.94968678388572
+ROT-DEFI  , 0, , , 1552.53639, , -13115.76051, frtr617
+ROT-DEFI  , 200, , -177.109,  , , ,frtr617
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr617
+*! - ROTDEFI for element QFS2A1.2 at s=127.19409642653972
+ROT-DEFI  , 0, , , 1558.81324, , -12991.47795, frtr619
+ROT-DEFI  , 200, , -177.109,  , , ,frtr619
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr619
+*! - ROTDEFI for element QDS2A1.2 at s=128.4385060691937
+ROT-DEFI  , 0, , , 1565.09010, , -12867.19539, frtr621
+ROT-DEFI  , 200, , -177.109,  , , ,frtr621
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr621
+*! - ROTDEFI for element QFS.82 at s=129.68291571184767
+ROT-DEFI  , 0, , , 1571.36695, , -12742.91283, frtr623
+ROT-DEFI  , 200, , -177.109,  , , ,frtr623
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr623
+*! - ROTDEFI for element QDS.40 at s=130.9329157118477
+ROT-DEFI  , 0, , , 1577.67200, , -12618.07195, frtr630
+ROT-DEFI  , 200, , -177.109,  , , ,frtr630
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr630
+*! - ROTDEFI for element QFS.84 at s=132.18291571184773
+ROT-DEFI  , 0, , , 1583.97705, , -12493.23106, frtr636
+ROT-DEFI  , 200, , -177.109,  , , ,frtr636
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr636
+*! - ROTDEFI for element QDS.41 at s=133.43291571184776
+ROT-DEFI  , 0, , , 1590.28210, , -12368.39018, frtr643
+ROT-DEFI  , 200, , -177.109,  , , ,frtr643
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr643
+*! - ROTDEFI for element QFS.86 at s=134.68291571184778
+ROT-DEFI  , 0, , , 1596.58715, , -12243.54930, frtr649
+ROT-DEFI  , 200, , -177.109,  , , ,frtr649
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr649
+*! - ROTDEFI for element QDS.42 at s=135.9329157118478
+ROT-DEFI  , 0, , , 1602.89220, , -12118.70841, frtr656
+ROT-DEFI  , 200, , -177.109,  , , ,frtr656
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr656
+*! - ROTDEFI for element QFS.88 at s=137.18291571184784
+ROT-DEFI  , 0, , , 1609.19724, , -11993.86753, frtr662
+ROT-DEFI  , 200, , -177.109,  , , ,frtr662
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr662
+*! - ROTDEFI for element QDS.43 at s=138.43291571184787
+ROT-DEFI  , 0, , , 1615.50229, , -11869.02664, frtr669
+ROT-DEFI  , 200, , -177.109,  , , ,frtr669
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr669
+*! - ROTDEFI for element QFS.90 at s=139.6829157118479
+ROT-DEFI  , 0, , , 1621.80734, , -11744.18576, frtr675
+ROT-DEFI  , 200, , -177.109,  , , ,frtr675
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr675
+*! - ROTDEFI for element QDS.44 at s=140.93291571184793
+ROT-DEFI  , 0, , , 1628.11239, , -11619.34488, frtr682
+ROT-DEFI  , 200, , -177.109,  , , ,frtr682
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr682
+*! - ROTDEFI for element QFS.92 at s=142.18291571184795
+ROT-DEFI  , 0, , , 1634.41744, , -11494.50399, frtr688
+ROT-DEFI  , 200, , -177.109,  , , ,frtr688
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr688
+*! - ROTDEFI for element QDS.45 at s=143.43291571184798
+ROT-DEFI  , 0, , , 1640.72249, , -11369.66311, frtr695
+ROT-DEFI  , 200, , -177.109,  , , ,frtr695
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr695
+*! - ROTDEFI for element QFS.94 at s=144.682915711848
+ROT-DEFI  , 0, , , 1647.02754, , -11244.82222, frtr701
+ROT-DEFI  , 200, , -177.109,  , , ,frtr701
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr701
+*! - ROTDEFI for element QDS.46 at s=145.93291571184804
+ROT-DEFI  , 0, , , 1653.33259, , -11119.98134, frtr708
+ROT-DEFI  , 200, , -177.109,  , , ,frtr708
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr708
+*! - ROTDEFI for element QFS.96 at s=147.18291571184807
+ROT-DEFI  , 0, , , 1659.63764, , -10995.14046, frtr714
+ROT-DEFI  , 200, , -177.109,  , , ,frtr714
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr714
+*! - ROTDEFI for element QDS.47 at s=148.4329157118481
+ROT-DEFI  , 0, , , 1665.94269, , -10870.29957, frtr721
+ROT-DEFI  , 200, , -177.109,  , , ,frtr721
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr721
+*! - ROTDEFI for element QFS.98 at s=149.68291571184812
+ROT-DEFI  , 0, , , 1672.24774, , -10745.45869, frtr727
+ROT-DEFI  , 200, , -177.109,  , , ,frtr727
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr727
+*! - ROTDEFI for element QDS.48 at s=150.93291571184815
+ROT-DEFI  , 0, , , 1678.55279, , -10620.61780, frtr734
+ROT-DEFI  , 200, , -177.109,  , , ,frtr734
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr734
+*! - ROTDEFI for element QFS.100 at s=152.18291571184818
+ROT-DEFI  , 0, , , 1684.85784, , -10495.77692, frtr740
+ROT-DEFI  , 200, , -177.109,  , , ,frtr740
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr740
+*! - ROTDEFI for element QDS.49 at s=153.4329157118482
+ROT-DEFI  , 0, , , 1691.16289, , -10370.93603, frtr747
+ROT-DEFI  , 200, , -177.109,  , , ,frtr747
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr747
+*! - ROTDEFI for element QFS.102 at s=154.68291571184824
+ROT-DEFI  , 0, , , 1697.46794, , -10246.09515, frtr753
+ROT-DEFI  , 200, , -177.109,  , , ,frtr753
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr753
+*! - ROTDEFI for element QDS.50 at s=155.93291571184827
+ROT-DEFI  , 0, , , 1703.77299, , -10121.25427, frtr760
+ROT-DEFI  , 200, , -177.109,  , , ,frtr760
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr760
+*! - ROTDEFI for element QFS.104 at s=157.1829157118483
+ROT-DEFI  , 0, , , 1710.07804, , -9996.41338, frtr766
+ROT-DEFI  , 200, , -177.109,  , , ,frtr766
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr766
+*! - ROTDEFI for element QDS.51 at s=158.43291571184832
+ROT-DEFI  , 0, , , 1716.38309, , -9871.57250, frtr773
+ROT-DEFI  , 200, , -177.109,  , , ,frtr773
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr773
+*! - ROTDEFI for element QFS.106 at s=159.68291571184835
+ROT-DEFI  , 0, , , 1722.68814, , -9746.73161, frtr779
+ROT-DEFI  , 200, , -177.109,  , , ,frtr779
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr779
+*! - ROTDEFI for element QDS.52 at s=160.93291571184838
+ROT-DEFI  , 0, , , 1728.99318, , -9621.89073, frtr786
+ROT-DEFI  , 200, , -177.109,  , , ,frtr786
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr786
+*! - ROTDEFI for element QFS.108 at s=162.1829157118484
+ROT-DEFI  , 0, , , 1735.29823, , -9497.04985, frtr792
+ROT-DEFI  , 200, , -177.109,  , , ,frtr792
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr792
+*! - ROTDEFI for element QDS.53 at s=163.43291571184844
+ROT-DEFI  , 0, , , 1741.60328, , -9372.20896, frtr799
+ROT-DEFI  , 200, , -177.109,  , , ,frtr799
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr799
+*! - ROTDEFI for element QFS.110 at s=164.68291571184847
+ROT-DEFI  , 0, , , 1747.90833, , -9247.36808, frtr805
+ROT-DEFI  , 200, , -177.109,  , , ,frtr805
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr805
+*! - ROTDEFI for element QDS.54 at s=165.9329157118485
+ROT-DEFI  , 0, , , 1754.21338, , -9122.52719, frtr812
+ROT-DEFI  , 200, , -177.109,  , , ,frtr812
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr812
+*! - ROTDEFI for element QFS.112 at s=167.18291571184852
+ROT-DEFI  , 0, , , 1760.51843, , -8997.68631, frtr818
+ROT-DEFI  , 200, , -177.109,  , , ,frtr818
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr818
+*! - ROTDEFI for element QDS.55 at s=168.43291571184855
+ROT-DEFI  , 0, , , 1766.82348, , -8872.84543, frtr825
+ROT-DEFI  , 200, , -177.109,  , , ,frtr825
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr825
+*! - ROTDEFI for element QFS.114 at s=169.68291571184858
+ROT-DEFI  , 0, , , 1773.12853, , -8748.00454, frtr831
+ROT-DEFI  , 200, , -177.109,  , , ,frtr831
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr831
+*! - ROTDEFI for element QDS.56 at s=170.9329157118486
+ROT-DEFI  , 0, , , 1779.43358, , -8623.16366, frtr838
+ROT-DEFI  , 200, , -177.109,  , , ,frtr838
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr838
+*! - ROTDEFI for element QFS.116 at s=172.18291571184864
+ROT-DEFI  , 0, , , 1785.73863, , -8498.32277, frtr844
+ROT-DEFI  , 200, , -177.109,  , , ,frtr844
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr844
+*! - ROTDEFI for element QDS.57 at s=173.43291571184866
+ROT-DEFI  , 0, , , 1792.04368, , -8373.48189, frtr851
+ROT-DEFI  , 200, , -177.109,  , , ,frtr851
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr851
+*! - ROTDEFI for element QFS.118 at s=174.6829157118487
+ROT-DEFI  , 0, , , 1798.34873, , -8248.64100, frtr857
+ROT-DEFI  , 200, , -177.109,  , , ,frtr857
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr857
+*! - ROTDEFI for element QDS.58 at s=175.93291571184872
+ROT-DEFI  , 0, , , 1804.65378, , -8123.80012, frtr864
+ROT-DEFI  , 200, , -177.109,  , , ,frtr864
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr864
+*! - ROTDEFI for element QFS.120 at s=177.18291571184875
+ROT-DEFI  , 0, , , 1810.95883, , -7998.95924, frtr870
+ROT-DEFI  , 200, , -177.109,  , , ,frtr870
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr870
+*! - ROTDEFI for element QDS.59 at s=178.43291571184878
+ROT-DEFI  , 0, , , 1817.26388, , -7874.11835, frtr877
+ROT-DEFI  , 200, , -177.109,  , , ,frtr877
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr877
+*! - ROTDEFI for element QFS.122 at s=179.6829157118488
+ROT-DEFI  , 0, , , 1823.56893, , -7749.27747, frtr883
+ROT-DEFI  , 200, , -177.109,  , , ,frtr883
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr883
+*! - ROTDEFI for element QDS.60 at s=180.93291571184884
+ROT-DEFI  , 0, , , 1829.87398, , -7624.43658, frtr890
+ROT-DEFI  , 200, , -177.109,  , , ,frtr890
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr890
+*! - ROTDEFI for element QFS.124 at s=182.18291571184886
+ROT-DEFI  , 0, , , 1836.17903, , -7499.59570, frtr896
+ROT-DEFI  , 200, , -177.109,  , , ,frtr896
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr896
+*! - ROTDEFI for element QDS.61 at s=183.4329157118489
+ROT-DEFI  , 0, , , 1842.48408, , -7374.75482, frtr903
+ROT-DEFI  , 200, , -177.109,  , , ,frtr903
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr903
+*! - ROTDEFI for element QFS.126 at s=184.68291571184892
+ROT-DEFI  , 0, , , 1848.78912, , -7249.91393, frtr909
+ROT-DEFI  , 200, , -177.109,  , , ,frtr909
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr909
+*! - ROTDEFI for element QDS.62 at s=185.93291571184895
+ROT-DEFI  , 0, , , 1855.09417, , -7125.07305, frtr916
+ROT-DEFI  , 200, , -177.109,  , , ,frtr916
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr916
+*! - ROTDEFI for element QFS.128 at s=187.18291571184898
+ROT-DEFI  , 0, , , 1861.39922, , -7000.23216, frtr922
+ROT-DEFI  , 200, , -177.109,  , , ,frtr922
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr922
+*! - ROTDEFI for element QDS.63 at s=188.432915711849
+ROT-DEFI  , 0, , , 1867.70427, , -6875.39128, frtr929
+ROT-DEFI  , 200, , -177.109,  , , ,frtr929
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr929
+*! - ROTDEFI for element QFS.130 at s=189.68291571184903
+ROT-DEFI  , 0, , , 1874.00932, , -6750.55039, frtr935
+ROT-DEFI  , 200, , -177.109,  , , ,frtr935
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr935
+*! - ROTDEFI for element QDS.64 at s=190.93291571184906
+ROT-DEFI  , 0, , , 1880.31437, , -6625.70951, frtr942
+ROT-DEFI  , 200, , -177.109,  , , ,frtr942
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr942
+*! - ROTDEFI for element QFS.132 at s=192.1829157118491
+ROT-DEFI  , 0, , , 1886.61942, , -6500.86863, frtr948
+ROT-DEFI  , 200, , -177.109,  , , ,frtr948
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr948
+*! - ROTDEFI for element QDS.65 at s=193.43291571184912
+ROT-DEFI  , 0, , , 1892.92447, , -6376.02774, frtr955
+ROT-DEFI  , 200, , -177.109,  , , ,frtr955
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr955
+*! - ROTDEFI for element QFS.134 at s=194.68291571184915
+ROT-DEFI  , 0, , , 1899.22952, , -6251.18686, frtr961
+ROT-DEFI  , 200, , -177.109,  , , ,frtr961
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr961
+*! - ROTDEFI for element QDS.66 at s=195.93291571184918
+ROT-DEFI  , 0, , , 1905.53457, , -6126.34597, frtr968
+ROT-DEFI  , 200, , -177.109,  , , ,frtr968
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr968
+*! - ROTDEFI for element QFS.136 at s=197.1829157118492
+ROT-DEFI  , 0, , , 1911.83962, , -6001.50509, frtr974
+ROT-DEFI  , 200, , -177.109,  , , ,frtr974
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr974
+*! - ROTDEFI for element QDS.67 at s=198.43291571184923
+ROT-DEFI  , 0, , , 1918.14467, , -5876.66421, frtr981
+ROT-DEFI  , 200, , -177.109,  , , ,frtr981
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr981
+*! - ROTDEFI for element QFS.138 at s=199.68291571184926
+ROT-DEFI  , 0, , , 1924.44972, , -5751.82332, frtr987
+ROT-DEFI  , 200, , -177.109,  , , ,frtr987
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr987
+*! - ROTDEFI for element QDS.68 at s=200.9329157118493
+ROT-DEFI  , 0, , , 1930.75477, , -5626.98244, frtr994
+ROT-DEFI  , 200, , -177.109,  , , ,frtr994
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr994
+*! - ROTDEFI for element QFS.140 at s=202.18291571184932
+ROT-DEFI  , 0, , , 1937.05982, , -5502.14155, frtr1000
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1000
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1000
+*! - ROTDEFI for element QDS.69 at s=203.43291571184935
+ROT-DEFI  , 0, , , 1943.36487, , -5377.30067, frtr1007
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1007
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1007
+*! - ROTDEFI for element QFS.142 at s=204.68291571184938
+ROT-DEFI  , 0, , , 1949.66992, , -5252.45979, frtr1013
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1013
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1013
+*! - ROTDEFI for element QDS.70 at s=205.9329157118494
+ROT-DEFI  , 0, , , 1955.97497, , -5127.61890, frtr1020
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1020
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1020
+*! - ROTDEFI for element QFS.144 at s=207.18291571184943
+ROT-DEFI  , 0, , , 1962.28002, , -5002.77802, frtr1026
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1026
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1026
+*! - ROTDEFI for element QDS.71 at s=208.43291571184946
+ROT-DEFI  , 0, , , 1968.58506, , -4877.93713, frtr1033
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1033
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1033
+*! - ROTDEFI for element QFS.146 at s=209.6829157118495
+ROT-DEFI  , 0, , , 1974.89011, , -4753.09625, frtr1039
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1039
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1039
+*! - ROTDEFI for element QDS.72 at s=210.93291571184952
+ROT-DEFI  , 0, , , 1981.19516, , -4628.25536, frtr1046
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1046
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1046
+*! - ROTDEFI for element QFS.148 at s=212.18291571184955
+ROT-DEFI  , 0, , , 1987.50021, , -4503.41448, frtr1052
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1052
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1052
+*! - ROTDEFI for element QDS.73 at s=213.43291571184957
+ROT-DEFI  , 0, , , 1993.80526, , -4378.57360, frtr1059
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1059
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1059
+*! - ROTDEFI for element QFS.150 at s=214.6829157118496
+ROT-DEFI  , 0, , , 2000.11031, , -4253.73271, frtr1065
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1065
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1065
+*! - ROTDEFI for element QDS.74 at s=215.93291571184963
+ROT-DEFI  , 0, , , 2006.41536, , -4128.89183, frtr1072
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1072
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1072
+*! - ROTDEFI for element QFS.152 at s=217.18291571184966
+ROT-DEFI  , 0, , , 2012.72041, , -4004.05094, frtr1078
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1078
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1078
+*! - ROTDEFI for element QDS.75 at s=218.4329157118497
+ROT-DEFI  , 0, , , 2019.02546, , -3879.21006, frtr1085
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1085
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1085
+*! - ROTDEFI for element QFS.154 at s=219.68291571184972
+ROT-DEFI  , 0, , , 2025.33051, , -3754.36918, frtr1091
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1091
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1091
+*! - ROTDEFI for element QDS.76 at s=220.93291571184974
+ROT-DEFI  , 0, , , 2031.63556, , -3629.52829, frtr1098
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1098
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1098
+*! - ROTDEFI for element QFS.156 at s=222.18291571184977
+ROT-DEFI  , 0, , , 2037.94061, , -3504.68741, frtr1104
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1104
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1104
+*! - ROTDEFI for element QDS.77 at s=223.4329157118498
+ROT-DEFI  , 0, , , 2044.24566, , -3379.84652, frtr1111
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1111
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1111
+*! - ROTDEFI for element QFS.158 at s=224.68291571184983
+ROT-DEFI  , 0, , , 2050.55071, , -3255.00564, frtr1117
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1117
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1117
+*! - ROTDEFI for element QDS.78 at s=225.93291571184986
+ROT-DEFI  , 0, , , 2056.85576, , -3130.16476, frtr1124
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1124
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1124
+*! - ROTDEFI for element QFS.160 at s=227.1829157118499
+ROT-DEFI  , 0, , , 2063.16081, , -3005.32387, frtr1130
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1130
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1130
+*! - ROTDEFI for element QDS.79 at s=228.43291571184992
+ROT-DEFI  , 0, , , 2069.46586, , -2880.48299, frtr1137
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1137
+ROT-DEFI  , 300, , 0, 0, 0, -11600, frtr1137
+*! - ROTDEFI for element QFS.162 at s=229.68291571184994
+ROT-DEFI  , 0, , , 2075.77091, , -2755.64210, frtr1143
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1143
+ROT-DEFI  , 300, , 0, 0, 0, -11300, frtr1143
+*! - ROTDEFI for element QDS2A1.3 at s=230.92732535450392
+ROT-DEFI  , 0, , , 2082.04776, , -2631.35954, frtr1146
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1146
+ROT-DEFI  , 300, , 0, 0, 0, -11900, frtr1146
+*! - ROTDEFI for element QFS2A1.3 at s=232.1717349971579
+ROT-DEFI  , 0, , , 2088.32461, , -2507.07698, frtr1148
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1148
+ROT-DEFI  , 300, , 0, 0, 0, -12500, frtr1148
+*! - ROTDEFI for element QDS2A2.3 at s=233.41614463981188
+ROT-DEFI  , 0, , , 2094.60146, , -2382.79442, frtr1150
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1150
+ROT-DEFI  , 300, , 0, 0, 0, -12200, frtr1150
+*! - ROTDEFI for element QFA.2 at s=234.66055428246585
+ROT-DEFI  , 0, , , 2100.87831, , -2258.51186, frtr1152
+ROT-DEFI  , 200, , -177.109,  , , ,frtr1152
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1152
+*! - ROTDEFI for element Bac1.2 at s=235.11055428246587
+ROT-DEFI  , 0, , , 2103.14813, , -2213.56914, frtr1156
+ROT-DEFI  , 200, , 175.391,  , , ,frtr1156
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1156
+*! - ROTDEFI for element QDAac1.1 at s=235.91055428246588
+ROT-DEFI  , 0, , , 2094.14546, , -2134.37877, frtr1159
+ROT-DEFI  , 200, , 167.891,  , , ,frtr1159
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1159
+*! - ROTDEFI for element Bac1.3 at s=236.3605542824659
+ROT-DEFI  , 0, , , 2084.70590, , -2090.37997, frtr1162
+ROT-DEFI  , 200, , 160.391,  , , ,frtr1162
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1162
+*! - ROTDEFI for element QFAac1.3 at s=237.1605542824659
+ROT-DEFI  , 0, , , 2055.51401, , -2016.21800, frtr1165
+ROT-DEFI  , 200, , 152.891,  , , ,frtr1165
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1165
+*! - ROTDEFI for element Bac2.2 at s=237.61055428246593
+ROT-DEFI  , 0, , , 2035.00837, , -1976.16156, frtr1169
+ROT-DEFI  , 200, , 145.391,  , , ,frtr1169
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1169
+*! - ROTDEFI for element QDAac2.1 at s=238.41055428246594
+ROT-DEFI  , 0, , , 1987.61664, , -1912.08202, frtr1172
+ROT-DEFI  , 200, , 137.891,  , , ,frtr1172
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1172
+*! - ROTDEFI for element Bac2.3 at s=238.86055428246596
+ROT-DEFI  , 0, , , 1957.44234, , -1878.69771, frtr1175
+ROT-DEFI  , 200, , 130.391,  , , ,frtr1175
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1175
+*! - ROTDEFI for element QFAac2.3 at s=239.66055428246597
+ROT-DEFI  , 0, , , 1895.08044, , -1829.06751, frtr1178
+ROT-DEFI  , 200, , 122.891,  , , ,frtr1178
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1178
+*! - ROTDEFI for element Bac3.2 at s=240.11055428246598
+ROT-DEFI  , 0, , , 1857.29382, , -1804.63043, frtr1182
+ROT-DEFI  , 200, , 115.391,  , , ,frtr1182
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1182
+*! - ROTDEFI for element QDAac3.1 at s=240.910554282466
+ROT-DEFI  , 0, , , 1784.21160, , -1772.83179, frtr1185
+ROT-DEFI  , 200, , 107.891,  , , ,frtr1185
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1185
+*! - ROTDEFI for element Bac3.3 at s=241.360554282466
+ROT-DEFI  , 0, , , 1741.38774, , -1759.00728, frtr1188
+ROT-DEFI  , 200, , 100.391,  , , ,frtr1188
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1188
+*! - ROTDEFI for element QFAac3.3 at s=242.16055428246602
+ROT-DEFI  , 0, , , 1662.56565, , -1747.20722, frtr1191
+ROT-DEFI  , 200, , 92.8912,  , , ,frtr1191
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1191
+*! - ROTDEFI for element Bac4.2 at s=242.61055428246604
+ROT-DEFI  , 0, , , 1617.62294, , -1744.93740, frtr1195
+ROT-DEFI  , 200, , 85.3912,  , , ,frtr1195
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1195
+*! - ROTDEFI for element QDAac4.1 at s=243.41055428246605
+ROT-DEFI  , 0, , , 1538.43256, , -1753.94007, frtr1198
+ROT-DEFI  , 200, , 77.8912,  , , ,frtr1198
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1198
+*! - ROTDEFI for element Bac4.3 at s=243.86055428246607
+ROT-DEFI  , 0, , , 1494.43376, , -1763.37963, frtr1201
+ROT-DEFI  , 200, , 70.3912,  , , ,frtr1201
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1201
+*! - ROTDEFI for element QFAac4.3 at s=244.66055428246608
+ROT-DEFI  , 0, , , 1420.27179, , -1792.57152, frtr1204
+ROT-DEFI  , 200, , 62.8912,  , , ,frtr1204
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1204
+*! - ROTDEFI for element Bac5.2 at s=245.1105542824661
+ROT-DEFI  , 0, , , 1380.21535, , -1813.07716, frtr1208
+ROT-DEFI  , 200, , 55.3912,  , , ,frtr1208
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1208
+*! - ROTDEFI for element QDAac5.1 at s=245.9105542824661
+ROT-DEFI  , 0, , , 1316.13581, , -1860.46889, frtr1211
+ROT-DEFI  , 200, , 47.8912,  , , ,frtr1211
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1211
+*! - ROTDEFI for element Bac5.3 at s=246.36055428246613
+ROT-DEFI  , 0, , , 1282.75150, , -1890.64319, frtr1214
+ROT-DEFI  , 200, , 40.3912,  , , ,frtr1214
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1214
+*! - ROTDEFI for element QFAac5.3 at s=247.16055428246614
+ROT-DEFI  , 0, , , 1233.12130, , -1953.00509, frtr1217
+ROT-DEFI  , 200, , 32.8912,  , , ,frtr1217
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1217
+*! - ROTDEFI for element Bac6.2 at s=247.61055428246615
+ROT-DEFI  , 0, , , 1208.68422, , -1990.79171, frtr1221
+ROT-DEFI  , 200, , 25.3912,  , , ,frtr1221
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1221
+*! - ROTDEFI for element QDAac6.1 at s=248.41055428246617
+ROT-DEFI  , 0, , , 1176.88558, , -2063.87393, frtr1224
+ROT-DEFI  , 200, , 17.8912,  , , ,frtr1224
+ROT-DEFI  , 300, , 0, 0, 0, -11000, frtr1224
+*! - ROTDEFI for element Bac6.3 at s=248.86055428246618
+ROT-DEFI  , 0, , , 1163.06107, , -2106.69779, frtr1227
+ROT-DEFI  , 200, , 10.3912,  , , ,frtr1227
+ROT-DEFI  , 300, , 0, 0, 0, -12800, frtr1227
+*! - ROTDEFI for element QFAac6.3 at s=249.6605542824662
+ROT-DEFI  , 0, , , 1151.26101, , -2185.51988, frtr1230
+ROT-DEFI  , 200, , 2.89125,  , , ,frtr1230
+ROT-DEFI  , 300, , 0, 0, 0, -10700, frtr1230
+*USRBIN    , 10, MUON+, -21, 100, 10, 1300, Beam
+*USRBIN    , -1000, -10, 0, 100, 20, 500,  &
+*
+USRBIN    , 10, BEAMPART, -21, 400, 100, 1400, Beampart
+USRBIN    , -800, -100, -200, 400, 100, 600,  &
+USRBIN    , 10, BEAMPART, -22, 100, 10, 1300, Beampar1
+USRBIN    , -1000, -10, 0, 400, 20, 500,  &
+*
+*Set the random number seed
+RANDOMIZ  , 1.0
+*Set the number of primary histories to be simulated in the run
+START     , 10000.0
+STOP

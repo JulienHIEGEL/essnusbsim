@@ -1,0 +1,54 @@
+# flair project file
+Version: 300
+Mode: fluka
+Title: ESS-Transfer Line and LEnuStorm Simulation
+Input: ttline_and_lenustorm.flair
+Page: Flair
+
+# Run information
+Run: <default>
+	Last:     1
+	Status:   4
+	StartRun: 1734484826.104318
+	open:     1
+End
+Geometry: Geometry
+	Frame.bsplit: 0.5309597523219814
+	Frame.tsplit: 0.6265377855887522
+	Frame.vsplit: 0.7392825896762905
+End
+
+# Plots information
+Plot: Red
+	Type: Geometry
+	basisu: 0 0 1
+	basisv: 1 0 0
+	coord: Z-X
+	extends: 16484.4662360951 14046.138938672702
+	group: Geometry
+	layer: Lattice
+	origin: -274.038 0 12096.7
+End
+Plot: Green
+	Type: Geometry
+	basisu: 0.836516 0.0173376 0.547668
+	basisv: 0.224144 0.901221 -0.370891
+	extends: 100.0 142.75741710296683
+	group: Geometry
+	layer: 3D
+End
+Plot: Blue
+	Type: Geometry
+	basisu: 0 0 1
+	coord: Z-Y
+	extends: 100.0 33.29238329238329
+	group: Geometry
+	layer: Media
+End
+Plot: Magenta
+	Type: Geometry
+	coord: X-Y
+	extends: 100.0 37.691237830319885
+	group: Geometry
+	layer: Media
+End

@@ -5,8 +5,8 @@
 PARKBB       5 +parko -parki
 PARK         5 +parki -ttmbvol -ttmqvol -qfavol -qdavol -qfsvol -qdsvol -qdsa1vol -qdsa2vol -qfsa1vol -bvol
 TCC_CAV      5 (+tcc -thbox -tltun -bend0 )
-               | +tdec  -bend0 -mqf0t -mqct -mqd0t -mqf1t -mqd1t -mqc1t -mqd1t.hs1 -mqf1t.hs1 -mqd0t.hs1 -mqct.hs1 -mqf0t.hs1 -bend1
-               | +tltun   -bend0 -mqf0t -mqct -mqd0t -mqf1t -mqd1t -mqc1t -mqd1t.hs1 -mqf1t.hs1 -mqd0t.hs1 -mqct.hs1 -mqf0t.hs1 -bend1 -rgtnli
+               | +tdec -dumpo  -bend0 -mqf0 -mqc -mqd0 -mqf1 -mqd1 -mqc1 -mqd1b -mqf1b -mqd0b -mqcb -mqf0b -bend1
+               | +tltun  -dumpo -dumpc  -bend0 -mqf0 -mqc -mqd0 -mqf1 -mqd1 -mqc1 -mqd1b -mqf1b -mqd0b -mqcb -mqf0b -bend1 -rgtnli
                | +rgtnli  -qds2a2.0
  -qfs2a1.0 -qds2a1.0 -qfs.0 -qds.0 -qfs.2 -qds.1 -qfs.4 -qds.2 -qfs.6 -qds.3
  -qfs.8 -qds.4 -qfs.10 -qds.5 -qfs.12 -qds.6 -qfs.14 -qds.7 -qfs.16 -qds.8
@@ -31,5 +31,7 @@ TCC_CAV      5 (+tcc -thbox -tltun -bend0 )
  -qdaac1.1 -bac1.3 -qfaac1.3 -bac2.2 -qdaac2.1 -bac2.3 -qfaac2.3 -bac3.2 -qdaac3.1 -bac3.3
  -qfaac3.3 -bac4.2 -qdaac4.1 -bac4.3 -qfaac4.3 -bac5.2 -qdaac5.1 -bac5.3 -qfaac5.3 -bac6.2
  -qdaac6.1 -bac6.3 -qfaac6.3
+BDUMP        5 +dumpo -dumpc
+BDUMPC       5 +dumpc
 ! TNRING 5
 ! +rgtnlo -rgtnli

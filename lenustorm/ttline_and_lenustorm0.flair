@@ -1,0 +1,10 @@
+# flair project file
+Version: 300
+Mode: fluka
+Title: ESS-Transfer Line and LEnuStorm Simulation
+Input: ttline_and_lenustorm.flair
+Page: Input
+
+# Run information
+Run: <default>
+End

@@ -1,7 +1,7 @@
 # flair project file
 Version: 300
 Mode: fluka
-md5: c519528efdb4d1f512f4f0c9c62e05c2
+md5: 431c153035dbd97aaff4e966afd57f81
 Input:
 TITLE
 	ESS-LEnuStorm Simulation
@@ -10,7 +10,7 @@ TITLE
 #define pbeam 0.816924
 #define ptline 0.7
 #define beam_rad 20
-#define clight 2.99792458E+10
+#define clight 29979245800
 *
 * Facility
 *    target chamber : 3m x 5m
@@ -57,7 +57,7 @@ TITLE
 #define d1_xsiz =d1_apx+60
 #define d1_ysiz =d1_apy+100
 #define q1_len 80
-#define q1_ap 2*beam_rad*1.1
+#define q1_ap 44
 #define q1_fe 40
 #define q1_rad =q1_ap+q1_fe
 #define drift0 200
@@ -112,18 +112,19 @@ RPP tdec -$tdec_rad $tdec_rad -$tdec_rad $tdec_rad =tcc_len-2 =tdec_len-bdump_le
 $start_transform -trttl
 RPP ttline =-1.2*d1_xsiz/2 =1.2*d1_xsiz/2 =-1.2*d1_ysiz/2 =1.2*d1_ysiz/2 0 2000
 $end_transform
-YZP ttline_u =-tdec_rad
+YZP ttline_u -$tdec_rad
 YZP ttline_d =-tdec_wid-1000
 *Target & Horn box
 RCC thbox 0 0 $thbox_zmin 0 0 $thbox_zmax $thbox_rad
 RCC target 0 0 0 0 0 $tgt_len $tgt_rad
 *
-*---- Magnet Models -----
+*---- Transfer Line Magnet Models - bodies
+*
 $start_translat -1000 0 0
 RPP mbhavol =-d1_xsiz/2-0.1 =d1_xsiz/2+0.1 =-d1_ysiz/2-0.1 =d1_ysiz/2+0.1 -0.1 \
 	 =d1_len+0.1
 RPP mbhafe =-d1_xsiz/2 =d1_xsiz/2 =-d1_ysiz/2 =d1_ysiz/2 0 $d1_len
-RPP mbhavac =-d1_apx/2 =d1_apx/2 =-d1_apy/2 =d1_apy/2 0 =d1_len
+RPP mbhavac =-d1_apx/2 =d1_apx/2 =-d1_apy/2 =d1_apy/2 0 $d1_len
 $end_translat
 $start_translat -1500 0 0
 RCC mqavol 0 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
@@ -131,48 +132,49 @@ RCC mqafe 0 0 0 0 0 $q1_len $q1_rad
 RCC mqavac 0 0 -0.05 0 0 =q1_len+0.1 $q1_ap
 $end_translat
 *
-* --- insert lenustorm_models.bodies
+* --- Ring Magnet Models - bodies
+#include ring_magnet_models_bodies.inp
 *
-$start_translat -1000 0 -400
-RPP qfavol -78.1 78.1 -78.1 78.1 -0.1 25.1
-RPP qfafe -78.0 78.0 -78.0 78.0 0 25.0
-RCC qfavac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -550
-RPP qdavol -78.1 78.1 -78.1 78.1 -0.1 25.1
-RPP qdafe -78.0 78.0 -78.0 78.0 0 25.0
-RCC qdavac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -700
-RPP qfsvol -78.1 78.1 -78.1 78.1 -0.1 25.1
-RPP qfsfe -78.0 78.0 -78.0 78.0 0 25.0
-RCC qfsvac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -850
-RPP qdsvol -78.1 78.1 -78.1 78.1 -0.1 25.1
-RPP qdsfe -78.0 78.0 -78.0 78.0 0 25.0
-RCC qdsvac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1000
-RPP qdsa1vol -78.1 78.1 -78.1 78.1 -0.1 25.1
-RPP qdsa1fe -78.0 78.0 -78.0 78.0 0 25.0
-RCC qdsa1vac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1150
-RPP qdsa2vol -78.1 78.1 -78.1 78.1 -0.1 25.1
-RPP qdsa2fe -78.0 78.0 -78.0 78.0 0 25.0
-RCC qdsa2vac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1300
-RPP qfsa1vol -78.1 78.1 -78.1 78.1 -0.1 25.1
-RPP qfsa1fe -78.0 78.0 -78.0 78.0 0 25.0
-RCC qfsa1vac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
-$end_translat
-$start_translat -1000 0 -1450
-RPP bvol -45.1 45.1 -40.1 40.1 -0.1 60.1
-RPP bfe -45.0 45.0 -40.0 40.0 0 60.0
-RPP bvac -25.0 25.0 -20.0 20.0 -0.1 60.1
-$end_translat
+!$start_translat -1000 0 -400
+!RPP qfavol -78.1 78.1 -78.1 78.1 -0.1 25.1
+!RPP qfafe -78.0 78.0 -78.0 78.0 0 25.0
+!RCC qfavac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+!$end_translat
+!$start_translat -1000 0 -550
+!RPP qdavol -78.1 78.1 -78.1 78.1 -0.1 25.1
+!RPP qdafe -78.0 78.0 -78.0 78.0 0 25.0
+!RCC qdavac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+!$end_translat
+!$start_translat -1000 0 -700
+!RPP qfsvol -78.1 78.1 -78.1 78.1 -0.1 25.1
+!RPP qfsfe -78.0 78.0 -78.0 78.0 0 25.0
+!RCC qfsvac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+!$end_translat
+!$start_translat -1000 0 -850
+!RPP qdsvol -78.1 78.1 -78.1 78.1 -0.1 25.1
+!RPP qdsfe -78.0 78.0 -78.0 78.0 0 25.0
+!RCC qdsvac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+!$end_translat
+!$start_translat -1000 0 -1000
+!RPP qdsa1vol -78.1 78.1 -78.1 78.1 -0.1 25.1
+!RPP qdsa1fe -78.0 78.0 -78.0 78.0 0 25.0
+!RCC qdsa1vac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+!$end_translat
+!$start_translat -1000 0 -1150
+!RPP qdsa2vol -78.1 78.1 -78.1 78.1 -0.1 25.1
+!RPP qdsa2fe -78.0 78.0 -78.0 78.0 0 25.0
+!RCC qdsa2vac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+!$end_translat
+!$start_translat -1000 0 -1300
+!RPP qfsa1vol -78.1 78.1 -78.1 78.1 -0.1 25.1
+!RPP qfsa1fe -78.0 78.0 -78.0 78.0 0 25.0
+!RCC qfsa1vac 0.0 0.0 -0.1 0.0 0.0 25.1 20.0
+!$end_translat
+!$start_translat -1000 0 -1450
+!RPP bvol -45.1 45.1 -40.1 40.1 -0.1 60.1
+!RPP bfe -45.0 45.0 -40.0 40.0 0 60.0
+!RPP bvac -25.0 25.0 -20.0 20.0 -0.1 60.1
+!$end_translat
 *
 * ---- Beam lines ----
 *Transfer line magnets
@@ -222,32 +224,51 @@ RCC Q7rp 0 0 -0.1 0 0 =q1_len+0.2 =q1_rad+0.1
 $end_translat
 $end_transform
 *
-$start_transform -frtr1
-$start_translat -1000 0 -1150
-RPP qds2a2.0 -78.1 78.1 -78.1 78.1 -0.1 25.1
-$end_translat
-$end_transform
+!$start_transform -frtr1
+!$start_translat -1000 0 -1150
+!RPP qds2a2.0 -78.1 78.1 -78.1 78.1 -0.1 25.1
+!$end_translat
+!$end_transform
+!$start_transform -frtr3
+!$start_translat -1000 0 -1300
+!RPP qfs2a1.0 -78.1 78.1 -78.1 78.1 -0.1 25.1
+!$end_translat
+!$end_transform
+!$start_transform -frtr5
+!$start_translat -1000 0 -1000
+!RPP qds2a1.0 -78.1 78.1 -78.1 78.1 -0.1 25.1
+!$end_translat
+!$end_transform
+!$start_transform -frtr7
+!$start_translat -1000 0 -700
+!RPP qfs.0 -78.1 78.1 -78.1 78.1 -0.1 25.1
+!$end_translat
+!$end_transform
 *
 END
 REGION BLKBODY 5
 	+blkbody -void
 REGION VOID 5
-	+void -tcc_o -tdec_o -mbhavol -mqavol -qdavol -qfavol -qdsvol -qfsvol -qdsa1vol -qdsa2vol -qfsa1vol -bvol -ttline -D2rp -qds2a2.0 
+	+void -tcc_o -tdec_o -mbhavol -mqavol -qdavol -qfavol -qdsvol -qfsvol -qdsa1vol -qdsa2vol
+	-qfsa1vol -bvol -ttline -D2rp 
+	@select=1
 REGION SHIELD 5
 	+tcc_o -tcc | +tdec_o -tcc_o -tcc -tdec -(+ttline +ttline_u)
 REGION TCC_CAV 5
 	(+tcc -thbox -D1rp
 	| +tdec -D1rp
-	| (+ttline +ttline_u)) -Q1rp -Q2rp -Q3rp -Q4rp -Q5rp -Q6rp -Q7rp -D2rp  
+	| (+ttline +ttline_u)) -Q1rp -Q2rp -Q3rp -Q4rp -Q5rp -Q6rp -Q7rp -D2rp
 !REGION TCC_CAV1 5
-	+tcc -thbox 
+	+tcc -thbox
 	| +tdec -D1rp
 	| (+ttline +ttline_u) -Q1rp -Q2rp -Q3rp -Q4rp -Q5rp -Q6rp -Q7rp -D2
 REGION THBOX 5
 	+thbox -target
 REGION TARGET 5
 	+target
-* --- Magent models
+*
+* --- Transfer Line Magent Models - regions
+*
 REGION MBHAEnv 5
 	+mbhavol -mbhafe -mbhavac
 REGION MBHAFe 5
@@ -260,77 +281,88 @@ REGION MQAFe 5
 	+mqafe -mqavac
 REGION MQAVac 5
 	+mqavac
+*
+* --- Ring Magnet Models - regions 
+*
+#include ring_magnet_models_regions.inp
+#
 * --- include lenustorm_models.regions
-REGION QFAEnv 5
+!REGION QFAEnv 5
 	+qfavol -qfafe -qfavac
-REGION QFAFe 5
+!REGION QFAFe 5
 	+qfafe -qfavac
-REGION QFAVac 5
+!REGION QFAVac 5
 	+qfavac
-REGION QDAEnv 5
+!REGION QDAEnv 5
 	+qdavol -qdafe -qdavac
-REGION QDAFe 5
+!REGION QDAFe 5
 	+qdafe -qdavac
-REGION QDAVac 5
+!REGION QDAVac 5
 	+qdavac
-REGION QFSEnv 5
+!REGION QFSEnv 5
 	+qfsvol -qfsfe -qfsvac
-REGION QFSFe 5
+!REGION QFSFe 5
 	+qfsfe -qfsvac
-REGION QFSVac 5
+!REGION QFSVac 5
 	+qfsvac
-REGION QDSEnv 5
+!REGION QDSEnv 5
 	+qdsvol -qdsfe -qdsvac
-REGION QDSFe 5
+!REGION QDSFe 5
 	+qdsfe -qdsvac
-REGION QDSVac 5
+!REGION QDSVac 5
 	+qdsvac
-REGION QDSA1Env 5
+!REGION QDSA1Env 5
 	+qdsa1vol -qdsa1fe -qdsa1vac
-REGION QDSA1Fe 5
+!REGION QDSA1Fe 5
 	+qdsa1fe -qdsa1vac
-REGION QDSA1Vac 5
+!REGION QDSA1Vac 5
 	+qdsa1vac
-REGION QDSA2Env 5
+!REGION QDSA2Env 5
 	+qdsa2vol -qdsa2fe -qdsa2vac
-REGION QDSA2Fe 5
+!REGION QDSA2Fe 5
 	+qdsa2fe -qdsa2vac
-REGION QDSA2Vac 5
+!REGION QDSA2Vac 5
 	+qdsa2vac
-REGION QFSA1Env 5
+!REGION QFSA1Env 5
 	+qfsa1vol -qfsa1fe -qfsa1vac
-REGION QFSA1Fe 5
+!REGION QFSA1Fe 5
 	+qfsa1fe -qfsa1vac
-REGION QFSA1Vac 5
+!REGION QFSA1Vac 5
 	+qfsa1vac
-REGION BEnv 5
+!REGION BEnv 5
 	+bvol -bfe -bvac
-REGION BFe 5
+!REGION BFe 5
 	+bfe -bvac
-REGION BVac 5
+!REGION BVac 5
 	+bvac
 *
-REGION D1 5
-	+D1rp 
-REGION D2 5
-	+D2rp 
-REGION Q1 5
+!REGION D1 5
+	+D1rp
+!REGION D2 5
+	+D2rp
+!REGION Q1 5
 	+Q1rp
-REGION Q2 5
+!REGION Q2 5
 	+Q2rp
-REGION Q3 5
-	+Q3rp 
-REGION Q4 5
-	+Q4rp 
-REGION Q5 5
-	+Q5rp 
-REGION Q6 5
-	+Q6rp 
-REGION Q7 5
-	+Q7rp 
+!REGION Q3 5
+	+Q3rp
+!REGION Q4 5
+	+Q4rp
+!REGION Q5 5
+	+Q5rp
+!REGION Q6 5
+	+Q6rp
+!REGION Q7 5
+	+Q7rp
 *
-REGION QDS2A2.0 5
+!REGION QDS2A2.0 5
 	+qds2a2.0
+!REGION QFS2A1.0 5
+	+qfs2a1.0
+!REGION QDS2A1.0 5
+	+qds2a1.0
+!REGION QFS.0 5
+	+qfs.0
 *
 END
 LATTICE trd1 D1,,, MBHAEnv
@@ -342,7 +374,10 @@ LATTICE trq4 Q4,,, MQAEnv
 LATTICE trq5 Q5,,, MQAEnv
 LATTICE trq6 Q6,,, MQAEnv
 LATTICE trq7 Q7,,, MQAEnv
-LATTICE frtr1 QDS2A2.0,,, QDSA2Env
+!LATTICE frtr1 QDS2A2.0,,, QDSA2Env
+!LATTICE frtr3 QFS2A1.0,,, QFSA1Env
+!LATTICE frtr5 QDS2A1.0,,, QDSA1Env
+!LATTICE frtr7 QFS.0,,, QFSEnv
 USRBIN Beampart 10 BEAMPART -21 100 100 800 -300 -100 300 400 400 500
 USRBIN Beampar1 10 BEAMPART -22 100 10 1300 -1000 -10 0 400 20 500
 GEOEND
@@ -358,8 +393,8 @@ ASSIGNMA , HELIUM MBHAEnv BEnv 3
 ASSIGNMA , IRON MBHAFe BFe 3
 ASSIGNMA , VACUUM MBHAVac BVac 3 1
 MGNCREAT D1 2
-MGNFIELD D1 =d1_b0,, 2 D1
-MGNFIELD D1 =-d1_b0,, 2 D2
+MGNFIELD D1 $d1_b0,, 2 D1
+MGNFIELD D1 -$d1_b0,, 2 D2
 !ASSIGNMA , VACUUM MQAEnv
 !ASSIGNMA , VACUUM MQAEnv
 !ASSIGNMA , IRON MQAFe
@@ -368,9 +403,9 @@ MGNFIELD D1 =-d1_b0,, 2 D2
 !ASSIGNMA , NITROGEN qenv,, 3
 *Define the transformations from the replicas to the models
 *           rot.numb.    theta    phi       dx        dy        dz
-ROT-DEFI trttl 200 0.0 =-d1_adeg 0 0.0 =-(s_d1+d1_pivot)
+ROT-DEFI trttl 200 0.0 -$d1_adeg 0 0.0 =-(s_d1+d1_pivot)
 *# ---- D1
-ROT-DEFI trd1 0,,, =-1000+d1_defl/2,, =-s_d1
+ROT-DEFI trd1 0,,, =-1000+d1_defl/2,, -$s_d1
 *# ---- D2
 ROT-DEFI trd2,,,, =-1000+d1_defl/2+s_d2*sin(d1_arad),, =-(s_d1+d1_pivot)-s_d2*cos(d1_arad)
 *# ---- Q1
@@ -403,10 +438,9 @@ ROT-DEFI trq7 200,, -$d1_adeg
 ROT-DEFI trq7 300,,, -1500
 *
 *! - ROTDEFI for element QDS2A2.0 at s=0.9944096426539861
-ROT-DEFI frtr1 0,,, 995.7722955833584,, -1599.35105379108
-ROT-DEFI frtr1 200,, 2.4366482
-ROT-DEFI frtr1 300,, 0 -1000 0 -1150
-*
+!ROT-DEFI frtr1 0,,, 995.7722955833584,, -1599.35105379108
+!ROT-DEFI frtr1 200,, 2.4366482
+!ROT-DEFI frtr1 300,, 0 -1000 0 -1150
 *
 *Set the random number seed
 RANDOMIZ , 1.0
@@ -415,18 +449,19 @@ START , 1000
 STOP
 EndInput
 
-Page: Flair
+Page: Input
 plotengine: Gnuplot
 
 # Run information
 Run: <default>
 	Last:     1
 	Status:   3
-	StartRun: 1732231574.8420749
+	StartRun: 1732642764.561652
 	open:     1
 End
 Geometry: Geometry
 	Frame.bsplit: 0.5309597523219814
+	Frame.tsplit: 0.428936170212766
 	Frame.vsplit: 0.624868282402529
 	Layer: 3D
 		3D: 1
@@ -443,26 +478,26 @@ End
 Plot: Red
 	Type: Geometry
 	coord: X-Y
-	extends: 889.5479980562602 667.1609985421951
+	extends: 3824.893568776354 3447.7232800727443
 	group: Geometry
 	layer: Media
-	origin: -400.589 -286.691 -850
+	origin: 1507.05 777.019 -850
 End
 Plot: Green
 	Type: Geometry
 	basisu: 0 0 1
 	basisv: 1 0 0
 	coord: Z-X
-	extends: 3244.2129002755205 2433.1596752066407
+	extends: 3506.2958076903037 2376.415314527744
 	group: Geometry
 	layer: Lattice
-	origin: 275.327 0 2005.78
+	origin: -998.652 0 1390.62
 End
 Plot: Blue
 	Type: Geometry
 	basisu: 0 0 1
 	coord: Z-Y
-	extends: 2244.1519313359204 1683.1139485019403
+	extends: 2244.1519313359204 955.8849390879252
 	group: Geometry
 	layer: Lattice
 	origin: 0 -778.094 1354.33
@@ -470,10 +505,10 @@ End
 Plot: Magenta
 	Type: Geometry
 	coord: X-Y
-	extends: 891.6100448255988 668.7075336191991
+	extends: 891.6100448255988 430.32568135679946
 	group: Geometry
 	layer: Lattice
-	origin: -459.598 -125.094 1610
+	origin: -459.598 -125.094 1000
 End
 Plot: lenustorm_latt_21_plot
 	Type: USRBIN
@@ -483,9 +518,9 @@ Plot: lenustorm_latt_21_plot
 	format: .jpg
 	grid: 0
 	hist: 2D Projection
-	int: 586.25007856000821
-	max: 3.46868020E-03
-	min: 3.42670994E-08
+	int: 385.62197076177904
+	max: 3.46738147E-03
+	min: 2.27669119E-08
 	open: 1
 	proj: Y
 	title: USRBIN lenustorm latt 21
@@ -511,9 +546,9 @@ Plot: lenustorm_latt_21_plot
 	datafile: lenustorm_latt_21.bnn
 	grid: 0
 	hist: 2D Projection
-	int: 4947.9165602229205
-	max: 1.19441263E-02
-	min: 3.03434740E-06
+	int: 385.62197076177904
+	max: 3.46738147E-03
+	min: 2.27669119E-08
 	open: 1
 	proj: Y
 	title: USRBIN lenustorm latt 21
@@ -523,6 +558,8 @@ Plot: lenustorm_latt_21_plot
 	cblog: 1
 	cbtics: 1
 	datafile: lenustorm_latt_21.bnn
+	grid: 0
+	hist: 2D Projection
 	open: 1
 	title: USRBIN lenustorm latt 21
 End
@@ -533,9 +570,9 @@ Plot: lenustorm_latt_22_plot
 	datafile: lenustorm_latt_22.bnn
 	grid: 0
 	hist: 2D Projection
-	int: 1716.6687461518925
-	max: 2.13130899E-02
-	min: 2.01673984E-08
+	int: 1716.2086516584529
+	max: 2.13229246E-02
+	min: 8.99545327E-08
 	open: 1
 	proj: Y
 	title: USRBIN lenustorm latt 22

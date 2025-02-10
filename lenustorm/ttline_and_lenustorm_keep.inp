@@ -132,17 +132,22 @@ RPP tdec_o     -$tdec_wid $tdec_wid -$tdec_wid $tdec_wid 299 8001
 !@what.5=tcc_len-2
 !@what.6=tdec_len-bdump_len+2
 RPP tdec       -$tdec_rad $tdec_rad -$tdec_rad $tdec_rad 298 7502
-
-!$start_transform -trttl
+*$start_transform -trttl
+#if 0
 !@what.1=-1.2*d1_xsiz/2
 !@what.2=1.2*d1_xsiz/2
 !@what.3=-1.2*d1_ysiz/2
 !@what.4=1.2*d1_ysiz/2
-!RPP ttline     -127.84744809470256 127.84744809470256 -84 84 0 2000
-!$end_transform
-!YZP ttline_u   -$tdec_rad
+RPP ttline     -127.84744809470256 127.84744809470256 -84 84 0 2000
+#endif
+*$end_transform
+#if 0
+YZP ttline_u   -$tdec_rad
+#endif
+#if 0
 !@what.1=-tdec_wid-1000
-!YZP ttline_d   -1650
+YZP ttline_d   -1650
+#endif
 *Target & Horn box
 RCC thbox      0 0 $thbox_zmin 0 0 $thbox_zmax $thbox_rad
 RCC target     0 0 0 0 0 $tgt_len $tgt_rad
