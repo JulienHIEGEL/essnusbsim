@@ -1,4 +1,4 @@
-# target2lenustorm
+# T2R and LEnuSTORM Simulation
 
 ESSnuSB+ Simulation Studies for the LEnuSTORM stage
 
