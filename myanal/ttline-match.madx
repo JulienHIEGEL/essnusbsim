@@ -1,0 +1,22 @@
+!
+
+df : drift ; 
+mb : sbend l=2.0, angle = pi/6;
+mq : quadrupole l=0.8;
+mk : marker;
+
+qf : mq k1 := k1.qf;
+qd : mq k1 := k1.qd;
+
+d0 : df l = 2.5;
+d1 : df l = 0.8;
+d2 : df l = 0.5;
+d3 : df l = 0.5;
+
+mkf : mk ; mkd : mk ;
+
+sequ : line = (d0, mb, d1, qf, d2, qd, d3, mkf);
+use sequence = sequ;
+
+select flag = survey, column={{name, keyword, s, l, x, y, z}};
+survey file = "survey-sequ.tfs";
