@@ -19,8 +19,14 @@ myfluka
 ran*
 
 **/.vscode/
-myanal/
 run/
 fastsim/
 lenustorm/fluka_*
 lenustorm/obs/
+myanal/*.inp
+myanal/*.flair
+myanal/*.regions
+myanal/*.rotdefi
+myanal/*.bodies
+myanal/*.replicas
+myanal/__pycache__/
