@@ -20,7 +20,7 @@ ran*
 
 **/.vscode/
 run/
-fastsim/
+# fastsim/
 lenustorm/fluka_*
 lenustorm/obs/
 myanal/*.inp
