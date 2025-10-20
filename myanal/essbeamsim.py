@@ -17,6 +17,23 @@ import scipy
 import re
 
 class DotDict(dict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for key, value in self.items():
+            if isinstance(value, dict):
+                self[key] = DotDict(value)  # Recursively convert nested dicts
+
+    def __getattr__(self, name):
+        if name in self:
+            return self[name]
+        raise AttributeError(f"No such attribute: {name}")
+
+    def __setattr__(self, name, value):
+        self[name] = value
+
+    def __delattr__(self, name):
+        del self[name]
+class _DotDict(dict):
 
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
