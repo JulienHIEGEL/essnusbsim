@@ -2,8 +2,8 @@
 
 ESSnuSB+ Simulation Studies for the LEnuSTORM stage
 
-## Structure
-
+# Structure
+```bash
 project/
 ├── fluka0/         # initial FLUKA simulation code for target and decay pipe
 ├── pprod/          # FLUKA files for particle production out of the target
@@ -17,7 +17,7 @@ project/
 └── InitPlots.py
 └── README_init.md  # initial README kept for reference 
 └── FLUKA-sim.pptx  # help file for the FLUKA simulation of the beam lines
-
+```
 
 ## Script to generate the FLUKA Simulation Input
 
