@@ -33,43 +33,19 @@ class DotDict(dict):
 
     def __delattr__(self, name):
         del self[name]
-class _DotDict(dict):
+        
+def line_from_points(p1, p2):
+    _dd = np.subtract(p2, p1)
+    _slope = _dd[1]/_dd[0]
+    _intercept = p1[1] - _slope * p1[0]
+    return _slope, _intercept
 
-    __setattr__ = dict.__setitem__
-    __delattr__ = dict.__delitem__
-
-    def __getattr__(self, key):
-
-        def typer(candidate):
-            if isinstance(candidate, dict):
-                return DotDict(candidate)
-
-            if isinstance(candidate, str):  # iterable but no need to iter
-                return candidate
-
-            try:  # other iterable are processed as list
-                return [typer(item) for item in candidate]
-            except TypeError:
-                return candidate
-
-            return candidate
-
-        return typer(dict.get(self, key))
+def distance_point_to_line(lpar, pp):
+    ''' Distance of point (x0, y0) to line (y = a * x + b): d = abs(a*x0 - y0 + b)/sqrt(a**2 + 1)'''
+    _aa = lpar[0]
+    _cc = lpar[1]
+    return np.abs(_aa * pp[0] -pp[1] + _cc)/ np.sqrt(_aa**2 + 1)        
     
-def line_equation(a, b):
-    ''' line equation passing trhough the two points A and B : y = w*x + c '''
-    w = (a[1]-b[1])/(a[0]-b[0])
-    c = a[1]-w*a[0]
-    return w, c
-
-def distance_point_to_line(pline1, pline2, apoint):
-    ''' distance of apoint to a line passing through pline1 and pline2 '''
-    _aa = pline2[1] - pline1[1]
-    _bb = pline2[0] - pline1[0]
-    _cc = pline2[0]*pline1[1] - pline2[1]*pline1[0]
-    _dd = np.sqrt(_aa*_aa + _bb*_bb)
-    return np.abs(_aa*apoint[0] - _bb*apoint[1] + _cc)/_dd
-
 def dipole_length_from_angle(angle, arclength):
     rcurv = arclength/angle
     return rcurv * np.sin(angle)
@@ -308,170 +284,3 @@ def particle_beta_gamma(name, pmom_gev):
     _gamma = np.sqrt(_bgamma**2+1)
     _beta = _bgamma/_gamma
     return _beta, _gamma
-
-def generate_lenustorm(mmomentum, icycle=0, verbose=False):
-    ''' Generate the LEnuSTORM ring in Xsuite'''
-    
-    env = xt.Environment()
-
-    MUON_MASS_EV = 105.7e6
-
-    env.particle_ref = xt.Particles(p0c=mmomentum*1.0e9, #eV
-                                    q0=1, mass0=MUON_MASS_EV)
-
-    env.new('QFA', xt.Quadrupole, length = 0.125, k1 =  5.45022291277778148)
-    env.new('QDA', xt.Quadrupole, length = 0.25, k1 = -4.56255529153320527)
-    env.new('QFS', xt.Quadrupole, length = 0.125, k1 =  4.20157995314257704)
-    env.new('QDS', xt.Quadrupole, length = 0.25, k1 = -4.47765024083436547)
-    env.new('QDS_to_A1', xt.Quadrupole, length = 0.25, k1 = -4.50136419788634790)
-    env.new('QDS_to_A2', xt.Quadrupole, length = 0.25, k1 = -4.56741388890428279)
-    env.new('QFS_to_A1', xt.Quadrupole, length = 0.25, k1 = 4.82791218101006692)
-    env.new('D005', xt.Drift, length = 0.05)
-    env.new('D_sex', xt.Drift, length = 0.15)
-    env.new('D_stoA1', xt.Drift, length = 9.94409642653986126E-001)
-    env.new('DB', xt.Drift, length = 0.6)
-    env['a']= 0.6
-    env['b'] = np.pi/(6*2)
-    env['rho'] = 'a / b'
-    env.new('B', xt.Bend, length = 'a', h = '1/rho', k0 = '1/rho')
-
-    FODOA = env.new_line(
-        name = 'fodoa',
-        components = ['QFA', 'D_sex', 'D005', 'B', 'D005', 'D_sex', 'QDA', 'D_sex', 'D005', 'B', 'D005', 'D_sex', 'QFA'])
-
-    env.new('fodoa1', 'fodoa', mode='replica')
-    env.new('fodoa2', 'fodoa', mode='replica')
-    env.new('fodoa3', 'fodoa', mode='replica')
-    env.new('fodoa4', 'fodoa', mode='replica')
-    env.new('fodoa5', 'fodoa', mode='replica')
-    env.new('fodoa6', 'fodoa', mode='replica')
-
-    HALF_ARC = env.new_line(
-        name = 'half-arc',
-        components = ['fodoa1', 'fodoa2', 'fodoa3', 'fodoa4', 'fodoa5', 'fodoa6']
-    )
-
-    #HALF_ARC.get_table().show()
-
-    FODOS_to_A = env.new_line(
-        name = 'FODOS_to_A', 
-        components = ['QFS', 'D_stoA1', 'QDS_to_A1', 'D_stoA1', 
-        'QFS_to_A1', 'D_stoA1', 'QDS_to_A2', 'D_stoA1', 'QFA']
-    )
-
-    FODOS1 = env.new_line(
-        name = 'fodos1', 
-        components = ['QFS', 'D_sex', 'D005', 'DB', 'D005', 'D_sex', 
-        'QDS', 'D_sex', 'D005', 'DB', 'D005', 'D_sex', 'QFS']
-    )
-
-    STRAIGHT = env.new_line(
-        name = 'straight',
-        components = ['fodos1']*20
-    )
-
-    #FODOS_to_A.get_table().show()
-
-    HALF_RING = STRAIGHT + FODOS_to_A + HALF_ARC - FODOS_to_A + STRAIGHT
-
-    #HALF_RING.get_table().show()
-
-    FULL_RING = HALF_RING+HALF_RING
-
-    '''
-    straight = FODOS1+FODOS1
-
-    half_ring: line = (straight, FODOS_to_A, arc, -FODOS_to_A, straight)
-    full_ring: line = (2*half_ring)
-
-    Optimized parameters are:
-    QFA[K1] =  5.45022291277778148E+000
-    QDA[K1] = -4.56255529153320527E+000
-    QFS[K1] =  4.20157995314257704E+000
-    QDS[K1] = -4.47765024083436547E+000
-    QDS_TO_A1[K1] = -4.50136419788634790E+000
-    QDS_TO_A2[K1] = -4.56741388890428279E+000
-    QFS_TO_A1[K1] =  4.82791218101006692E+000
-    D_STOA1[L] =  9.94409642653986126E-001
-    '''
-    
-    # -- cycle the ring to start from the first big gap of the SS
-    if icycle != 0 :
-        FULL_RING = FULL_RING.cycle(index_first_element=icycle)
-        
-    context = xo.ContextCpu()         # For CPU
-    # context = xo.ContextCupy()      # For CUDA GPUs
-    # context = xo.ContextPyopencl()  # For OpenCL GPUs
-
-    ## Transfer lattice on context and compile tracking code
-    FULL_RING.build_tracker(_context=context)
-
-    ## Compute lattice functions
-    tw = FULL_RING.twiss(method='4d')
-    tw_df = tw.to_pandas()
-    tw_df.head()
-    if verbose:
-        print('TWISS')
-        display(tw_df.head())
-        # tw.show()
-
-    fr_df = FULL_RING.to_pandas()
-    mbeta, mgamma = particle_beta_gamma('mu+', mmomentum)
-    revolution_period = FULL_RING.get_length()/(mbeta*scipy.constants.c)*1.0e6
-    print(f'''LEnuSTORM Ring:
-        elements defined : {fr_df.shape[0]}
-        full length: {FULL_RING.get_length()}
-        revoluiton period: {revolution_period} [us]
-        ''')
-    
-    survey_df = FULL_RING.survey().to_pandas()
-    
-    lenustorm_df = fr_df.merge(survey_df, left_index=True, right_index=True, suffixes=('_fr','_srv'))
-    lenustorm_df.head(20)
-    
-    lenustorm_df['X_cm'] = lenustorm_df['X'].apply(lambda x: x*100)
-    lenustorm_df['Y_cm'] = lenustorm_df['Y'].apply(lambda x: x*100)
-    lenustorm_df['Z_cm'] = lenustorm_df['Z'].apply(lambda x: x*100)
-    lenustorm_df['theta_deg'] = lenustorm_df['theta'].apply(lambda x: x*180/np.pi)
-
-    lenustorm_df['el_name'] = lenustorm_df['name_srv'].apply(lambda x: re.sub(r':+', '.', x).replace('_to_','2').replace('.fodoa','ac'))
-    lenustorm_df['model_id'] = lenustorm_df.apply(lambda r: r.name_fr.split('.')[0] if r.element_type != 'Drift' else np.nan, axis=1)
-    lenustorm_df['model_name'] = lenustorm_df['model_id'].apply(lambda x: x.replace('_to_','').lower()+'vol' if isinstance(x, str) else x) 
-    lenustorm_df['ishalf'] = lenustorm_df.apply(lambda r: True if r.element_type != 'Drift' and r.drift_length == 0.125 else False, axis=1)
-    lenustorm_df['Consecutive_Count'] = lenustorm_df.groupby((lenustorm_df['model_name'] != lenustorm_df['model_name'].shift()).cumsum()).cumcount() + 1
-
-    return FULL_RING, tw_df, survey_df, lenustorm_df
-
-def gen_t2rline(fin, verbose=False):
-        
-    TRANSLINE = xt.Line.from_json(fin)
-    t2r_df = TRANSLINE.to_pandas()
-    t2r_df['k0'] = t2r_df.apply(lambda r: r.element.k0 if r.element_type == 'Bend' else None, axis=1)
-    t2r_df['k1'] = t2r_df.apply(lambda r: r.element.k1 if r.element_type == 'Quadrupole' else None, axis=1)
-    t2r_df['name'] = t2r_df['name'].apply(lambda x: x.replace('T','').replace('.hs1','b'))
-    t2r_df
-    
-    t2r_srv_df = TRANSLINE.survey().to_pandas()
-    t2r_srv_df['name'] = t2r_srv_df['name'].apply(lambda x: x.replace('T','').replace('.hs1','b'))
-    
-    tlcomplete_df = t2r_df.merge(t2r_srv_df, left_index=True, right_index=True, suffixes=('_tl','_srv'))
-    tlcomplete_df[tlcomplete_df.element_type != 'Drift']
-    
-    tlcomplete_df['X_cm'] = tlcomplete_df['X'].apply(lambda x: x*100)
-    tlcomplete_df['Y_cm'] = tlcomplete_df['Y'].apply(lambda x: x*100)
-    tlcomplete_df['Z_cm'] = tlcomplete_df['Z'].apply(lambda x: x*100)
-    tlcomplete_df['theta_deg'] = tlcomplete_df['theta'].apply(lambda x: x*180/np.pi)
-
-    tlcomplete_df['el_name'] = tlcomplete_df.apply(lambda r: r.name_srv.replace('_','') if not r.element_type in ['Drift', 'Marker'] else r.name_srv, axis=1)
-    tlcomplete_df['model_id'] = tlcomplete_df.apply(lambda r: 'TTMB' if r.element_type == 'Bend' else 'TTMQ' if r.element_type == 'Quadrupole' else np.nan, axis=1)
-    tlcomplete_df['model_name'] = tlcomplete_df['model_id'].apply(lambda x: x.replace('_','').lower()+'vol' if isinstance(x, str) else x) 
-    tlcomplete_df['ishalf'] = tlcomplete_df.apply(lambda r: 0 if r.element_type != 'Quadrupole' else 1 if r.drift_length == 0.4 else 0, axis=1)
-
-
-    _dmy = pd.DataFrame(tlcomplete_df['ishalf'])
-    _dmy['counter'] = _dmy['ishalf'].apply(lambda x: None if x == 0 else x)
-    _dmy['counter'] = _dmy.groupby('counter').cumcount() +1 
-    _dmy['counter'] = _dmy['counter'].where(_dmy['ishalf'] != 0, 0).astype(int)  # Reset counter to 0 for rows with 0s
-
-    tlcomplete_df['Consecutive_Count'] = _dmy['counter'].values
-    return TRANSLINE, t2r_df, t2r_srv_df, tlcomplete_df

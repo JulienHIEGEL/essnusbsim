@@ -1,0 +1,51 @@
+#
+# -Configuration file for FLUKA Simulation
+#
+# Units in:  m s
+#
+# Note: the {0,0,0} point for the simulation corresponds to the target upstream
+
+trg_to_lblnd    : 320     # = 250+60 in Nicks last drawing he claims 338 m from the decay tunnel start to ND front face, add 10m for nuSTORM clearance
+ss_to_lemmond   : 50
+l_decay_tunnel  : 60
+w_decay_tunnel  : 14  # = 2*7.0
+r_decay_pipe    : 2.5
+h_decay_tunnel  : 13  # = 2*6.5
+w_ring_tunnel   : 2
+h_ring_tunnel   : 4
+ring_walls      : 2
+w_tline_tunnel  : 5
+h_tline_tunnel  : 4
+t_tline_tunnel  : 2
+
+mparking_start  : [0, 0, -101]  # x,y,z coordinates 
+mparking_radius : 10
+
+# trg_to_d1pivot  : 2.5             # from targed front to D1 pivot point
+# d2pivot_to_inj  : [-2, 6.0]       # D2 pivot to LEnuSTORM injection point in (xz) coordinates 
+t2r_start         : [0, 2.0]        # start of T2R line from target start 
+t2rend_to_inj     : [-2, 6.0]       # m T2R end projected to ring production straight in (xz) coordinates 
+t2rstart_to_inj   : [-9.08278251237319, 23.1539181004073] # {x,z} coordinates
+
+beam_size     : 0.10                 # +10 cm beam size
+qaperture_x   : 0.15                # 30cm diameter 
+qaperture_y   : 0.15
+magnet_width  : 0.8    # default lateral magnet dimension from beam axis
+d1_aperture_margin : 1.2    # factor to multiply the needed aperture for the D1 dipole (20%)
+
+t2r: # T2R line specific (obsolete, will be read from the input file)
+  # l_bend      : 2.0             # arc length of the dipoles
+  l_bend_end  : 0.35
+  l_bend_woke : 0.50
+
+  # l_quad      : 0.80
+  l_quad_end  : 0.20
+  l_quad_w    : .60
+  l_quad_h    : .60
+  # l_qfl       : 0.80
+  l_qfl_end   : 0.20
+  l_qfl_w     : .90
+  l_qfl_h     : .90
+  l_vac       : 0.10
+
+ 
