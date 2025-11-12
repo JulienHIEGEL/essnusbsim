@@ -21,12 +21,12 @@ ran*
 **/.vscode/
 run/
 # fastsim/
-lenustorm/fluka_*
-lenustorm/obs/
-myanal/*.inp
-myanal/*.flair
-myanal/*.regions
-myanal/*.rotdefi
-myanal/*.bodies
-myanal/*.replicas
-myanal/__pycache__/
+src/fluka_*
+src/obs/
+dev/*.inp
+dev/*.flair
+dev/*.regions
+dev/*.rotdefi
+dev/*.bodies
+dev/*.replicas
+dev/__pycache__/
