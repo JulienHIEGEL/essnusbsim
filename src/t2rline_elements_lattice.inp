@@ -1,0 +1,18 @@
+*
+*---- TT line element lattice ----
+*
+LATTICE, MBTL0.0, , , MB150Env, , ,tltr0
+LATTICE, MQ_T2R.0, , , QM80Env, , ,tltr2
+LATTICE, MQ_T2R.1, , , QM80Env, , ,tltr4
+LATTICE, MQ_T2R.2, , , QM80Env, , ,tltr6
+LATTICE, MBTL0.1, , , MB150Env, , ,tltr8
+LATTICE, MQ_T2R.3, , , QM80Env, , ,tltr10
+LATTICE, MQ_T2R.4, , , QM80Env, , ,tltr12
+LATTICE, MQ_T2R.5, , , QM80Env, , ,tltr14
+LATTICE, MQ_T2R.6, , , QM80Env, , ,tltr16
+LATTICE, MQ_T2R.7, , , QM80Env, , ,tltr18
+LATTICE, MBTL1.1, , , MB138Env, , ,tltr21
+LATTICE, MQ_T2R.9, , , QM80Env, , ,tltr23
+LATTICE, MQ_T2R.10, , , QM80Env, , ,tltr25
+LATTICE, MQ_T2R.11, , , QM80Env, , ,tltr27
+LATTICE, MBTL1.0, , , MB138Env, , ,tltr29

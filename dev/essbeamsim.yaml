@@ -7,10 +7,24 @@
 
 trg_to_lblnd    : 320     # = 250+60 in Nicks last drawing he claims 338 m from the decay tunnel start to ND front face, add 10m for nuSTORM clearance
 ss_to_lemmond   : 50
+#
+target_len      : 0.78
+target_radious  : 0.015
+thbox_x         : [-1, 1]
+thbox_y         : [-1, 1]
+thbox_z         : [-0.1, 1]
+#
+z_target_cavern : [-1, 4]       # start/end of the target cavern
+w_target_cavern : [-3.5, 3.5]   # 2*3.5
+h_target_cavern : [-3.5, 3.5]   # 2*3.5
+#
 l_decay_tunnel  : 60
-w_decay_tunnel  : 14  # = 2*7.0
+w_decay_tunnel  : [-7, 7]       # = 2*7.0
 r_decay_pipe    : 2.5
-h_decay_tunnel  : 13  # = 2*6.5
+h_decay_tunnel  : [-6.5, 6.5]  # = 2*6.5
+#
+d_shield        : 4.0   # thickness of the shielding
+#
 w_ring_tunnel   : 2
 h_ring_tunnel   : 4
 ring_walls      : 2
@@ -19,7 +33,7 @@ h_tline_tunnel  : 4
 t_tline_tunnel  : 2
 
 mparking_start  : [0, 0, -101]  # x,y,z coordinates 
-mparking_radius : 10
+mparking_radious: 10
 
 # trg_to_d1pivot  : 2.5             # from targed front to D1 pivot point
 # d2pivot_to_inj  : [-2, 6.0]       # D2 pivot to LEnuSTORM injection point in (xz) coordinates 
