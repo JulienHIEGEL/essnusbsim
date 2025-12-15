@@ -29,4 +29,5 @@ dev/*.regions
 dev/*.rotdefi
 dev/*.bodies
 dev/*.replicas
+dev/zzobs
 dev/__pycache__/
