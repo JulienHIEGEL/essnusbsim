@@ -1,0 +1,9 @@
+*
+*---- Target & Horn Assembly  ----
+*
+
+THBOX  5 
+    +thbox -target
+TARGET 5
+    +target
+    
