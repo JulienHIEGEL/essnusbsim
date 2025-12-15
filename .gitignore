@@ -23,7 +23,6 @@ run/
 # fastsim/
 src/fluka_*
 src/obs/
-dev/*.inp
 dev/*.flair
 dev/*.regions
 dev/*.rotdefi
