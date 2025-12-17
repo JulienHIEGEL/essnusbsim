@@ -19,7 +19,9 @@ myfluka
 ran*
 
 **/.vscode/
-run/
+run/*
+!run/*.flair
+!run/*.inp
 # fastsim/
 src/fluka_*
 src/obs/
