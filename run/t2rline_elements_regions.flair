@@ -1,0 +1,45 @@
+# flair project file
+Version: 300
+Mode: fluka
+md5: 19e502cb59c6e66389de17e52ae8d2a0
+Input:
+*
+*---- T2R line element regions  ----
+*
+REGION TLMB1 5
+	+tlmb1
+REGION TLMQ1 5
+	+tlmq1
+REGION TLMQ2 5
+	+tlmq2
+REGION TLMQ3 5
+	+tlmq3
+REGION TLMB2 5
+	+tlmb2
+REGION TLMQ4 5
+	+tlmq4
+REGION TLMQ5 5
+	+tlmq5
+REGION TLMQ6 5
+	+tlmq6
+REGION TLMQ7 5
+	+tlmq7
+REGION TLMQ8 5
+	+tlmq8
+REGION TLMB3 5
+	+tlmb3
+REGION TLMQ9 5
+	+tlmq9
+REGION TLMQ10 5
+	+tlmq10
+REGION TLMQ11 5
+	+tlmq11
+REGION TLMB4 5
+	+tlmb4
+EndInput
+
+Page: Flair
+
+# Run information
+Run: <default>
+End

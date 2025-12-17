@@ -1,0 +1,30 @@
+# flair project file
+Version: 300
+Mode: fluka
+md5: f8f75510eb30319582dfd198562c52c7
+Input:
+*
+*---- TT line element lattice ----
+*
+LATTICE t2rtr0 TLMB1,,, TLMB1
+LATTICE t2rtr2 TLMQ1,,, QM80Env
+LATTICE t2rtr4 TLMQ2,,, QM80Env
+LATTICE t2rtr6 TLMQ3,,, QM80Env
+LATTICE t2rtr8 TLMB2,,, TLMB2
+LATTICE t2rtr10 TLMQ4,,, QM80Env
+LATTICE t2rtr12 TLMQ5,,, QM80Env
+LATTICE t2rtr14 TLMQ6,,, QM80Env
+LATTICE t2rtr16 TLMQ7,,, QM80Env
+LATTICE t2rtr18 TLMQ8,,, QM80Env
+LATTICE t2rtr21 TLMB3,,, TLMB3
+LATTICE t2rtr23 TLMQ9,,, QM80Env
+LATTICE t2rtr25 TLMQ10,,, QM80Env
+LATTICE t2rtr27 TLMQ11,,, QM80Env
+LATTICE t2rtr29 TLMB4,,, TLMB4
+EndInput
+
+Page: Flair
+
+# Run information
+Run: <default>
+End

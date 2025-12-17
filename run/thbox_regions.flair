@@ -1,0 +1,19 @@
+# flair project file
+Version: 300
+Mode: fluka
+md5: e3d80d0cf1005629a13a3ef2250ade28
+Input:
+*
+*---- Target & Horn Assembly  ----
+*
+REGION THBOX 5
+	+thbox -target
+REGION TARGET 5
+	+target
+EndInput
+
+Page: Flair
+
+# Run information
+Run: <default>
+End
